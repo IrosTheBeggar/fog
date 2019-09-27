@@ -101,6 +101,14 @@
       loadJson.port = 3000;
     }
 
+    if(!loadJson.logs){
+      loadJson.logs = path.join(app.getPath('userData'), 'save');
+    }
+
+    if(!loadJson.directory){
+      loadJson.directory = path.join(app.getAppPath(), 'examples/basic');
+    }
+
     // Auto DNS Testing
     if (!loadJson.ddns) {
       loadJson.ddns = {};
@@ -151,7 +159,7 @@
                     <div class="about-content-header">Setup Website</div>\
                     <br>\
                     <div class="input-field">\
-                      <input v-on:click="selectLogsPath($event)" v-model="lJson.directory" @blur="updateConfig()" id="server-logs-folder" type="text" class="active" required />\
+                      <input v-on:click="selectWebPath($event)" v-model="lJson.directory" @blur="updateConfig()" id="server-logs-folder" type="text" class="active" required />\
                       <label class="active" for="server-logs-folder">Website Folder</label>\
                       <span class="helper-text">This is a a required field</span>\
                     </div>\
@@ -164,9 +172,9 @@
             updateConfig: function() {
               fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
             },
-            selectLogsPath: function(el) {
-              dialog.showOpenDialog({properties: [ 'openDirectory']}, (selectedFile) => {
-                if(selectedFile == null ){
+            selectWebPath: function(el) {
+              dialog.showOpenDialog({properties: ['openDirectory']}, (selectedFile) => {
+                if(selectedFile.length === 0){
                   return;
                 }
                 el.target.value =  selectedFile[0];
@@ -233,7 +241,7 @@
             },
             selectLogsPath: function(el) {
               dialog.showOpenDialog({properties: [ 'openDirectory']}, (selectedFile) => {
-                if(selectedFile == null ){
+                if(selectedFile.length === 0){
                   return;
                 }
                 el.target.value =  selectedFile[0];
@@ -638,7 +646,6 @@
             document.getElementById("boot-server-button").innerHTML = 'Success';
             document.getElementById("boot-server-text").innerHTML = 'Server Booted!';
 
-            // document.getElementById("post-boot-content").innerHTML = '<div>This window will automatically close in <span id="countdown">30</span> seconds to save on memory</div>';
             const localhostAdd = loadJson.ssl && loadJson.ssl.cert && loadJson.ssl.key ? 'https' : 'http' + '://localhost:' + loadJson.port;            
             document.getElementById("post-boot-content").innerHTML = '<div class="row">\
               <div class="col s12">\

@@ -1,6 +1,5 @@
 const program = require('commander');
-const fs = require('fs');
-const colors = require('colors');
+const path = require('path');
 
 exports.setup = function (args) {
   program
@@ -8,7 +7,7 @@ exports.setup = function (args) {
     // Server Config
     .option('-p, --port <port>', 'Select Port', /^\d+$/i, 3000)
     .option('-L, --logs <logs>', 'Set folder to save logs to')
-    .option('-d, --directory <directory>', 'Set the app directory', process.cwd())
+    .option('-d, --directory <directory>', 'Set the app directory', path.join(__dirname, '../../examples/basic'))
 
     // SSL
     .option('-c, --cert <cert>', 'SSL Certificate File')
