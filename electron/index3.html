@@ -469,14 +469,12 @@
                   password: this.password
                 }
               });
-              console.log(loginRes);
               const configRes = await axios({
                 method: 'get',
                 url: apiEndpoint + '/account/info',
                 headers: { 'x-access-token': loginRes.data.token, 'accept': 'application/json' },
                 responseType: 'json'
               });
-              console.log(configRes);
               loadJson.ddns = {
                 email: this.username,
                 password: this.password,
@@ -484,7 +482,6 @@
                 tested: true,
                 url: configRes.data.subdomain + '.' + configRes.data.domain
               };
-              console.log(loadJson);
               fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
               iziToast.success({
                 title: 'Logged In',
@@ -494,7 +491,6 @@
               vm.currentViewMain = 'auto-dns-logged-in-view';
               this.pending = false;
             } catch(err) {
-              console.log(err);
               this.pending = false;
               iziToast.warning({
                 title: 'Failed to Login',
@@ -639,6 +635,7 @@
         if (document.getElementById("boot-server-checkbox").checked === true) {
           loadJson.autoboot = true;
         }
+        document.getElementById("boot-server-checkbox").disabled = true;
 
         setTimeout(() => {
           ipcRenderer.send('start-server', loadJson);
