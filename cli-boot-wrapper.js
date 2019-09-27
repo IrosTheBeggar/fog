@@ -13,12 +13,15 @@ if (process.versions["electron"]) {
 const colors = require('colors');
 console.clear();
 console.log(colors.bold(`
-  v4.3.0     ____  _
-   _ __ ___ / ___|| |_ _ __ ___  __ _ _ __ ___
-  | '_ \` _ \\\\___ \\| __| '__/ _ \\/ _\` | '_ \` _ \\
-  | | | | | |___) | |_| | |  __/ (_| | | | | | |
-  |_| |_| |_|____/ \\__|_|  \\___|\\__,_|_| |_| |_|`));
-console.log(colors.bold(`  Paul Sori - ${colors.underline('paul@mstream.io')}`));
+    ______               __  ___           __    _          
+   / ____/___  ____ _   /  |/  /___ ______/ /_  (_)___  ___ 
+  / /_  / __ \\/ __ \`/  / /|_/ / __ \`/ ___/ __ \\/ / __ \\/ _ \\
+ / __/ / /_/ / /_/ /  / /  / / /_/ / /__/ / / / / / / /  __/
+/_/    \\____/\\__, /  /_/  /_/\\__,_/\\___/_/ /_/_/_/ /_/\\___/ 
+            /____/                                      v0.1  
+`));
+console.log(colors.blue.bold(`An Experiment Developed By`));
+console.log(colors.bold(`Paul Sori - ${colors.underline('paul@fogmachine.io')}`));
 console.log();
 console.log(colors.magenta.bold('Find a bug? Report it at:'));
 console.log(colors.underline('https://github.com/IrosTheBeggar/mStream/issues'));

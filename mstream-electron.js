@@ -4,9 +4,8 @@ const fe = require('path');
 const os = require('os');
 const mkdirp = require('make-dir');
 const AutoLaunch = require('auto-launch');
-const {autoUpdater} = require("electron-updater");
 
-const mstreamAutoLaunch = new AutoLaunch({ name: 'mStream' });
+const mstreamAutoLaunch = new AutoLaunch({ name: 'Fog Machine' });
 const configFile = fe.join(app.getPath('userData'), 'save/server-config.json');
 let appIcon;
 
@@ -101,8 +100,6 @@ function createMainWindow() {
     // Dereference the window object, usually you would store windows
     mainWindow = null;
   });
-
-  autoUpdater.checkForUpdatesAndNotify();
 }
 
 // Boot Server Event
@@ -176,6 +173,4 @@ function bootServer(program) {
   // TODO: Try booting server in forked thread instead.  Might give some speed improvements
   server = require('./mstream.js');
   server.serveIt(program);
-
-  setInterval(() => { autoUpdater.checkForUpdatesAndNotify(); }, 86400000);
 }

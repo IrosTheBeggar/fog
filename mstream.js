@@ -2,7 +2,7 @@ const logger = require('./modules/logger');
 logger.init();
 const winston = require('winston');
 const express = require('express');
-const mstream = express();
+const fogmachine = express();
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const serveIndex = require('serve-index');
@@ -37,19 +37,19 @@ exports.serveIt = function (program) {
   }
 
   // Magic Middleware Things
-  mstream.use(bodyParser.json()); // support json encoded bodies
-  mstream.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-  mstream.use((req, res, next) => { // CORS
+  fogmachine.use(bodyParser.json()); // support json encoded bodies
+  fogmachine.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+  fogmachine.use((req, res, next) => { // CORS
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
 
   // Give access to public folder
-  mstream.use('/', express.static(program.directory), serveIndex(program.directory, {}));
+  fogmachine.use('/', express.static(program.directory), serveIndex(program.directory, {}));
 
   // Start the server!
-  server.on('request', mstream);
+  server.on('request', fogmachine);
   server.listen(program.port, () => {
     const protocol = program.ssl && program.ssl.cert && program.ssl.key ? 'https' : 'http';
     winston.info(`Access your server locally: ${protocol + '://localhost:' + program.port}`);

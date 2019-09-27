@@ -72,7 +72,6 @@
     "body-parser": "^1.19.0",
     "colors": "^1.3.3",
     "commander": "^3.0.1",
-    "electron-updater": "4.0.14",
     "express": "^4.17.1",
     "make-dir": "^3.0.0",
     "serve-index": "^1.9.1",

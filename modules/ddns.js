@@ -10,10 +10,10 @@ var spawnedTunnel;
 const apiEndpoint = 'https://api.mstream.io';
 const platform = os.platform();
 const osMap = {
-  "win32": "mstream-ddns-win.exe",
-  "darwin": "mstream-ddns-osx",
-  "linux": "mstream-ddns-linux",
-  "android": "mstream-rpn-android64"
+  "win32": "fogmachine-ddns-win.exe",
+  "darwin": "fogmachine-ddns-osx",
+  "linux": "fogmachine-ddns-linux",
+  "android": "fogmachine-rpn-android64"
 };
 
 exports.setup = function (program) {

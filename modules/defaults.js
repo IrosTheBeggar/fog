@@ -1,6 +1,5 @@
 // Sets up default values for 
 const fs = require('fs');
-const path = require('path');
 
 exports.setup = function (program) {
   // if(program.ddns && !program.ddns.iniFile) {
