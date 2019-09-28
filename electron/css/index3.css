@@ -404,3 +404,8 @@ ul.left-nav-menu li.left-nav-selected {
   margin-top: 20px;
   padding-bottom: 13px;
 }
+
+.center-logo {
+  display: block;
+  margin: auto;
+}
