@@ -21,6 +21,10 @@ if (!fs.existsSync(fe.join(app.getPath('userData'), 'bitwarden'))) {
   mkdirp(fe.join(app.getPath('userData'), 'bitwarden'));
 }
 
+if (!fs.existsSync(fe.join(app.getPath('userData'), 'bitwarden/data'))) {
+  mkdirp(fe.join(app.getPath('userData'), 'bitwarden/data'));
+}
+
 // Errors
 process.on('uncaughtException', function (error) {
   // Handle Known Errors

@@ -16,11 +16,9 @@ exports.boot = function (program) {
   ddns.setup(program, spawnedServer);
 
   // Copy files to bootpath, if none exist
-  if (!fs.existsSync(path.join(program.directory, 'server.jar'))) {
-    fs.copyFileSync(path.join(__dirname, '../../minecraft/server.jar'), path.join(program.directory, 'server.jar'));
+  if (!fs.existsSync(path.join(program.directory, 'eula.txt'))) {
     fs.copyFileSync(path.join(__dirname, '../../minecraft/eula.txt'), path.join(program.directory, 'eula.txt'));
     fs.copyFileSync(path.join(__dirname, '../../minecraft/server.properties'), path.join(program.directory, 'server.properties'));
-
   }
 
   // Handle port
@@ -38,7 +36,7 @@ function bootServer(bootPath) {
   }
 
   try {
-    spawnedServer = spawn('java', ['-Xmx1024M', '-Xms1024M', '-jar', path.join(bootPath, 'server.jar'), 'nogui'], {
+    spawnedServer = spawn('java', ['-Xmx1024M', '-Xms1024M', '-jar', path.join(__dirname, '../../minecraft/server.jar'), 'nogui'], {
       // shell: true,
       cwd: bootPath,
     });

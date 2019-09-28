@@ -4,10 +4,19 @@ const winston = require('winston');
 const path = require('path');
 const { spawn } = require('child_process');
 const fs = require("fs");
+const os = require('os');
+const mkdirp = require('make-dir');
 const defaults = require('../defaults');
 const ddns = require('../ddns');
 
 var spawnedServer;
+const platform = os.platform();
+const osMap = {
+  "win32": "bitwarden-win.exe",
+  "darwin": "bitwarden-osx",
+  "linux": "bitwarden-linux",
+  "android": "bitwarden-android64"
+};
 
 exports.boot = function (program) {
   defaults.setup(program);
@@ -15,13 +24,20 @@ exports.boot = function (program) {
   // Setup DDNS Here so we handle exit codes properly
   ddns.setup(program, spawnedServer);
 
-  // TODO: Copy files to bootpath, if none exist
-  // if (!fs.existsSync(path.join(program.directory, 'server.jar'))) {
-  //   fs.copyFileSync(path.join(__dirname, '../../minecraft/server.jar'), path.join(program.directory, 'server.jar'));
-  //   fs.copyFileSync(path.join(__dirname, '../../minecraft/eula.txt'), path.join(program.directory, 'eula.txt'));
-  // }
+  // Copy files to bootpath, if none exist
+  if (!fs.existsSync(path.join(program.directory, '.env'))) {
+    fs.copyFileSync(path.join(__dirname, '../../bitwarden/.env'), path.join(program.directory, '.env'));
+  }
 
-  // TODO: Handle port
+  if (!fs.existsSync(path.join(program.directory, 'data'))) {
+    mkdirp(path.join(program.directory, 'data'));
+  }
+  
+  // Handle port
+  let file = fs.readFileSync(path.join(program.directory, '.env'), 'utf-8');
+  file = file.replace(/ROCKET_PORT=.*/g, `ROCKET_PORT=${program.port}`);
+  file = file.replace(/WEB_VAULT_FOLDER=.*/g, `WEB_VAULT_FOLDER=${path.join(__dirname, '../../bitwarden/web-vault')}`);
+  fs.writeFileSync(path.join(program.directory, '.env'), file, 'utf-8');
 
   bootServer(program.directory);
 }
@@ -33,7 +49,7 @@ function bootServer(bootPath) {
   }
 
   try {
-    spawnedServer = spawn('./bitwarden_rs', [], {
+    spawnedServer = spawn(path.join(__dirname, `../../bitwarden/${osMap[platform]}`), [], {
       // shell: true,
       cwd: bootPath,
     });
@@ -47,11 +63,11 @@ function bootServer(bootPath) {
     });
 
     spawnedServer.on('close', (code) => {
-      winston.info('Minecraft Server Failed. Rebooting...');
+      winston.info('BitwardenRS Server Failed. Rebooting...');
       setTimeout(() => {
         winston.info('Rebooting Server...');
         delete spawnedServer;
-        bootReverseProxy(program);
+        bootServer(bootPath);
       }, 4000);
     });
 

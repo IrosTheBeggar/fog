@@ -1,0 +1,2930 @@
+{
+  "pageTitle": {
+    "message": "$APP_NAME$ webbvalv",
+    "description": "The title of the website in the browser window.",
+    "placeholders": {
+      "app_name": {
+        "content": "$1",
+        "example": "Bitwarden"
+      }
+    }
+  },
+  "whatTypeOfItem": {
+    "message": "Vilken typ av objekt är detta?"
+  },
+  "name": {
+    "message": "Namn"
+  },
+  "uri": {
+    "message": "URI (länk)"
+  },
+  "uriPosition": {
+    "message": "URI $POSITION$",
+    "description": "A listing of URIs. Ex: URI 1, URI 2, URI 3, etc.",
+    "placeholders": {
+      "position": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "newUri": {
+    "message": "Ny URI"
+  },
+  "username": {
+    "message": "Användarnamn"
+  },
+  "password": {
+    "message": "Lösenord"
+  },
+  "passphrase": {
+    "message": "Lösenordsfras"
+  },
+  "notes": {
+    "message": "Anteckningar"
+  },
+  "customFields": {
+    "message": "Anpassade fält"
+  },
+  "cardholderName": {
+    "message": "Kortinnehavarens namn"
+  },
+  "number": {
+    "message": "Nummer"
+  },
+  "brand": {
+    "message": "Märke"
+  },
+  "expiration": {
+    "message": "Utgång"
+  },
+  "securityCode": {
+    "message": "Säkerhetskod (CVV)"
+  },
+  "identityName": {
+    "message": "Identitetsnamn"
+  },
+  "company": {
+    "message": "Företag"
+  },
+  "ssn": {
+    "message": "Personnummer"
+  },
+  "passportNumber": {
+    "message": "Passnummer"
+  },
+  "licenseNumber": {
+    "message": "Licensnummer"
+  },
+  "email": {
+    "message": "E-post"
+  },
+  "phone": {
+    "message": "Telefon"
+  },
+  "january": {
+    "message": "Januari"
+  },
+  "february": {
+    "message": "Februari"
+  },
+  "march": {
+    "message": "Mars"
+  },
+  "april": {
+    "message": "April"
+  },
+  "may": {
+    "message": "Maj"
+  },
+  "june": {
+    "message": "Juni"
+  },
+  "july": {
+    "message": "Juli"
+  },
+  "august": {
+    "message": "Augusti"
+  },
+  "september": {
+    "message": "September"
+  },
+  "october": {
+    "message": "Oktober"
+  },
+  "november": {
+    "message": "November"
+  },
+  "december": {
+    "message": "December"
+  },
+  "title": {
+    "message": "Titel"
+  },
+  "mr": {
+    "message": "Herr"
+  },
+  "mrs": {
+    "message": "Fru"
+  },
+  "ms": {
+    "message": "Fröken"
+  },
+  "dr": {
+    "message": "Dr"
+  },
+  "expirationMonth": {
+    "message": "Förfallomånad"
+  },
+  "expirationYear": {
+    "message": "Förfalloår"
+  },
+  "authenticatorKeyTotp": {
+    "message": "Autentiseringsnyckel (TOTP)"
+  },
+  "folder": {
+    "message": "Mapp"
+  },
+  "newCustomField": {
+    "message": "Nytt anpassat fält"
+  },
+  "value": {
+    "message": "Värde"
+  },
+  "dragToSort": {
+    "message": "Drag to sort"
+  },
+  "cfTypeText": {
+    "message": "Text"
+  },
+  "cfTypeHidden": {
+    "message": "Dold"
+  },
+  "cfTypeBoolean": {
+    "message": "Boolean"
+  },
+  "remove": {
+    "message": "Ta bort"
+  },
+  "unassigned": {
+    "message": "Ej tilldelad"
+  },
+  "noneFolder": {
+    "message": "Ingen mapp",
+    "description": "This is the folder for uncategorized items"
+  },
+  "addFolder": {
+    "message": "Skapa mapp"
+  },
+  "editFolder": {
+    "message": "Ändra mapp"
+  },
+  "baseDomain": {
+    "message": "Basdomän"
+  },
+  "host": {
+    "message": "Värd",
+    "description": "A URL's host value. For example, the host of https:\/\/sub.domain.com:443 is 'sub.domain.com:443'."
+  },
+  "exact": {
+    "message": "Exakt"
+  },
+  "startsWith": {
+    "message": "Börjar med"
+  },
+  "regEx": {
+    "message": "Reguljärt uttryck",
+    "description": "A programming term, also known as 'RegEx'."
+  },
+  "matchDetection": {
+    "message": "Matchning",
+    "description": "URI match detection for auto-fill."
+  },
+  "defaultMatchDetection": {
+    "message": "Standardmatchning",
+    "description": "Default URI match detection for auto-fill."
+  },
+  "never": {
+    "message": "Aldrig"
+  },
+  "toggleVisibility": {
+    "message": "Växla synlighet"
+  },
+  "toggleCollapse": {
+    "message": "Toggle Collapse",
+    "description": "Toggling an expand\/collapse state."
+  },
+  "generatePassword": {
+    "message": "Skapa lösenord"
+  },
+  "checkPassword": {
+    "message": "Kontrollera om lösenord har avslöjats."
+  },
+  "passwordExposed": {
+    "message": "Detta lösenord har avslöjats $VALUE$ gång(er) i dataintrång. Du bör ändra det.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "passwordSafe": {
+    "message": "Detta lösenord hittades inte i något känt dataintrång. Det bör vara säkert att använda."
+  },
+  "save": {
+    "message": "Spara"
+  },
+  "cancel": {
+    "message": "Avbryt"
+  },
+  "canceled": {
+    "message": "Avbruten"
+  },
+  "close": {
+    "message": "Stäng"
+  },
+  "delete": {
+    "message": "Ta bort"
+  },
+  "favorite": {
+    "message": "Favorit"
+  },
+  "unfavorite": {
+    "message": "Ta bort favorit"
+  },
+  "edit": {
+    "message": "Ändra"
+  },
+  "searchCollection": {
+    "message": "Sök i samling"
+  },
+  "searchFolder": {
+    "message": "Sök i mapp"
+  },
+  "searchFavorites": {
+    "message": "Sök i favoriter"
+  },
+  "searchType": {
+    "message": "Sök efter typ",
+    "description": "Search item type"
+  },
+  "searchVault": {
+    "message": "Sök i valvet"
+  },
+  "allItems": {
+    "message": "Alla objekt"
+  },
+  "favorites": {
+    "message": "Favoriter"
+  },
+  "types": {
+    "message": "Typer"
+  },
+  "typeLogin": {
+    "message": "Inloggning"
+  },
+  "typeCard": {
+    "message": "Kort"
+  },
+  "typeIdentity": {
+    "message": "Identitet"
+  },
+  "typeSecureNote": {
+    "message": "Säker anteckning"
+  },
+  "folders": {
+    "message": "Mappar"
+  },
+  "collections": {
+    "message": "Samlingar"
+  },
+  "firstName": {
+    "message": "Förnamn"
+  },
+  "middleName": {
+    "message": "Mellannamn"
+  },
+  "lastName": {
+    "message": "Efternamn"
+  },
+  "address1": {
+    "message": "Adress 1"
+  },
+  "address2": {
+    "message": "Adress 2"
+  },
+  "address3": {
+    "message": "Adress 3"
+  },
+  "cityTown": {
+    "message": "Ort"
+  },
+  "stateProvince": {
+    "message": "Län"
+  },
+  "zipPostalCode": {
+    "message": "Postnummer"
+  },
+  "country": {
+    "message": "Land"
+  },
+  "shared": {
+    "message": "Delad"
+  },
+  "attachments": {
+    "message": "Bifogade filer"
+  },
+  "select": {
+    "message": "Välj"
+  },
+  "addItem": {
+    "message": "Lägg till objekt"
+  },
+  "editItem": {
+    "message": "Redigera objekt"
+  },
+  "ex": {
+    "message": "ex.",
+    "description": "Short abbreviation for 'example'."
+  },
+  "other": {
+    "message": "Annat"
+  },
+  "share": {
+    "message": "Dela"
+  },
+  "valueCopied": {
+    "message": "$VALUE$ kopierat",
+    "description": "Value has been copied to the clipboard.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "Password"
+      }
+    }
+  },
+  "copyValue": {
+    "message": "Kopiera värde",
+    "description": "Copy value to clipboard"
+  },
+  "copyPassword": {
+    "message": "Kopiera lösenord",
+    "description": "Copy password to clipboard"
+  },
+  "copyUsername": {
+    "message": "Kopiera användarnamn",
+    "description": "Copy username to clipboard"
+  },
+  "copyNumber": {
+    "message": "Kopiera nummer",
+    "description": "Copy credit card number"
+  },
+  "copySecurityCode": {
+    "message": "Kopiera säkerhetskod",
+    "description": "Copy credit card security code (CVV)"
+  },
+  "copyUri": {
+    "message": "Kopiera URI",
+    "description": "Copy URI to clipboard"
+  },
+  "myVault": {
+    "message": "Mitt valv"
+  },
+  "vault": {
+    "message": "Valv"
+  },
+  "shareSelected": {
+    "message": "Dela valda"
+  },
+  "deleteSelected": {
+    "message": "Ta bort valda"
+  },
+  "moveSelected": {
+    "message": "Flytta valda"
+  },
+  "selectAll": {
+    "message": "Välj alla"
+  },
+  "unselectAll": {
+    "message": "Avmarkera alla"
+  },
+  "launch": {
+    "message": "Öppna"
+  },
+  "newAttachment": {
+    "message": "Bifoga ny fil"
+  },
+  "deletedAttachment": {
+    "message": "Tog bort bilaga"
+  },
+  "deleteAttachmentConfirmation": {
+    "message": "Är du säker på att du vill ta bort bilagan?"
+  },
+  "attachmentSaved": {
+    "message": "Den bifogade filen har sparats."
+  },
+  "file": {
+    "message": "Fil"
+  },
+  "selectFile": {
+    "message": "Välj en fil."
+  },
+  "maxFileSize": {
+    "message": "Filen får vara maximalt 100 MB."
+  },
+  "updateKey": {
+    "message": "Du kan inte använda denna funktion förrän du uppdaterar din krypteringsnyckel."
+  },
+  "addedItem": {
+    "message": "Skapade objekt"
+  },
+  "editedItem": {
+    "message": "Ändrade objekt"
+  },
+  "sharedItem": {
+    "message": "Delade objekt"
+  },
+  "sharedItems": {
+    "message": "Delade objekt"
+  },
+  "deleteItem": {
+    "message": "Ta bort objekt"
+  },
+  "deleteFolder": {
+    "message": "Ta bort mapp"
+  },
+  "deleteAttachment": {
+    "message": "Ta bort bifogad fil"
+  },
+  "deleteItemConfirmation": {
+    "message": "Är du säker på att du vill ta bort detta objekt?"
+  },
+  "deletedItem": {
+    "message": "Tog bort objekt"
+  },
+  "deletedItems": {
+    "message": "Tog bort objekt"
+  },
+  "movedItems": {
+    "message": "Flyttade objekt"
+  },
+  "overwritePasswordConfirmation": {
+    "message": "Är du säker på att du vill skriva över det nuvarande lösenordet?"
+  },
+  "editedFolder": {
+    "message": "Ändrade mapp"
+  },
+  "addedFolder": {
+    "message": "Skapade mapp"
+  },
+  "deleteFolderConfirmation": {
+    "message": "Är du säker på att du vill ta bort den här mappen?"
+  },
+  "deletedFolder": {
+    "message": "Tog bort mapp"
+  },
+  "loggedOut": {
+    "message": "Loggade ut"
+  },
+  "loginExpired": {
+    "message": "Din inloggningssession har utgått."
+  },
+  "logOutConfirmation": {
+    "message": "Är du säker på att du vill logga ut?"
+  },
+  "logOut": {
+    "message": "Logga ut"
+  },
+  "ok": {
+    "message": "OK"
+  },
+  "yes": {
+    "message": "Ja"
+  },
+  "no": {
+    "message": "Nej"
+  },
+  "loginOrCreateNewAccount": {
+    "message": "Logga in eller skapa ett nytt konto för att komma åt dina lösenord."
+  },
+  "createAccount": {
+    "message": "Skapa konto"
+  },
+  "logIn": {
+    "message": "Logga in"
+  },
+  "submit": {
+    "message": "Skicka"
+  },
+  "emailAddressDesc": {
+    "message": "Du använder din e-postadress för att logga in."
+  },
+  "yourName": {
+    "message": "Ditt namn"
+  },
+  "yourNameDesc": {
+    "message": "Vad ska vi kalla dig?"
+  },
+  "masterPass": {
+    "message": "Huvudlösenord"
+  },
+  "masterPassDesc": {
+    "message": "Huvudlösenordet är det lösenord som du använder för att komma åt ditt valv. Det är väldigt viktigt att du inte glömmer bort ditt huvudlösenord, eftersom det inte går att återställa lösenordet om du skulle glömma bort det."
+  },
+  "masterPassHintDesc": {
+    "message": "En huvudlösenordsledtråd kan hjälpa dig att komma ihåg ditt lösenord om du glömmer bort det."
+  },
+  "reTypeMasterPass": {
+    "message": "Ange huvudlösenordet igen"
+  },
+  "masterPassHint": {
+    "message": "Huvudlösenordsledtråd (frivillig)"
+  },
+  "masterPassHintLabel": {
+    "message": "Huvudlösenordsledtråd"
+  },
+  "settings": {
+    "message": "Inställningar"
+  },
+  "passwordHint": {
+    "message": "Lösenordsledtråd"
+  },
+  "enterEmailToGetHint": {
+    "message": "Ange din e-postadress för att hämta din huvudlösenordsledtråd."
+  },
+  "getMasterPasswordHint": {
+    "message": "Hämta huvudlösenordsledtråd"
+  },
+  "emailRequired": {
+    "message": "E-postadress krävs."
+  },
+  "invalidEmail": {
+    "message": "Felaktig e-postadress."
+  },
+  "masterPassRequired": {
+    "message": "Huvudlösenord krävs."
+  },
+  "masterPassLength": {
+    "message": "Huvudlösenordet måste vara minst 8 tecken långt."
+  },
+  "masterPassDoesntMatch": {
+    "message": "Bekräftelsen för huvudlösenordet stämde ej."
+  },
+  "newAccountCreated": {
+    "message": "Ditt nya konto har blivit skapat! Du kan nu logga in."
+  },
+  "masterPassSent": {
+    "message": "Vi har skickat ett mejl till dig med din huvudlösenordsledtråd."
+  },
+  "unexpectedError": {
+    "message": "Ett okänt fel har inträffat."
+  },
+  "emailAddress": {
+    "message": "E-postadress"
+  },
+  "yourVaultIsLocked": {
+    "message": "Valvet är låst. Kontrollera ditt huvudlösenord för att fortsätta."
+  },
+  "unlock": {
+    "message": "Lås upp"
+  },
+  "loggedInAsEmailOn": {
+    "message": "Logged in as $EMAIL$ on $HOSTNAME$.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      },
+      "hostname": {
+        "content": "$2",
+        "example": "bitwarden.com"
+      }
+    }
+  },
+  "invalidMasterPassword": {
+    "message": "Felaktigt huvudlösenord"
+  },
+  "lockNow": {
+    "message": "Lås nu"
+  },
+  "noItemsInList": {
+    "message": "Det finns inga objekt att visa."
+  },
+  "noCollectionsInList": {
+    "message": "Det finns inga samlingar att visa."
+  },
+  "noGroupsInList": {
+    "message": "Det finns inga grupper att visa."
+  },
+  "noUsersInList": {
+    "message": "Det finns inga användare att visa."
+  },
+  "noEventsInList": {
+    "message": "Det finns inga händelser att visa."
+  },
+  "newOrganization": {
+    "message": "Ny organisation"
+  },
+  "noOrganizationsList": {
+    "message": "Du tillhör inte någon organisation. Organisationer möjliggör säker delning av objekt med andra användare."
+  },
+  "versionNumber": {
+    "message": "Version $VERSION_NUMBER$",
+    "placeholders": {
+      "version_number": {
+        "content": "$1",
+        "example": "1.2.3"
+      }
+    }
+  },
+  "enterVerificationCodeApp": {
+    "message": "Ange den 6-siffriga verifieringskoden från din autentiseringsapp."
+  },
+  "enterVerificationCodeEmail": {
+    "message": "Ange den 6-siffriga verifieringskoden som skickades till $EMAIL$.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "example@gmail.com"
+      }
+    }
+  },
+  "verificationCodeEmailSent": {
+    "message": "Verifieringsmejl skickat till $EMAIL$.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "example@gmail.com"
+      }
+    }
+  },
+  "rememberMe": {
+    "message": "Kom ihåg mig"
+  },
+  "sendVerificationCodeEmailAgain": {
+    "message": "Skicka verifieringskod-mejlet igen"
+  },
+  "useAnotherTwoStepMethod": {
+    "message": "Använd en annan inloggningsmetod för tvåstegsverifiering"
+  },
+  "insertYubiKey": {
+    "message": "Sätt i din YubiKey i en av datorns USB-portar och sätt fingret på knappen."
+  },
+  "insertU2f": {
+    "message": "Sätt i din säkerhetsnyckel i en av datorns USB-portar. Om nyckeln har en knapp, sätt fingret på den."
+  },
+  "loginUnavailable": {
+    "message": "Inloggning inte tillgänglig"
+  },
+  "noTwoStepProviders": {
+    "message": "Detta konto har tvåstegsverifiering aktiverat, men inget av de aktiverade alternativen stöds av den här webbläsaren."
+  },
+  "noTwoStepProviders2": {
+    "message": "Vänligen använd en webbläsare som stöds (till exempel Chrome) och\/eller lägg till fler alternativ som stöds bättre över webbläsare (till exempel en autentiseringsapp)."
+  },
+  "twoStepOptions": {
+    "message": "Alternativ för tvåstegsverifiering"
+  },
+  "recoveryCodeDesc": {
+    "message": "Förlorat åtkomst till alla dina tvåstegsverifierings-alternativ? Använd din återställningskod för att inaktivera tvåstegsverifiering på ditt konto."
+  },
+  "recoveryCodeTitle": {
+    "message": "Återställningskod"
+  },
+  "authenticatorAppTitle": {
+    "message": "Autentiseringsapp"
+  },
+  "authenticatorAppDesc": {
+    "message": "Använd en autentiseringsapp (till exempel Authy eller Google Authenticator) för att skapa tidsbaserade verifieringskoder.",
+    "description": "'Authy' and 'Google Authenticator' are product names and should not be translated."
+  },
+  "yubiKeyTitle": {
+    "message": "YubiKey OTP säkerhetsnyckel"
+  },
+  "yubiKeyDesc": {
+    "message": "Använd en YubiKey för att få åtkomst till ditt konto. Fungerar med YubiKey 4, 4 Nano, 4C och NEO enheter."
+  },
+  "duoDesc": {
+    "message": "Verifiera med Duo Security genom att använda Duo Mobile-appen, SMS, telefonsamtal eller en U2F säkerhetsnyckel.",
+    "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
+  },
+  "duoOrganizationDesc": {
+    "message": "Verifiera med Duo Security för din organisation genom att använda Duo Mobile-appen, SMS, telefonsamtal eller en U2F säkerhetsnyckel.",
+    "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
+  },
+  "u2fDesc": {
+    "message": "Använd en FIDO U2F-aktiverad säkerhetsnyckel för att få åtkomst till ditt konto."
+  },
+  "u2fTitle": {
+    "message": "FIDO U2F säkerhetsnyckel"
+  },
+  "emailTitle": {
+    "message": "E-post"
+  },
+  "emailDesc": {
+    "message": "Verifieringskoder kommer att skickas till dig."
+  },
+  "continue": {
+    "message": "Fortsätt"
+  },
+  "organization": {
+    "message": "Organisation"
+  },
+  "organizations": {
+    "message": "Organisationer"
+  },
+  "shareDesc": {
+    "message": "Välj en organisation som du vill dela detta objekt med. Delning överför ägandet av objektet till organisationen. Du kommer inte längre att vara direkt ägare till detta objekt när det har delats."
+  },
+  "shareManyDesc": {
+    "message": "Välj en organisation som du vill dela dessa objekt med. Delning överför ägandet av objekten till organisationen. Du kommer inte längre att vara direkt ägare till dessa objekt när de har delats."
+  },
+  "collectionsDesc": {
+    "message": "Redigera de samlingar som detta objekt delas med. Endast användare i organisationer som har tillgång till dessa samlingar kommer kunna se objektet."
+  },
+  "deleteSelectedItemsDesc": {
+    "message": "Du har valt $COUNT$ objekt att ta bort. Är du säker på att du vill ta bort alla dessa objekt?",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "moveSelectedItemsDesc": {
+    "message": "Välj en mapp som du vill flytta de $COUNT$ valda objekten till.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "150"
+      }
+    }
+  },
+  "shareSelectedItemsCountDesc": {
+    "message": "Du har valt $COUNT$ objekt. $SHAREABLE_COUNT$ objekt kan delas, $NONSHAREABLE_COUNT$ kan inte delas.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "10"
+      },
+      "shareable_count": {
+        "content": "$2",
+        "example": "8"
+      },
+      "nonshareable_count": {
+        "content": "$3",
+        "example": "2"
+      }
+    }
+  },
+  "verificationCodeTotp": {
+    "message": "Verifieringskod (TOTP)"
+  },
+  "copyVerificationCode": {
+    "message": "Kopiera verifieringskod"
+  },
+  "warning": {
+    "message": "Varning"
+  },
+  "exportWarningDesc": {
+    "message": "This export contains your vault data in an unencrypted format. You should not store or send the exported file over unsecure channels (such as email). Delete it immediately after you are done using it."
+  },
+  "exportMasterPassword": {
+    "message": "Ange ditt huvudlösenord för att exportera datan i ditt valv."
+  },
+  "exportVault": {
+    "message": "Exportera valv"
+  },
+  "fileFormat": {
+    "message": "Filformat"
+  },
+  "exportSuccess": {
+    "message": "Din data har exporterats."
+  },
+  "passwordGenerator": {
+    "message": "Lösenordsgenerator"
+  },
+  "minNumbers": {
+    "message": "Minst antal nummer"
+  },
+  "minSpecial": {
+    "message": "Minst antal speciella tecken",
+    "description": "Minimum Special Characters"
+  },
+  "ambiguous": {
+    "message": "Undvik mångtydiga tecken"
+  },
+  "regeneratePassword": {
+    "message": "Skapa nytt lösenord"
+  },
+  "length": {
+    "message": "Längd"
+  },
+  "numWords": {
+    "message": "Antal ord"
+  },
+  "wordSeparator": {
+    "message": "Ordseparator"
+  },
+  "capitalize": {
+    "message": "Capitalize",
+    "description": "Make the first letter of a work uppercase."
+  },
+  "includeNumber": {
+    "message": "Include Number"
+  },
+  "passwordHistory": {
+    "message": "Lösenordshistorik"
+  },
+  "noPasswordsInList": {
+    "message": "Det finns inga lösenord att lista."
+  },
+  "clear": {
+    "message": "Rensa",
+    "description": "To clear something out. example: To clear browser history."
+  },
+  "accountUpdated": {
+    "message": "Konto uppdaterat"
+  },
+  "changeEmail": {
+    "message": "Ändra e-postadress"
+  },
+  "newEmail": {
+    "message": "Ny e-post"
+  },
+  "code": {
+    "message": "Kod"
+  },
+  "changeEmailDesc": {
+    "message": "We have emailed a verification code to $EMAIL$. Please check your email for this code and enter it below to finalize your the email address change.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "john.smith@example.com"
+      }
+    }
+  },
+  "loggedOutWarning": {
+    "message": "Om du fortsätter kommer du att loggas ut från din nuvarande session och du kommer behöver logga in igen. Aktiva sessioner på andra enheter kan fortsätta vara aktiva i upp till en timme."
+  },
+  "emailChanged": {
+    "message": "E-postadressen ändrades"
+  },
+  "logBackIn": {
+    "message": "Var snäll och logga in igen."
+  },
+  "logBackInOthersToo": {
+    "message": "Vänligen logga in igen. Om du använder andra Bitwarden-applikationer logga ut och in igen i dem också."
+  },
+  "changeMasterPassword": {
+    "message": "Ändra huvudlösenord"
+  },
+  "masterPasswordChanged": {
+    "message": "Huvudlösenordet ändrades"
+  },
+  "currentMasterPass": {
+    "message": "Nuvarande huvudlösenord"
+  },
+  "newMasterPass": {
+    "message": "Ange nytt huvudlösenord"
+  },
+  "confirmNewMasterPass": {
+    "message": "Bekräfta nytt huvudlösenord"
+  },
+  "encKeySettings": {
+    "message": "Inställningar för krypteringsnyckel"
+  },
+  "kdfAlgorithm": {
+    "message": "KDF algoritm"
+  },
+  "kdfIterations": {
+    "message": "KDF iterationer"
+  },
+  "kdfIterationsDesc": {
+    "message": "Högre KDF-iterationer kan skydda ditt huvudlösenord från att \"brute-forcas\" av en angripare. Vi rekommenderar ett värde på $VALUE$ eller mer.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "100,000"
+      }
+    }
+  },
+  "kdfIterationsWarning": {
+    "message": "Om du sätter dina KDF-iterationer för högt kan det resultera i dålig prestanda när du loggar in (och låser upp) Bitwarden på enheter med långsammare processorer. Vi rekommenderar att du ökar värdet i steg om $INCREMENT$ och sedan testar alla dina enheter.",
+    "placeholders": {
+      "increment": {
+        "content": "$1",
+        "example": "50,000"
+      }
+    }
+  },
+  "changeKdf": {
+    "message": "Ändra KDF"
+  },
+  "encKeySettingsChanged": {
+    "message": "Inställningar för krypteringsnyckel ändrade"
+  },
+  "dangerZone": {
+    "message": "Högrisksområde"
+  },
+  "dangerZoneDesc": {
+    "message": "Försiktigt, dessa åtgärder går inte att ångra!"
+  },
+  "deauthorizeSessions": {
+    "message": "Avauktorisera sessioner"
+  },
+  "deauthorizeSessionsDesc": {
+    "message": "Concerned your account is logged in on another device? Proceed below to deauthorize all computers or devices that you have previously used. This security step is recommended if you previously used a public PC or accidentally saved your password on a device that isn't yours. This step will also clear all previously remembered two-step login sessions."
+  },
+  "deauthorizeSessionsWarning": {
+    "message": "Om du fortsätter kommer även du att loggas ut från din nuvarande session och du kommer behöver logga in igen. Du kommer även att behöva verifiera med tvåstegsverifiering om det är aktiverat. Aktiva sessioner på andra enheter kan fortsätta vara aktiva i upp till en timme."
+  },
+  "sessionsDeauthorized": {
+    "message": "Alla sessioner avauktoriserade"
+  },
+  "purgeVault": {
+    "message": "Rensa valv"
+  },
+  "purgedOrganizationVault": {
+    "message": "Purged organization vault."
+  },
+  "purgeVaultDesc": {
+    "message": "Proceed below to delete all items and folders in your vault. Items that belong to an organization that you share with will not be deleted."
+  },
+  "purgeOrgVaultDesc": {
+    "message": "Proceed below to delete all items in the organization's vault."
+  },
+  "purgeVaultWarning": {
+    "message": "Rensning av ditt valv är permanent. Det går inte att ångra."
+  },
+  "vaultPurged": {
+    "message": "Ditt valv har rensats."
+  },
+  "deleteAccount": {
+    "message": "Ta bort konto"
+  },
+  "deleteAccountDesc": {
+    "message": "Fortsätt nedan för att radera ditt konto och all associerad data."
+  },
+  "deleteAccountWarning": {
+    "message": "Borttagning av ditt konto är permanent. Det går inte att ångra."
+  },
+  "accountDeleted": {
+    "message": "Kontot togs bort"
+  },
+  "accountDeletedDesc": {
+    "message": "Ditt konto har stängts och all associerad data har raderats."
+  },
+  "myAccount": {
+    "message": "Mitt konto"
+  },
+  "tools": {
+    "message": "Verktyg"
+  },
+  "importData": {
+    "message": "Importera data"
+  },
+  "importSuccess": {
+    "message": "Data har importerats till ditt Valv."
+  },
+  "importFormatError": {
+    "message": "Datan är inte korrekt formaterad. Vänligen kontrollera din importerade fil och försök igen."
+  },
+  "importNothingError": {
+    "message": "Ingenting importerades."
+  },
+  "selectFormat": {
+    "message": "Välj formatet på importfilen"
+  },
+  "selectImportFile": {
+    "message": "Välj importfilen"
+  },
+  "orCopyPasteFileContents": {
+    "message": "eller kopiera och klistra in innehållet från filen"
+  },
+  "instructionsFor": {
+    "message": "$NAME$ instruktioner",
+    "description": "The title for the import tool instructions.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "LastPass (csv)"
+      }
+    }
+  },
+  "options": {
+    "message": "Alternativ"
+  },
+  "optionsDesc": {
+    "message": "Anpassa din upplevelse för webbvalvet."
+  },
+  "optionsUpdated": {
+    "message": "Alternativ uppdaterade"
+  },
+  "language": {
+    "message": "Språk"
+  },
+  "languageDesc": {
+    "message": "Ändra språket som används av webbvalvet."
+  },
+  "disableIcons": {
+    "message": "Inaktivera webbplatsikoner"
+  },
+  "disableIconsDesc": {
+    "message": "Webbplatsikoner ger en igenkännbar ikon bredvid varje inloggningsobjekt i ditt valv."
+  },
+  "enableGravatars": {
+    "message": "Aktivera gravatars",
+    "description": "'Gravatar' is the name of a service. See www.gravatar.com"
+  },
+  "enableGravatarsDesc": {
+    "message": "Använd avatarbilder hämtade från gravatar.com."
+  },
+  "default": {
+    "message": "Standard"
+  },
+  "domainRules": {
+    "message": "Domänregler"
+  },
+  "domainRulesDesc": {
+    "message": "Om du har samma inloggningsinformation mellan flera olika webbdomäner kan du markera webbplatsen som \"likvärdig\". \"Globala\" domäner är de som redan skapats åt dig av Bitwarden."
+  },
+  "globalEqDomains": {
+    "message": "Globala motsvarande domäner"
+  },
+  "customEqDomains": {
+    "message": "Anpassade motsvarande domäner"
+  },
+  "exclude": {
+    "message": "Undantag"
+  },
+  "include": {
+    "message": "Inkludera"
+  },
+  "customize": {
+    "message": "Anpassa"
+  },
+  "newCustomDomain": {
+    "message": "Ny anpassad domän"
+  },
+  "newCustomDomainDesc": {
+    "message": "Enter a list of domains separated by commas. Only \"base\" domains are allowed. Do not enter subdomains. For example, enter \"google.com\" instead of \"www.google.com\". You can also enter \"androidapp:\/\/package.name\" to associate an android app with other website domains."
+  },
+  "customDomainX": {
+    "message": "Anpassad domän $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "domainsUpdated": {
+    "message": "Domäner uppdaterade"
+  },
+  "twoStepLogin": {
+    "message": "Tvåstegsverifiering"
+  },
+  "twoStepLoginDesc": {
+    "message": "Säkra ditt konto genom att kräva ett ytterligare steg vid inloggning."
+  },
+  "twoStepLoginOrganizationDesc": {
+    "message": "Require two-step login for your organization's users by configuring providers at the organization level."
+  },
+  "twoStepLoginRecoveryWarning": {
+    "message": "Enabling two-step login can permanently lock you out of your Bitwarden account. A recovery code allows you to access your account in the event that you can no longer use your normal two-step login provider (ex. you lose your device). Bitwarden support will not be able to assist you if you lose access to your account. We recommend you write down or print the recovery code and keep it in a safe place."
+  },
+  "viewRecoveryCode": {
+    "message": "Visa återställningskod"
+  },
+  "providers": {
+    "message": "Leverantörer",
+    "description": "Two-step login providers such as YubiKey, Duo, Authenticator apps, Email, etc."
+  },
+  "enable": {
+    "message": "Aktivera"
+  },
+  "enabled": {
+    "message": "Aktiverad"
+  },
+  "premium": {
+    "message": "Premium",
+    "description": "Premium Membership"
+  },
+  "premiumMembership": {
+    "message": "Premium-medlemskap"
+  },
+  "premiumRequired": {
+    "message": "Premium krävs"
+  },
+  "premiumRequiredDesc": {
+    "message": "Ett premium-medlemskap krävs för att använda den här funktionen."
+  },
+  "youHavePremiumAccess": {
+    "message": "Du har premiumtillgång"
+  },
+  "alreadyPremiumFromOrg": {
+    "message": "You already have access to premium features because of an organization you are a member of."
+  },
+  "manage": {
+    "message": "Hantera"
+  },
+  "disable": {
+    "message": "Inaktivera"
+  },
+  "twoStepLoginProviderEnabled": {
+    "message": "Den här tvåstegsverifierings-metoden är aktiverad på ditt konto."
+  },
+  "twoStepLoginAuthDesc": {
+    "message": "Ange ditt huvudlösenord för att ändra på inställningar för tvåstegsverifiering."
+  },
+  "twoStepAuthenticatorDesc": {
+    "message": "Följ dessa steg för att konfigurera tvåfaktorsautentisering med en autentiseringsapp:"
+  },
+  "twoStepAuthenticatorDownloadApp": {
+    "message": "Hämta en tvåstegsverifieringsapp"
+  },
+  "twoStepAuthenticatorNeedApp": {
+    "message": "Behöver du en tvåstegsverifieringsapp? Hämta en utav följande"
+  },
+  "iosDevices": {
+    "message": "iOS-enheter"
+  },
+  "androidDevices": {
+    "message": "Android-enheter"
+  },
+  "windowsDevices": {
+    "message": "Windows-enheter"
+  },
+  "twoStepAuthenticatorAppsRecommended": {
+    "message": "Dessa appar är rekommenderade, men även andra autentiseringsappar kommer att fungera."
+  },
+  "twoStepAuthenticatorScanCode": {
+    "message": "Skanna den här QR-koden med din autentiseringsapp"
+  },
+  "key": {
+    "message": "Nyckel"
+  },
+  "twoStepAuthenticatorEnterCode": {
+    "message": "Ange den 6-siffriga verifieringskoden från appen"
+  },
+  "twoStepAuthenticatorReaddDesc": {
+    "message": "Om du skulle behöva lägga till det till en annan enhet har du QR-koden (eller nyckeln) som krävs utav din autentiserings-app nedan."
+  },
+  "twoStepDisableDesc": {
+    "message": "Är du säker på att du vill inaktivera denna tvåstegsverifierings-metoden?"
+  },
+  "twoStepDisabled": {
+    "message": "Tvåfaktorsautentisering leverantör inaktiverad."
+  },
+  "twoFactorYubikeyAdd": {
+    "message": "Lägg till en ny YubiKey till ditt konto"
+  },
+  "twoFactorYubikeyPlugIn": {
+    "message": "Sätt in YubiKey (NEO eller 4-serien) i din dators USB-port."
+  },
+  "twoFactorYubikeySelectKey": {
+    "message": "Select in the first empty YubiKey input field below."
+  },
+  "twoFactorYubikeyTouchButton": {
+    "message": "Tryck på YubiKey-knappen."
+  },
+  "twoFactorYubikeySaveForm": {
+    "message": "Spara formuläret."
+  },
+  "twoFactorYubikeyWarning": {
+    "message": "På grund av plattformsbegränsningar kan inte YubiKeys användas på alla Bitwarden-applikationer. Du bör aktivera ytterligare en tvåstegsverifierings-metod så att du kan komma åt ditt konto även när YubiKeys inte kan användas. Plattformar som stöds:"
+  },
+  "twoFactorYubikeySupportUsb": {
+    "message": "Webbvalvet, desktop-applikationen, CLI och alla webbläsartillägg på en enhet med en USB-port som kan acceptera din YubiKey."
+  },
+  "twoFactorYubikeySupportMobile": {
+    "message": "Mobilappar på en enhet med NFC-stöd eller en USB-port som kan acceptera din YubiKey."
+  },
+  "yubikeyX": {
+    "message": "YubiKey $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "u2fkeyX": {
+    "message": "U2F Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "nfcSupport": {
+    "message": "NFC-stöd"
+  },
+  "twoFactorYubikeySupportsNfc": {
+    "message": "En av mina nycklar stöder NFC."
+  },
+  "twoFactorYubikeySupportsNfcDesc": {
+    "message": "Om en av dina YubiKeys stöder NFC (till exempel en YubiKey NEO), kommer du få en fråga på på mobila enheter när NFC tillgänglighet upptäcks."
+  },
+  "yubikeysUpdated": {
+    "message": "YubiKeys uppdaterade"
+  },
+  "disableAllKeys": {
+    "message": "Inaktivera alla nycklar"
+  },
+  "twoFactorDuoDesc": {
+    "message": "Ange Bitwardens programinformation från din Duo Admin-panel."
+  },
+  "twoFactorDuoIntegrationKey": {
+    "message": "Integrationsnyckel"
+  },
+  "twoFactorDuoSecretKey": {
+    "message": "Hemlig nyckel"
+  },
+  "twoFactorDuoApiHostname": {
+    "message": "API Hostname"
+  },
+  "twoFactorEmailDesc": {
+    "message": "Följ dessa steg för att konfigurera tvåfaktorsautentisering med e-post:"
+  },
+  "twoFactorEmailEnterEmail": {
+    "message": "Ange den e-postadress som du vill ta emot verifieringskoder"
+  },
+  "twoFactorEmailEnterCode": {
+    "message": "Ange den 6-siffriga verifieringskoden från mailet"
+  },
+  "sendEmail": {
+    "message": "Skicka e-post"
+  },
+  "twoFactorU2fAdd": {
+    "message": "Lägg till en FIDO U2F säkerhetsnyckel till ditt konto"
+  },
+  "removeU2fConfirmation": {
+    "message": "Är du säker på att du vill ta bort denna säkerhetsnyckel?"
+  },
+  "readKey": {
+    "message": "Read Key"
+  },
+  "keyCompromised": {
+    "message": "Nyckeln är äventyrad."
+  },
+  "twoFactorU2fGiveName": {
+    "message": "Ge säkerhetsnyckeln ett namn för att kunna identifiera den."
+  },
+  "twoFactorU2fPlugInReadKey": {
+    "message": "Plug the security key into your computer's USB port and click the \"Read Key\" button."
+  },
+  "twoFactorU2fTouchButton": {
+    "message": "Om säkerhetsnyckeln har en knapp, tryck på den."
+  },
+  "twoFactorU2fSaveForm": {
+    "message": "Spara formuläret."
+  },
+  "twoFactorU2fWarning": {
+    "message": "På grund av plattformsbegränsningar kan inte FIDO U2F användas på alla Bitwarden-applikationer. Du bör aktivera ytterligare en tvåstegsverifierings-metod så att du kan komma åt ditt konto även när FIDO U2F inte kan användas. Plattformar som stöds:"
+  },
+  "twoFactorU2fSupportWeb": {
+    "message": "Webbvalvet och webbläsartillägg på en stationär dator eller laptop med en U2F-aktiverad webbläsare (Chrome, Opera, Vivaldi eller Firefox med FIDO U2F aktiverat)."
+  },
+  "twoFactorU2fWaiting": {
+    "message": "Väntar på att du ska trycka på knappen på din säkerhetsnyckel"
+  },
+  "twoFactorU2fClickSave": {
+    "message": "Klicka på \"spara\"-knappen nedan för att aktivera den här säkerhetsnyckeln för tvåstegsverifiering."
+  },
+  "twoFactorU2fProblemReadingTryAgain": {
+    "message": "Det gick inte att läsa säkerhetsnyckeln. Försök igen."
+  },
+  "twoFactorRecoveryYourCode": {
+    "message": "Din återställningskod för tvåstegsverifiering"
+  },
+  "twoFactorRecoveryNoCode": {
+    "message": "Du har inte aktiverat några tvåstegsverifierings-metoder ännu. Efter att du har aktiverat en tvåstegsverifierings-metod kan du återvända hit för att se din återställningskod."
+  },
+  "printCode": {
+    "message": "Skriv ut kod",
+    "description": "Print 2FA recovery code"
+  },
+  "reports": {
+    "message": "Rapporter"
+  },
+  "unsecuredWebsitesReport": {
+    "message": "Unsecured Websites Report"
+  },
+  "unsecuredWebsitesReportDesc": {
+    "message": "Att använda osäkra webbplatser med http:\/\/ systemet kan vara farligt. Om webbplatsen tillåter, bör du alltid komma åt den med https:\/\/ systemet så att anslutningen är krypterad."
+  },
+  "unsecuredWebsitesFound": {
+    "message": "Unsecured Websites Found"
+  },
+  "unsecuredWebsitesFoundDesc": {
+    "message": "Vi hittade $COUNT$ objekt i ditt valv med osäkra URI:er. Om webbplatsen tillåter det bör du ändra deras URI-schema till https:\/\/.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noUnsecuredWebsites": {
+    "message": "Inga objekt i ditt valv har osäkra URI:er."
+  },
+  "inactive2faReport": {
+    "message": "Inactive 2FA Report"
+  },
+  "inactive2faReportDesc": {
+    "message": "Tvåstegsverifiering (2FA) är en viktig säkerhetsinställning som hjälper dig att säkra dina konton. Om en webbplats erbjuder det så bör du alltid aktivera tvåstegsverifiering."
+  },
+  "inactive2faFound": {
+    "message": "Logins Without 2FA Found"
+  },
+  "inactive2faFoundDesc": {
+    "message": "Vi hittade $COUNT$ webbplats(er) i ditt valv som kanske inte är konfigurerade med tvåstegsverifiering (enligt twofactorauth.org). För att ytterligare skydda dessa konton bör du aktivera tvåstegsverifiering.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noInactive2fa": {
+    "message": "Inga webbplatser i ditt valv hittades utan konfigurerad tvåstegsverifiering."
+  },
+  "instructions": {
+    "message": "Instruktioner"
+  },
+  "exposedPasswordsReport": {
+    "message": "Exposed Passwords Report"
+  },
+  "exposedPasswordsReportDesc": {
+    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
+  },
+  "exposedPasswordsFound": {
+    "message": "Exposed Passwords Found"
+  },
+  "exposedPasswordsFoundDesc": {
+    "message": "Vi hittade $COUNT$ objekt i ditt valv som har lösenord som har äventyrats i kända dataintrång. Du bör ändra dessa till att använda nya lösenord.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noExposedPasswords": {
+    "message": "Inga objekt i ditt valv har lösenord som har äventyrats i kända dataintrång."
+  },
+  "checkExposedPasswords": {
+    "message": "Check Exposed Passwords"
+  },
+  "exposedXTimes": {
+    "message": "Synlig $COUNT$ gång(er)",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "52"
+      }
+    }
+  },
+  "weakPasswordsReport": {
+    "message": "Weak Passwords Report"
+  },
+  "weakPasswordsReportDesc": {
+    "message": "Svaga lösenord kan gissas enkelt av hackare och automatiserade verktyg som används för att knäcka lösenord. Bitwardens lösenordsgenerator kan hjälpa dig att skapa starka lösenord."
+  },
+  "weakPasswordsFound": {
+    "message": "Weak Passwords Found"
+  },
+  "weakPasswordsFoundDesc": {
+    "message": "Vi hittade $COUNT$ objekt i ditt valv med svaga lösenord. Du bör uppdatera dem till att använda starka lösenord.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noWeakPasswords": {
+    "message": "Inga objekt i ditt valv har svaga lösenord."
+  },
+  "reusedPasswordsReport": {
+    "message": "Reused Passwords Report"
+  },
+  "reusedPasswordsReportDesc": {
+    "message": "Om en tjänst som du använder äventyras, kan återanvända lösenord användas på andra ställen utav hackare för att de enkelt ska få tillgång till dina andra online-konton. Du bör använda ett unikt lösenord för varje konto eller tjänst."
+  },
+  "reusedPasswordsFound": {
+    "message": "Reused Passwords Found"
+  },
+  "reusedPasswordsFoundDesc": {
+    "message": "Vi hittade $COUNT$ lösenord som återanvänds i ditt valv. Du bör ändra dem till ett unikt värde.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "noReusedPasswords": {
+    "message": "Inga inloggningar i ditt valv har lösenord som återanvänts."
+  },
+  "reusedXTimes": {
+    "message": "Återanvänd $COUNT$ gånger",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "dataBreachReport": {
+    "message": "Data Breach Report"
+  },
+  "breachDesc": {
+    "message": "Ett \"intrång\" är en incident där en webbplats data har på olagligt vis blivit stulen av hackare och sedan släppts för allmänheten. Gå igenom och granska typerna av data som äventyrats (e-postadresser, lösenord, kreditkort osv.) och ta lämpliga åtgärder såsom att ändra lösenord."
+  },
+  "breachCheckUsernameEmail": {
+    "message": "Kolla användarnamn eller e-postadresser som du använder."
+  },
+  "checkBreaches": {
+    "message": "Check Breaches"
+  },
+  "breachUsernameNotFound": {
+    "message": "$USERNAME$ hittades inte i något känt dataintrång.",
+    "placeholders": {
+      "username": {
+        "content": "$1",
+        "example": "user@example.com"
+      }
+    }
+  },
+  "goodNews": {
+    "message": "Goda nyheter",
+    "description": "ex. Good News, No Breached Accounts Found!"
+  },
+  "breachUsernameFound": {
+    "message": "$USERNAME$ hittades i $COUNT$ olika dataintrång online.",
+    "placeholders": {
+      "username": {
+        "content": "$1",
+        "example": "user@example.com"
+      },
+      "count": {
+        "content": "$2",
+        "example": "7"
+      }
+    }
+  },
+  "breachFound": {
+    "message": "Breached Accounts Found"
+  },
+  "compromisedData": {
+    "message": "Äventyrad data"
+  },
+  "website": {
+    "message": "Webbsida"
+  },
+  "affectedUsers": {
+    "message": "Användare som påverkas"
+  },
+  "breachOccurred": {
+    "message": "Breach Occurred"
+  },
+  "breachReported": {
+    "message": "Breach Reported"
+  },
+  "reportError": {
+    "message": "Ett fel inträffade när rapporten skulle läsas in. Försök igen"
+  },
+  "billing": {
+    "message": "Betalningsinformation"
+  },
+  "accountCredit": {
+    "message": "Kontokredit",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "accountBalance": {
+    "message": "Kontosaldo",
+    "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
+  },
+  "addCredit": {
+    "message": "Lägg till kredit",
+    "description": "Add more credit to your account's balance."
+  },
+  "amount": {
+    "message": "Belopp",
+    "description": "Dollar amount, or quantity."
+  },
+  "creditDelayed": {
+    "message": "Tillagd kredit visas på ditt konto efter att betalningen har bearbetats fullständigt. Vissa betalningsmetoder är försenade och kan ta längre tid att behandla än andra."
+  },
+  "makeSureEnoughCredit": {
+    "message": "Kontrollera att ditt konto har tillräckligt med kredit för detta köp. Om ditt konto inte har tillräckligt mycket tillgänglig kredit, kommer din standardbetalningsmetod på filen användas för skillnaden. Du kan lägga till kredit på ditt konto från faktureringssidan."
+  },
+  "creditAppliedDesc": {
+    "message": "Kontots kredit kan användas för att göra inköp. Tillgänglig kredit tillämpas automatiskt mot fakturor genererade för det här kontot."
+  },
+  "goPremium": {
+    "message": "Skaffa premium",
+    "description": "Another way of saying \"Get a premium membership\""
+  },
+  "premiumUpdated": {
+    "message": "Du har uppgraderat till premium."
+  },
+  "premiumUpgradeUnlockFeatures": {
+    "message": "Uppgradera ditt konto till ett premium-medlemskap och lås upp några riktigt bra extrafunktioner."
+  },
+  "premiumSignUpStorage": {
+    "message": "1 GB lagring av krypterade filer."
+  },
+  "premiumSignUpTwoStep": {
+    "message": "Ytterligare alternativ för tvåstegsverifiering såsom YubiKey, FIDO U2F och Duo."
+  },
+  "premiumSignUpReports": {
+    "message": "Lösenordshygien, kontohälsa och dataintrångsrapporter för att hålla ditt valv säkert."
+  },
+  "premiumSignUpTotp": {
+    "message": "TOTP verifieringskod-generator (2FA) för inloggningar i ditt valv."
+  },
+  "premiumSignUpSupport": {
+    "message": "Prioriterad kundsupport."
+  },
+  "premiumSignUpFuture": {
+    "message": "Alla framtida premium-funktioner. Mer kommer snart!"
+  },
+  "premiumPrice": {
+    "message": "Allt för endast $PRICE$\/år!",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$10"
+      }
+    }
+  },
+  "addons": {
+    "message": "Tillägg"
+  },
+  "premiumAccess": {
+    "message": "Premium Access"
+  },
+  "premiumAccessDesc": {
+    "message": "You can add premium access to all members of your organization for $PRICE$ \/$INTERVAL$.",
+    "placeholders": {
+      "price": {
+        "content": "$1",
+        "example": "$3.33"
+      },
+      "interval": {
+        "content": "$2",
+        "example": "'month' or 'year'"
+      }
+    }
+  },
+  "additionalStorageGb": {
+    "message": "Ytterligare lagring (GB)"
+  },
+  "additionalStorageGbDesc": {
+    "message": "# ytterligare GB"
+  },
+  "additionalStorageIntervalDesc": {
+    "message": "Ditt abonnemang kommer med $SIZE$ krypterad lagring. Du kan lägga till ytterliga lagring för $PRICE$ per GB \/$INTERVAL$.",
+    "placeholders": {
+      "size": {
+        "content": "$1",
+        "example": "1 GB"
+      },
+      "price": {
+        "content": "$2",
+        "example": "$4.00"
+      },
+      "interval": {
+        "content": "$3",
+        "example": "'month' or 'year'"
+      }
+    }
+  },
+  "summary": {
+    "message": "Summering"
+  },
+  "total": {
+    "message": "Totalt"
+  },
+  "year": {
+    "message": "år"
+  },
+  "month": {
+    "message": "månad"
+  },
+  "monthAbbr": {
+    "message": "mån.",
+    "description": "Short abbreviation for 'month'"
+  },
+  "paymentChargedAnnually": {
+    "message": "Your payment method will be charged immediately and on a recurring basis each year. You may cancel at any time."
+  },
+  "paymentCharged": {
+    "message": "Din betalningsmetod kommer att debiteras omedelbart och sedan återkommande varje $INTERVAL$. Du kan upphäva när som helst.",
+    "placeholders": {
+      "interval": {
+        "content": "$1",
+        "example": "month or year"
+      }
+    }
+  },
+  "paymentChargedWithTrial": {
+    "message": "Your plan comes with a free 7 day trial. Your card will not be charged until the trial has ended and on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "placeholders": {
+      "interval": {
+        "content": "$1",
+        "example": "month or year"
+      }
+    }
+  },
+  "paymentInformation": {
+    "message": "Betalningsinformation"
+  },
+  "creditCard": {
+    "message": "Kreditkort"
+  },
+  "paypalClickSubmit": {
+    "message": "Klicka på PayPal-knappen för att logga in i ditt PayPal-konto, tryck sedan på \"Skicka\"-knappen nedan för att fortsätta."
+  },
+  "cancelSubscription": {
+    "message": "Avsluta prenumeration"
+  },
+  "subscriptionCanceled": {
+    "message": "Prenumerationen har avbrutits."
+  },
+  "pendingCancellation": {
+    "message": "Pending Cancellation"
+  },
+  "subscriptionPendingCanceled": {
+    "message": "Abonnemanget har markerats för upphävning vid slutet av den nuvarande faktureringsperioden."
+  },
+  "reinstateSubscription": {
+    "message": "Återuppta prenumeration"
+  },
+  "reinstateConfirmation": {
+    "message": "Är du säker att du vill ta bort den väntande upphävningsförfrågan och återinföra ditt abonnemang?"
+  },
+  "reinstated": {
+    "message": "Prenumerationen har återupptagits."
+  },
+  "cancelConfirmation": {
+    "message": "Är du säker att du vill upphäva? Du kommer att förlora tillgång till alla funktioner som det här abonnemanget erbjuder i slutet av den här faktureringsperioden."
+  },
+  "canceledSubscription": {
+    "message": "Prenumerationen har avbrutits."
+  },
+  "neverExpires": {
+    "message": "Går aldrig ut"
+  },
+  "status": {
+    "message": "Status"
+  },
+  "nextCharge": {
+    "message": "Nästa dragning"
+  },
+  "details": {
+    "message": "Detaljer"
+  },
+  "downloadLicense": {
+    "message": "Hämta licens"
+  },
+  "updateLicense": {
+    "message": "Uppdatera licens"
+  },
+  "updatedLicense": {
+    "message": "Uppdaterade licens"
+  },
+  "manageSubscription": {
+    "message": "Hantera prenumeration"
+  },
+  "storage": {
+    "message": "Lagring"
+  },
+  "addStorage": {
+    "message": "Lägg till lagring"
+  },
+  "removeStorage": {
+    "message": "Ta bort lagring"
+  },
+  "subscriptionStorage": {
+    "message": "Din prenumeration har totalt $MAX_STORAGE$ GB krypterad lagring. Du använder $USED_STORAGE$.",
+    "placeholders": {
+      "max_storage": {
+        "content": "$1",
+        "example": "4"
+      },
+      "used_storage": {
+        "content": "$2",
+        "example": "65 MB"
+      }
+    }
+  },
+  "paymentMethod": {
+    "message": "Betalningssätt"
+  },
+  "noPaymentMethod": {
+    "message": "Ingen sparad betalningsmetod."
+  },
+  "addPaymentMethod": {
+    "message": "Lägg till betalningssätt"
+  },
+  "changePaymentMethod": {
+    "message": "Ändra betalningssätt"
+  },
+  "invoices": {
+    "message": "Fakturor"
+  },
+  "noInvoices": {
+    "message": "Inga fakturor."
+  },
+  "paid": {
+    "message": "Betald",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "unpaid": {
+    "message": "Obetald",
+    "description": "Past tense status of an invoice. ex. Paid or unpaid."
+  },
+  "transactions": {
+    "message": "Transaktioner",
+    "description": "Payment\/credit transactions."
+  },
+  "noTransactions": {
+    "message": "Inga transaktioner."
+  },
+  "chargeNoun": {
+    "message": "Debitering",
+    "description": "Noun. A charge from a payment method."
+  },
+  "refundNoun": {
+    "message": "Återbetalning",
+    "description": "Noun. A refunded payment that was charged."
+  },
+  "chargesStatement": {
+    "message": "Debiteringar kommer att visas som $STATEMENT_NAME$ i din sammanställning.",
+    "placeholders": {
+      "statement_name": {
+        "content": "$1",
+        "example": "BITWARDEN"
+      }
+    }
+  },
+  "gbStorageAdd": {
+    "message": "GB lagring att lägga till"
+  },
+  "gbStorageRemove": {
+    "message": "GB lagring att ta bort"
+  },
+  "storageAddNote": {
+    "message": "Att lägga till lagringsutrymme kommer att resultera i justeringar på ditt totala debiteringsbelopp och omedelbart debitera din betalningsmetod. Den första debiteringen kommer att fördelas proportionellt för återstoden av den nuvarande faktureringscykeln."
+  },
+  "storageRemoveNote": {
+    "message": "Att ta bort lagringsutrymme resulterar i justeringar på ditt totala debiteringsbelopp som kommer att läggas till som kredit mot din nästa debitering."
+  },
+  "adjustedStorage": {
+    "message": "Justerade $AMOUNT$ GB lagringsutrymme.",
+    "placeholders": {
+      "amount": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "contactSupport": {
+    "message": "Kontakta kundsupport"
+  },
+  "updatedPaymentMethod": {
+    "message": "Uppdaterade betalningssätt."
+  },
+  "purchasePremium": {
+    "message": "Köp premium"
+  },
+  "licenseFile": {
+    "message": "Licensfil"
+  },
+  "licenseFileDesc": {
+    "message": "Din licensfil kommer att namnges i stil med $FILE_NAME$",
+    "placeholders": {
+      "file_name": {
+        "content": "$1",
+        "example": "bitwarden_premium_license.json"
+      }
+    }
+  },
+  "uploadLicenseFilePremium": {
+    "message": "För att uppgradera ditt konto till ett premium-medlemskap måste du ladda upp en giltig licensfil."
+  },
+  "uploadLicenseFileOrg": {
+    "message": "To create an on-premise hosted organization you need to upload a valid license file."
+  },
+  "accountEmailMustBeVerified": {
+    "message": "Ditt kontos e-postadress måste verifieras."
+  },
+  "newOrganizationDesc": {
+    "message": "Organizations allow you to share parts of your vault with others as well as manage related users for a specific entity such as a family, small team, or large company."
+  },
+  "generalInformation": {
+    "message": "Allmän information"
+  },
+  "organizationName": {
+    "message": "Organisationsnamn"
+  },
+  "accountOwnedBusiness": {
+    "message": "Det här kontot ägs av ett företag."
+  },
+  "billingEmail": {
+    "message": "E-postadress för fakturering"
+  },
+  "businessName": {
+    "message": "Företagsnamn"
+  },
+  "chooseYourPlan": {
+    "message": "Välj din plan"
+  },
+  "users": {
+    "message": "Användare"
+  },
+  "userSeats": {
+    "message": "Användarsäten"
+  },
+  "additionalUserSeats": {
+    "message": "Ytterligare användarsäten"
+  },
+  "userSeatsDesc": {
+    "message": "# antal användarsäten"
+  },
+  "userSeatsAdditionalDesc": {
+    "message": "Ditt abonnemang kommer med $BASE_SEATS$ användarsäten. Du kan lägga till ytterligare användare för $SEAT_PRICE$ per användare\/månad.",
+    "placeholders": {
+      "base_seats": {
+        "content": "$1",
+        "example": "5"
+      },
+      "seat_price": {
+        "content": "$2",
+        "example": "$2.00"
+      }
+    }
+  },
+  "userSeatsHowManyDesc": {
+    "message": "Hur många användarsäten behöver du? Du kan även lägga till ytterligare säten senare om det behövs."
+  },
+  "planNameFree": {
+    "message": "Gratis",
+    "description": "Free as in 'free beer'."
+  },
+  "planDescFree": {
+    "message": "För testning eller personliga användare för att dela med $COUNT$ andra användare.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "planNameFamilies": {
+    "message": "Familjer"
+  },
+  "planDescFamilies": {
+    "message": "För personlig användning, för att dela med familj & vänner."
+  },
+  "planNameTeams": {
+    "message": "Lag"
+  },
+  "planDescTeams": {
+    "message": "För företag och andra lagorganisationer."
+  },
+  "planNameEnterprise": {
+    "message": "Företag"
+  },
+  "planDescEnterprise": {
+    "message": "För företag och andra stora organisationer."
+  },
+  "freeForever": {
+    "message": "Gratis för alltid"
+  },
+  "includesXUsers": {
+    "message": "inkluderar $COUNT$ användare",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "additionalUsers": {
+    "message": "Ytterligare användare"
+  },
+  "costPerUser": {
+    "message": "$COST$ per användare",
+    "placeholders": {
+      "cost": {
+        "content": "$1",
+        "example": "$3"
+      }
+    }
+  },
+  "limitedUsers": {
+    "message": "Begränsat till $COUNT$ användare (inklusive dig)",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "limitedCollections": {
+    "message": "Begränsat till $COUNT$ samlingar",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "addShareLimitedUsers": {
+    "message": "Lägg till och dela, med upp till $COUNT$ användare",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "addShareUnlimitedUsers": {
+    "message": "Lägg till och dela, med obegränsat antal användare"
+  },
+  "createUnlimitedCollections": {
+    "message": "Skapa obegränsat antal samlingar"
+  },
+  "gbEncryptedFileStorage": {
+    "message": "$SIZE$ lagring av krypterade filer",
+    "placeholders": {
+      "size": {
+        "content": "$1",
+        "example": "1 GB"
+      }
+    }
+  },
+  "onPremHostingOptional": {
+    "message": "On-premise hosting (frivilligt)"
+  },
+  "usersGetPremium": {
+    "message": "Användare får tillgång till premium medlemskapsfunktioner"
+  },
+  "controlAccessWithGroups": {
+    "message": "Kontrollera användaråtkomst med grupper"
+  },
+  "syncUsersFromDirectory": {
+    "message": "Synkronisera användare och grupper från en katalog"
+  },
+  "trackAuditLogs": {
+    "message": "Spåra användaråtgärder med granskningsloggar"
+  },
+  "enforce2faDuo": {
+    "message": "Kräv 2FA med Duo"
+  },
+  "priorityCustomerSupport": {
+    "message": "Prioriterad kundsupport"
+  },
+  "xDayFreeTrial": {
+    "message": "$COUNT$ dag(ar) gratis provperiod, avbryt när som helst",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "monthly": {
+    "message": "Månadsvis"
+  },
+  "annually": {
+    "message": "Årligen"
+  },
+  "basePrice": {
+    "message": "Baspris"
+  },
+  "organizationCreated": {
+    "message": "Organisation skapad"
+  },
+  "organizationReadyToGo": {
+    "message": "Din nya organisation är redo att användas!"
+  },
+  "organizationUpgraded": {
+    "message": "Din organisation har uppgraderats."
+  },
+  "leave": {
+    "message": "Lämna"
+  },
+  "leaveOrganizationConfirmation": {
+    "message": "Vill du verkligen lämna organisationen?"
+  },
+  "leftOrganization": {
+    "message": "Du har lämnat organisationen."
+  },
+  "defaultCollection": {
+    "message": "Standardsamling"
+  },
+  "getHelp": {
+    "message": "Få hjälp"
+  },
+  "getApps": {
+    "message": "Hämta apparna"
+  },
+  "loggedInAs": {
+    "message": "Inloggad som"
+  },
+  "eventLogs": {
+    "message": "Händelselogg"
+  },
+  "people": {
+    "message": "Personer"
+  },
+  "groups": {
+    "message": "Grupper"
+  },
+  "newGroup": {
+    "message": "Ny grupp"
+  },
+  "addGroup": {
+    "message": "Lägg till grupp"
+  },
+  "editGroup": {
+    "message": "Ändra grupp"
+  },
+  "deleteGroupConfirmation": {
+    "message": "Är du säker på att du vill ta bort denna gruppen?"
+  },
+  "removeUserConfirmation": {
+    "message": "Är du säker på att du vill ta bort den här användaren?"
+  },
+  "externalId": {
+    "message": "Externt ID"
+  },
+  "externalIdDesc": {
+    "message": "Det externa id:t kan användas som referens eller för att länka denna resurs till ett externt system såsom en användarkatalog."
+  },
+  "accessControl": {
+    "message": "Åtkomstkontroll"
+  },
+  "groupAccessAllItems": {
+    "message": "Denna grupp kan komma åt och ändra alla objekt."
+  },
+  "groupAccessSelectedCollections": {
+    "message": "Denna grupp kan endast komma åt de valda samlingarna."
+  },
+  "readOnly": {
+    "message": "Skrivskyddad"
+  },
+  "newCollection": {
+    "message": "Ny samling"
+  },
+  "addCollection": {
+    "message": "Lägg till samling"
+  },
+  "editCollection": {
+    "message": "Ändra samling"
+  },
+  "deleteCollectionConfirmation": {
+    "message": "Är du säker på att du vill ta bort samlingen?"
+  },
+  "editUser": {
+    "message": "Ändra användare"
+  },
+  "inviteUser": {
+    "message": "Bjud in användare"
+  },
+  "inviteUserDesc": {
+    "message": "Invite a new user to your organization by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+  },
+  "inviteMultipleEmailDesc": {
+    "message": "Du kan bjuda in upp till $COUNT$ användare samtidigt genom att (med kommatecken) skilja en lista med e-postadresser.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
+  "userUsingTwoStep": {
+    "message": "Denna användare använder tvåstegsverifiering för att skydda deras konto."
+  },
+  "userAccessAllItems": {
+    "message": "Denna användare kan komma åt och ändra alla objekt."
+  },
+  "userAccessSelectedCollections": {
+    "message": "Denna användare kan endast komma åt de valda samlingarna."
+  },
+  "search": {
+    "message": "Sök"
+  },
+  "invited": {
+    "message": "Inbjuden"
+  },
+  "accepted": {
+    "message": "Accepterad"
+  },
+  "confirmed": {
+    "message": "Bekräftad"
+  },
+  "owner": {
+    "message": "Ägare"
+  },
+  "ownerDesc": {
+    "message": "Användaren med den högsta åtkomstgraden som kan hantera alla aspekter av din organisation."
+  },
+  "admin": {
+    "message": "Admin"
+  },
+  "adminDesc": {
+    "message": " Administratörer kan komma åt och hantera alla objekt, samlingar och användare i din organisation."
+  },
+  "user": {
+    "message": "Användare"
+  },
+  "userDesc": {
+    "message": "En vanlig användare med tillgång till organisationens samlingar."
+  },
+  "manager": {
+    "message": "Hanterare"
+  },
+  "managerDesc": {
+    "message": "Managers can access and manage assigned collections in your organization."
+  },
+  "all": {
+    "message": "Alla"
+  },
+  "refresh": {
+    "message": "Uppdatera"
+  },
+  "timestamp": {
+    "message": "Tidsstämpel"
+  },
+  "event": {
+    "message": "Händelse"
+  },
+  "unknown": {
+    "message": "Okänd"
+  },
+  "loadMore": {
+    "message": "Ladda mer"
+  },
+  "mobile": {
+    "message": "Mobil",
+    "description": "Mobile app"
+  },
+  "extension": {
+    "message": "Tillägg",
+    "description": "Browser extension\/addon"
+  },
+  "desktop": {
+    "message": "Skrivbord",
+    "description": "Desktop app"
+  },
+  "webVault": {
+    "message": "Webbvalv"
+  },
+  "loggedIn": {
+    "message": "Loggade in."
+  },
+  "changedPassword": {
+    "message": "Ändrade kontolösenord."
+  },
+  "enabledUpdated2fa": {
+    "message": "Aktiverade\/uppdaterade tvåstegsverifiering."
+  },
+  "disabled2fa": {
+    "message": "Inaktiverade tvåstegsverifiering."
+  },
+  "recovered2fa": {
+    "message": "Återställde konto från tvåstegsverifiering."
+  },
+  "failedLogin": {
+    "message": "Inloggningsförsöket misslyckades med fel lösenord."
+  },
+  "failedLogin2fa": {
+    "message": "Inloggningsförsöket misslyckades med felaktig tvåstegsverifiering."
+  },
+  "exportedVault": {
+    "message": "Exported vault."
+  },
+  "exportedOrganizationVault": {
+    "message": "Exported organization vault."
+  },
+  "editedOrgSettings": {
+    "message": "Ändrade organisationsinställningar."
+  },
+  "createdItemId": {
+    "message": "Skapade objekt $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "editedItemId": {
+    "message": "Ändrade objekt $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "deletedItemId": {
+    "message": "Tog bort objekt $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "sharedItemId": {
+    "message": "Delade objekt $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "'Google'"
+      }
+    }
+  },
+  "viewedItemId": {
+    "message": "Viewed item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedPasswordItemId": {
+    "message": "Viewed password for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedHiddenFieldItemId": {
+    "message": "Viewed hidden field for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "viewedSecurityCodeItemId": {
+    "message": "Viewed security code for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedPasswordItemId": {
+    "message": "Copied password for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedHiddenFieldItemId": {
+    "message": "Copied hidden field for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "copiedSecurityCodeItemId": {
+    "message": "Copied security code for item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "autofilledItemId": {
+    "message": "Auto-filled item $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "createdCollectionId": {
+    "message": "Skapade samling $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Server Passwords"
+      }
+    }
+  },
+  "editedCollectionId": {
+    "message": "Ändrade samling $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Server Passwords"
+      }
+    }
+  },
+  "deletedCollectionId": {
+    "message": "Tog bort samling $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Server Passwords"
+      }
+    }
+  },
+  "createdGroupId": {
+    "message": "Skapade grupp $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Developers"
+      }
+    }
+  },
+  "editedGroupId": {
+    "message": "Ändrade grupp $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Developers"
+      }
+    }
+  },
+  "deletedGroupId": {
+    "message": "Tog bort grupp $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Developers"
+      }
+    }
+  },
+  "removedUserId": {
+    "message": "Tog bort användare $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "createdAttachmentForItem": {
+    "message": "Skapade bifogning för objekt $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "deletedAttachmentForItem": {
+    "message": "Tog bort bifogning för objekt $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "editedCollectionsForItem": {
+    "message": "Ändrade samlingar för objekt $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "invitedUserId": {
+    "message": "Bjöd in användare $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "confirmedUserId": {
+    "message": "Bekräftade användare $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "editedUserId": {
+    "message": "Ändrade användare $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "editedGroupsForUser": {
+    "message": "Ändrade grupper för användare $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "device": {
+    "message": "Enhet"
+  },
+  "view": {
+    "message": "Visa"
+  },
+  "invalidDateRange": {
+    "message": "Ogiltigt datumintervall."
+  },
+  "errorOccurred": {
+    "message": "Ett fel har inträffat."
+  },
+  "userAccess": {
+    "message": "Användaråtkomst"
+  },
+  "userType": {
+    "message": "Användartyp"
+  },
+  "groupAccess": {
+    "message": "Gruppåtkomst"
+  },
+  "groupAccessUserDesc": {
+    "message": "Ändra grupper som den här användaren tillhör."
+  },
+  "invitedUsers": {
+    "message": "Bjöd in användare."
+  },
+  "resendInvitation": {
+    "message": "Skicka inbjudan igen"
+  },
+  "hasBeenReinvited": {
+    "message": "$USER$ har blivit inbjuden igen.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "confirm": {
+    "message": "Bekräfta"
+  },
+  "confirmUser": {
+    "message": "Confirm User"
+  },
+  "hasBeenConfirmed": {
+    "message": "$USER$ har blivit bekräftad.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "confirmUsers": {
+    "message": "Bekräfta användare"
+  },
+  "usersNeedConfirmed": {
+    "message": "Du har användare som har accepterat deras inbjudan, men behöver fortfarande bli bekräftade. Användare har inte åtkomst till organisationen förrän de blivit bekräftade."
+  },
+  "startDate": {
+    "message": "Startdatum"
+  },
+  "endDate": {
+    "message": "Slutdatum"
+  },
+  "verifyEmail": {
+    "message": "Verifiera e-postadress"
+  },
+  "verifyEmailDesc": {
+    "message": "Verifiera ditt kontos e-postadress för att låsa upp alla funktioner."
+  },
+  "verifyEmailFirst": {
+    "message": "Ditt kontos e-postadress måste verifieras först."
+  },
+  "checkInboxForVerification": {
+    "message": "Kolla din e-post för en verifieringslänk."
+  },
+  "emailVerified": {
+    "message": "Din e-postadress har blivit verifierad."
+  },
+  "emailVerifiedFailed": {
+    "message": "Kunde inte verifiera din e-post. Prova att skicka ett nytt verifieringsmejl."
+  },
+  "updateBrowser": {
+    "message": "Uppdatera webbläsaren"
+  },
+  "updateBrowserDesc": {
+    "message": "Du använder en webbläsare som inte stöds. Webbvalvet kanske inte fungerar ordentligt."
+  },
+  "joinOrganization": {
+    "message": "Gå med i organisation"
+  },
+  "joinOrganizationDesc": {
+    "message": "Du har blivit inbjuden att gå med i organisationen ovan. För att acceptera inbjudan måste du logga in eller skapa ett nytt Bitwarden-konto."
+  },
+  "inviteAccepted": {
+    "message": "Inbjudan accepterades"
+  },
+  "inviteAcceptedDesc": {
+    "message": "You can access this organization once an administrator confirms your membership. We'll send you an email when that happens."
+  },
+  "inviteAcceptFailed": {
+    "message": "Det går inte att acceptera inbjudan. Be en administratör för organisationen att skicka en ny inbjudan."
+  },
+  "rememberEmail": {
+    "message": "Kom ihåg e-postadress"
+  },
+  "recoverAccountTwoStepDesc": {
+    "message": "Om du inte kan komma åt ditt konto genom dina vanliga tvåstegsverifierings-metoder kan du använda din återställningskod för tvåstegsverifiering för att inaktivera alla tvåstegsverifierings-metoder på ditt konto."
+  },
+  "recoverAccountTwoStep": {
+    "message": "Recover Account Two-Step Login"
+  },
+  "twoStepRecoverDisabled": {
+    "message": "Tvåstegsverifiering har inaktiverats på ditt konto."
+  },
+  "learnMore": {
+    "message": "Läs mer"
+  },
+  "deleteRecoverDesc": {
+    "message": "Ange din e-postadress nedan för att återställa och ta bort ditt konto."
+  },
+  "deleteRecoverEmailSent": {
+    "message": "Om ditt konto finns så har vi skickat ett mejl till dig med vidare instruktioner."
+  },
+  "deleteRecoverConfirmDesc": {
+    "message": "Du har begärt att radera ditt Bitwarden-konto. Klicka på knappen nedan för att bekräfta."
+  },
+  "myOrganization": {
+    "message": "Min organisation"
+  },
+  "deleteOrganization": {
+    "message": "Ta bort organisation"
+  },
+  "deleteOrganizationDesc": {
+    "message": "Proceed below to delete this organization and all associated data. Individual user accounts will remain, though they will not be associated to this organization anymore. "
+  },
+  "deleteOrganizationWarning": {
+    "message": "Borttagning av organisationen är permanent. Det går inte att ångra."
+  },
+  "organizationDeleted": {
+    "message": "Tog bort organisation"
+  },
+  "organizationDeletedDesc": {
+    "message": "Organisationen och all tillhörande data har tagits bort."
+  },
+  "organizationUpdated": {
+    "message": "Organisation uppdaterad"
+  },
+  "taxInformation": {
+    "message": "Skatteinformation"
+  },
+  "taxInformationDesc": {
+    "message": "Vänligen kontakta support för att bidra (eller uppdatera) skatteinformation för dina fakturor."
+  },
+  "billingPlan": {
+    "message": "Abonnemang",
+    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+  },
+  "changeBillingPlan": {
+    "message": "Ändra abonnemang",
+    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+  },
+  "changeBillingPlanUpgrade": {
+    "message": "Uppgradera ditt konto till ett annat abonnemang genom att ange informationen nedan. Vänligen säkerhetsställ att du har en aktiv betalningsmetod tillagd på kontot.",
+    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+  },
+  "changeBillingPlanDesc": {
+    "message": "Kontakta kundservice om du vill ändra ditt abonnemang. Vänligen säkerhetsställ att du har en aktiv betalningsmetod tillagd på kontot.",
+    "description": "A billing plan\/package. For example: families, teams, enterprise, etc."
+  },
+  "invoiceNumber": {
+    "message": "Faktura #$NUMBER$",
+    "description": "ex. Invoice #79C66F0-0001",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "79C66F0-0001"
+      }
+    }
+  },
+  "viewInvoice": {
+    "message": "Visa faktura"
+  },
+  "downloadInvoice": {
+    "message": "Hämta faktura"
+  },
+  "verifyBankAccount": {
+    "message": "Verifiera bankkonto"
+  },
+  "verifyBankAccountDesc": {
+    "message": "Vi har gjort två mikro-insättningar till ditt bankkonto (det kan ta 1-2 arbetsdagar innan det visas). Ange beloppen för att verifiera bankkontot."
+  },
+  "verifyBankAccountInitialDesc": {
+    "message": "Payment with a bank account is only available to customers in the United States. You will be required to verify your bank account. We will make two micro-deposits within the next 1-2 business days. Enter these amounts on the organization's billing page to verify the bank account."
+  },
+  "verifyBankAccountFailureWarning": {
+    "message": "Går det inte att verifiera bankkontot kommer det att resultera i en missad betalning och ditt abonnemang inaktiveras."
+  },
+  "verifiedBankAccount": {
+    "message": "Bankkontot har verifierats."
+  },
+  "bankAccount": {
+    "message": "Bankkonto"
+  },
+  "amountX": {
+    "message": "Belopp $COUNT$",
+    "description": "Used in bank account verification of micro-deposits. Amount, as in a currency amount. Ex. Amount 1 is $2.00, Amount 2 is $1.50",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "routingNumber": {
+    "message": "Clearingnummer",
+    "description": "Bank account routing number"
+  },
+  "accountNumber": {
+    "message": "Kontonummer"
+  },
+  "accountHolderName": {
+    "message": "Kontoinnehavarens namn"
+  },
+  "bankAccountType": {
+    "message": "Kontotyp"
+  },
+  "bankAccountTypeCompany": {
+    "message": "Företag (företag)"
+  },
+  "bankAccountTypeIndividual": {
+    "message": "Individuell (personlig)"
+  },
+  "enterInstallationId": {
+    "message": "Ange ditt installations-id"
+  },
+  "addSeats": {
+    "message": "Lägg till säten",
+    "description": "Seat = User Seat"
+  },
+  "removeSeats": {
+    "message": "Ta bort säten",
+    "description": "Seat = User Seat"
+  },
+  "subscriptionUserSeats": {
+    "message": "Din prenumeration tillåter totalt $COUNT$ användare.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "seatsToAdd": {
+    "message": "Säten att lägga till"
+  },
+  "seatsToRemove": {
+    "message": "Säten att ta bort"
+  },
+  "seatsAddNote": {
+    "message": "Att lägga till användarsäten kommer att resultera i justeringar på ditt totala debiteringsbelopp och omedelbart debitera din betalningsmetod. Den första debiteringen kommer att fördelas proportionellt för återstoden av den nuvarande faktureringscykeln."
+  },
+  "seatsRemoveNote": {
+    "message": "Att ta bort användarsäten resulterar i justeringar på ditt totala debiteringsbelopp som kommer att läggas till som kredit mot din nästa debitering."
+  },
+  "adjustedSeats": {
+    "message": "Justerade $AMOUNT$ användarsäten.",
+    "placeholders": {
+      "amount": {
+        "content": "$1",
+        "example": "15"
+      }
+    }
+  },
+  "keyUpdated": {
+    "message": "Nyckel uppdaterad"
+  },
+  "updateKeyTitle": {
+    "message": "Uppdatera nyckel"
+  },
+  "updateEncryptionKey": {
+    "message": "Uppdatera krypteringsnyckel"
+  },
+  "updateEncryptionKeyShortDesc": {
+    "message": "Du använder ett föråldrat krypteringsschema."
+  },
+  "updateEncryptionKeyDesc": {
+    "message": "Vi har flyttat till större krypteringsnycklar som ger bättre säkerhet och tillgång till nyare funktioner. Att uppdatera din krypteringsnyckel är lätt och snabbt. Skriv bara ditt huvudlösenord nedan. Denna uppdatering kommer så småningom att bli obligatorisk."
+  },
+  "updateEncryptionKeyWarning": {
+    "message": "Efter att du uppdaterat din krypteringsnyckel, måste du logga ut och in igen i alla Bitwarden-program som du använder (till exempel den mobila appen eller webbläsarens tillägg). Att inte logga ut och in igen (som hämtar din nya krypteringsnyckel) kan resultera i skadad data. Vi kommer att försöka logga ut dig automatiskt, men det kan vara fördröjt."
+  },
+  "subscription": {
+    "message": "Prenumeration"
+  },
+  "loading": {
+    "message": "Laddar"
+  },
+  "upgrade": {
+    "message": "Uppgradera"
+  },
+  "upgradeOrganization": {
+    "message": "Uppgradera organisation"
+  },
+  "upgradeOrganizationDesc": {
+    "message": "Den här funktionen är inte tillgänglig för gratis-organisationer. Byt till en betald plan för att låsa upp fler funktioner."
+  },
+  "createOrganizationStep1": {
+    "message": "Skapa organisation: Steg ett"
+  },
+  "createOrganizationCreatePersonalAccount": {
+    "message": "Innan du skapar din organisation, måste du först skapa ett gratis personligt konto."
+  },
+  "refunded": {
+    "message": "Återbetalad"
+  },
+  "nothingSelected": {
+    "message": "Du har inte valt något."
+  },
+  "submitAgreePolicies": {
+    "message": "Genom att klicka på ”Skicka”-knappen, samtycker du till följande principer:",
+    "description": "A policy is something like Terms of Service, Privacy Policy, etc."
+  },
+  "termsOfService": {
+    "message": "Användarvillkor"
+  },
+  "privacyPolicy": {
+    "message": "Sekretesspolicy"
+  },
+  "filters": {
+    "message": "Filter"
+  },
+  "lockOptions": {
+    "message": "Låsalternativ"
+  },
+  "lockOptionsDesc": {
+    "message": "Välj när valvet låses. Ett låst valv kräver att du anger ditt huvudlösenord för att komma åt det igen."
+  },
+  "oneMinute": {
+    "message": "1 minut"
+  },
+  "fiveMinutes": {
+    "message": "5 minuter"
+  },
+  "fifteenMinutes": {
+    "message": "15 minuter"
+  },
+  "thirtyMinutes": {
+    "message": "30 minuter"
+  },
+  "oneHour": {
+    "message": "1 timme"
+  },
+  "fourHours": {
+    "message": "4 timmar"
+  },
+  "onRefresh": {
+    "message": "Vid omstart"
+  },
+  "dateUpdated": {
+    "message": "Uppdaterad",
+    "description": "ex. Date this item was updated"
+  },
+  "datePasswordUpdated": {
+    "message": "Lösenord uppdaterat",
+    "description": "ex. Date this password was updated"
+  },
+  "organizationIsDisabled": {
+    "message": "Organisationen är avstängd."
+  },
+  "licenseIsExpired": {
+    "message": "Licensen har upphört att gälla."
+  },
+  "updatedUsers": {
+    "message": "Uppdaterade användare"
+  },
+  "selected": {
+    "message": "Vald(a)"
+  },
+  "ownership": {
+    "message": "Ägarskap"
+  },
+  "whoOwnsThisItem": {
+    "message": "Vem äger detta objekt?"
+  },
+  "strong": {
+    "message": "Stark",
+    "description": "ex. A strong password. Scale: Very Weak -> Weak -> Good -> Strong"
+  },
+  "good": {
+    "message": "Bra",
+    "description": "ex. A good password. Scale: Very Weak -> Weak -> Good -> Strong"
+  },
+  "weak": {
+    "message": "Svagt",
+    "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
+  },
+  "veryWeak": {
+    "message": "Very Weak",
+    "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
+  },
+  "weakMasterPassword": {
+    "message": "Weak Master Password"
+  },
+  "weakMasterPasswordDesc": {
+    "message": "Huvudlösenordet du har valt är svagt. Du bör använda ett starkt huvudlösenord (eller en lösenfras) för att skydda ditt Bitwarden-konto ordentligt. Är du säker på att du vill använda detta huvudlösenord?"
+  },
+  "rotateAccountEncKey": {
+    "message": "Rotera även mitt kontos krypteringsnyckel"
+  },
+  "rotateEncKeyTitle": {
+    "message": "Rotate Encryption Key"
+  },
+  "rotateEncKeyConfirmation": {
+    "message": "Är du säker att du vill rotera ditt kontos krypteringsnyckel?"
+  },
+  "attachmentsNeedFix": {
+    "message": "Det här objektet har gamla bifogade filer som behöver fixas."
+  },
+  "attachmentFixDesc": {
+    "message": "Det här är en gammal bifogad fil som behöver fixas. Klicka här för att läsa mer."
+  },
+  "fix": {
+    "message": "Fixa",
+    "description": "This is a verb. ex. 'Fix The Car'"
+  },
+  "oldAttachmentsNeedFixDesc": {
+    "message": "Det finns gamla bifogade filer i ditt valv som behöver fixas innan du kan rotera ditt kontos krypteringsnyckel."
+  },
+  "yourAccountsFingerprint": {
+    "message": "Ditt kontos fingeravtrycksfras",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "fingerprintEnsureIntegrityVerify": {
+    "message": "För att verifiera integriteten av dina krypteringsnycklar vänligen verifiera användarens fingeravtrycksfras innan du fortsätter.",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "dontAskFingerprintAgain": {
+    "message": "Fråga inte efter verifiering av fingeravtrycksfrasen igen",
+    "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
+  },
+  "free": {
+    "message": "Gratis",
+    "description": "Free, as in 'Free beer'"
+  },
+  "apiKey": {
+    "message": "API-nyckel"
+  },
+  "apiKeyDesc": {
+    "message": "Din API-nyckel kan användas för att autentisera mot Bitwardens publika API."
+  },
+  "apiKeyRotateDesc": {
+    "message": "Genom att rotera API-nyckel ogiltigförklarar du den föregående nyckeln. Du kan rotera din API-nyckel om du tror att din nuvarande nyckel inte längre är säker att använda."
+  },
+  "apiKeyWarning": {
+    "message": "Din API-nyckel har full tillgång till organisationen. Den bör hållas hemlig."
+  },
+  "oauth2ClientCredentials": {
+    "message": "OAuth 2.0 Klientuppgifter",
+    "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
+  },
+  "viewApiKey": {
+    "message": "Visa API-nyckel"
+  },
+  "rotateApiKey": {
+    "message": "Rotera API-nyckel"
+  },
+  "selectOneCollection": {
+    "message": "You must select at least one collection."
+  }
+}
