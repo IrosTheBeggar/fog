@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 "use strict";
 
+const colors = require('colors');
+const switcher = require('./modules/boot/switcher');
+
 // Check if we are in an electron environment
 if (process.versions["electron"]) {
   // off to a separate electron boot environment
@@ -8,9 +11,6 @@ if (process.versions["electron"]) {
   return;
 }
 
-
-
-const colors = require('colors');
 console.clear();
 console.log(colors.bold(`
     ______               __  ___           __    _          
@@ -30,8 +30,10 @@ console.log();
 // Boot the server
 try {
   const program = require("./modules/config/configure-commander.js").setup(process.argv);
-  const serve = require("./mstream.js");
-  serve.serveIt(program);
+  // const serve = require("./mstream.js");
+  // serve.serveIt(program);
+
+  switcher.boot(program);
 } catch (error) {
   console.log(colors.red('Boot Error'));
   console.log(error);

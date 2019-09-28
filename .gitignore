@@ -1,8 +1,9 @@
 node_modules/*
 
-image-cache/*
-!image-cache/default.png
-!image-cache/README.md
+minecraft/*
+!minecraft/server.jar
+!minecraft/eula.txt
+!minecraft/server.properties
 
 save/*.json
 

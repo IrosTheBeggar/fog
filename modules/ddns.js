@@ -16,12 +16,17 @@ const osMap = {
   "android": "fogmachine-rpn-android64"
 };
 
-exports.setup = function (program) {
+exports.setup = function (program, anotherProcess) {
   process.on('exit', (code) => {
     // kill all workers
     if(spawnedTunnel) {
       spawnedTunnel.stdin.pause();
       spawnedTunnel.kill();
+    }
+
+    if(anotherProcess) {
+      anotherProcess.stdin.pause();
+      anotherProcess.kill();
     }
   });
 

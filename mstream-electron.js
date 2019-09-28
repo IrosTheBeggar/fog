@@ -9,12 +9,16 @@ const mstreamAutoLaunch = new AutoLaunch({ name: 'Fog Machine' });
 const configFile = fe.join(app.getPath('userData'), 'save/server-config.json');
 let appIcon;
 
-if (!fs.existsSync(fe.join(app.getPath('userData'), 'image-cache'))) {
-  mkdirp(fe.join(app.getPath('userData'), 'image-cache'));
-}
-
 if (!fs.existsSync(fe.join(app.getPath('userData'), 'save'))) {
   mkdirp(fe.join(app.getPath('userData'), 'save'));
+}
+
+if (!fs.existsSync(fe.join(app.getPath('userData'), 'minecraft'))) {
+  mkdirp(fe.join(app.getPath('userData'), 'minecraft'));
+}
+
+if (!fs.existsSync(fe.join(app.getPath('userData'), 'bitwarden'))) {
+  mkdirp(fe.join(app.getPath('userData'), 'bitwarden'));
 }
 
 // Errors
@@ -93,7 +97,7 @@ function createMainWindow() {
   mainWindow.loadURL('file://' + __dirname + '/electron/index3.html');
   mainWindow.setMenu(null);
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -169,8 +173,7 @@ function bootServer(program) {
   appIcon = new Tray(process.platform === 'darwin' ? fe.join(__dirname, '/electron/images/icon.png') :  fe.join(__dirname, '/electron/mstream-logo-cut.png'));
   appIcon.setContextMenu(Menu.buildFromTemplate(trayTemplate)); // Call this again if you modify the tray menu
   
-  
-  // TODO: Try booting server in forked thread instead.  Might give some speed improvements
+  // The boot code
   server = require('./mstream.js');
   server.serveIt(program);
 }

@@ -26,7 +26,7 @@
         Configure
       </div>
       <ul class="left-nav-menu">
-        <li id="nav-about" class="left-nav-button waves-effect waves-purple nav-selected">
+        <li id="nav-server" class="left-nav-button waves-effect waves-purple nav-selected">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" height="28"><path fill="#FFA000" d="M38 12H22l-4-4H8c-2.2 0-4 1.8-4 4v24c0 2.2 1.8 4 4 4h31c1.7 0 3-1.3 3-3V16c0-2.2-1.8-4-4-4z"/><path fill="#FFCA28" d="M42.2 18H15.3c-1.9 0-3.6 1.4-3.9 3.3L8 40h31.7c1.9 0 3.6-1.4 3.9-3.3l2.5-14c.5-2.4-1.4-4.7-3.9-4.7z"/></svg>
           <span>Web Directory</span>
         </li>
@@ -134,6 +134,64 @@
     }
 
     window.onload = function () {
+      const serverView = Vue.component('server-view', {
+        data() {
+          return {
+            selectInstance: null,
+            lJson: loadJson
+          };
+        },
+        template: '\
+          <div>\
+            <div class="row">\
+              <div class="col s12 m6">\
+                <div class="card">\
+                  <div class="row row-mod">\
+                    <div class="section-header">Select Server</div>\
+                  </div>\
+                  <div class="row row-mod">\
+                    <div class="col s12 port-form-container">\
+                      <select  id="server-select">\
+                        <option value="" disabled>Supported Servers</option>\
+                        <option value="1" selected>Basic Web Server</option>\
+                        <option value="2">Bitwarden RS</option>\
+                        <option value="3">Minecraft Server</option>\
+                      </select>\
+                      <label for="new-user-dirs">Select Server Type</label>\
+                    </div>\
+                  </div>\
+                </div>\
+              </div>\
+              <div class="col s12 m6">\
+                <div class="card">\
+                  <div class="row row-mod">\
+                    <div class="section-header">Network Details</div>\
+                  </div>\
+                  <div class="row row-mod">\
+                    <div class="col s12 port-form-container">\
+                      <div class="input-field">\
+                        <input v-model="lJson.port" @blur="updateConfig()" id="server-port" type="number" class="validate" min="1" max="65535" step="1" required />\
+                        <label for="server-port">Port #</label>\
+                      </div>\
+                    </div>\
+                  </div>\
+                </div>\
+              </div>\
+            </div>\
+          </div>',
+        mounted: function () {
+          this.selectInstance = M.FormSelect.init(document.querySelectorAll("#server-select"));
+        },
+        beforeDestroy: function() {
+          this.selectInstance[0].destroy();
+        },
+        methods: {
+          updateConfig: function() {
+            fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+          },
+        }
+      });
+
       const aboutView = Vue.component('about-view', {
         data() {
           return {
@@ -143,16 +201,6 @@
         template: '\
           <div>\
             <div class="row">\
-              <div class="col s12">\
-                <div class="card">\
-                  <div class="about-content-section">\
-                    <div class="about-content-header">Getting Started</div>\
-                    <br>\
-                    <div class="about-content-body">Fogmachine is a publishing platform that lets your publish your own website right from home.</div>\
-                    <div class="about-content-body">Fogmachine websites are served from your own computer.  This means that your control your website and cannot be censored by 3rd parties</div>\
-                  </div>\
-                </div>\
-              </div>\
               <div class="col s12">\
                 <div class="card">\
                   <div class="about-content-section">\
@@ -554,7 +602,7 @@
       var vm = new Vue({
         el: '#switcherMain',
         components: {
-          'about-view': aboutView,
+          'server-view': serverView,
           'network-view': networkView,
           'security-view': securityView,
           'boot-view': bootView,
@@ -565,14 +613,14 @@
         }
       });
 
-      vm.currentViewMain = 'about-view';
+      vm.currentViewMain = 'server-view';
 
 
-      document.getElementById("nav-about").onclick = function(){
+      document.getElementById("nav-server").onclick = function(){
         if(bootFlag === true) {
           return;
         }
-        vm.currentViewMain = 'about-view';
+        vm.currentViewMain = 'server-view';
         resetNav(this);
       }
 
