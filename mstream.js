@@ -10,7 +10,7 @@ const serveIndex = require('serve-index');
 const defaults = require('./modules/defaults.js');
 const ddns = require('./modules/ddns');
 
-exports.serveIt = function (program) {
+exports.boot = function (program) {
   // Setup default values
   defaults.setup(program);
 

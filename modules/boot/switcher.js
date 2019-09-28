@@ -1,7 +1,7 @@
 exports.boot = function (program) {
   switch (program.server) {
     case 'file':
-      require("../../mstream").serveIt(program);
+      require("../../mstream").boot(program);
       break;
     case 'minecraft':
       require("./minecraft").boot(program);
