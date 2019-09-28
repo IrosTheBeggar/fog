@@ -30,9 +30,6 @@ console.log();
 // Boot the server
 try {
   const program = require("./modules/config/configure-commander.js").setup(process.argv);
-  // const serve = require("./mstream.js");
-  // serve.serveIt(program);
-
   switcher.boot(program);
 } catch (error) {
   console.log(colors.red('Boot Error'));

@@ -1,6 +1,6 @@
 {
   "name": "fogmachine",
-  "version": "4.3.0",
+  "version": "0.1.0",
   "description": "music streaming server",
   "main": "cli-boot-wrapper.js",
   "bin": {

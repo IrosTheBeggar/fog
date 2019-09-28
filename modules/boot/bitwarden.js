@@ -22,7 +22,14 @@ exports.boot = function (program) {
   defaults.setup(program);
 
   // Setup DDNS Here so we handle exit codes properly
-  ddns.setup(program, spawnedServer);
+  const killIt = function() {
+    if(spawnedServer) {
+      spawnedServer.stdin.pause();
+      spawnedServer.kill();
+    }
+  }
+
+  ddns.setup(program, killIt);
 
   // Copy files to bootpath, if none exist
   if (!fs.existsSync(path.join(program.directory, '.env'))) {

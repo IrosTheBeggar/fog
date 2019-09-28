@@ -399,3 +399,8 @@ ul.left-nav-menu li.left-nav-selected {
   padding-right: 12px;
   float:right;
 }
+
+.server-select-row {
+  margin-top: 20px;
+  padding-bottom: 13px;
+}

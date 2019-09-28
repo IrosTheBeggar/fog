@@ -58,7 +58,7 @@ app.on('ready', createMainWindow);
 
 // Quit if server hasn't been started
 app.on('window-all-closed', function () {
-  if (!server) {
+  if (!bootFlag) {
     app.quit();
   }
 
@@ -79,7 +79,7 @@ app.on('activate', function () {
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 function createMainWindow() {
-  if (server || mainWindow) {
+  if (bootFlag || mainWindow) {
     return;
   }
 
@@ -115,7 +115,7 @@ ipcMain.once('start-server', function (event, arg) {
   bootServer(arg);
 });
 
-var server;
+var bootFlag = false;
 function bootServer(program) {
   program.ddns.iniFile = fe.join(app.getPath('userData'), 'save/frpc.ini');
 
@@ -178,6 +178,12 @@ function bootServer(program) {
   appIcon.setContextMenu(Menu.buildFromTemplate(trayTemplate)); // Call this again if you modify the tray menu
   
   // The boot code
-  server = require('./mstream.js');
-  server.serveIt(program);
+  try {
+    const switcher = require('./modules/boot/switcher');
+    switcher.boot(program);
+    bootFlag = true;
+  } catch (error) {
+    console.log(colors.red('Boot Error'));
+    console.log(error);
+  }
 }
