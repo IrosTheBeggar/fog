@@ -97,7 +97,7 @@ function createMainWindow() {
   }
 
   // Create the browser window.
-  mainWindow = new BrowserWindow({ webPreferences: { nodeIntegration: true },  width: 850, height: 550, icon: fe.join(__dirname, '/electron/mstream-logo-cut.png') });
+  mainWindow = new BrowserWindow({ webPreferences: { nodeIntegration: true },  width: 850, height: 550, icon: fe.join(__dirname, '/electron/fogmachine.png') });
   mainWindow.loadURL('file://' + __dirname + '/electron/index3.html');
   mainWindow.setMenu(null);
   // Open the DevTools.
@@ -165,7 +165,6 @@ function bootServer(program) {
 
   // Check if Auto DNS is logged in
   if(program.ddns.tested === true) {
-    trayTemplate[1].submenu.push({ type: 'separator' });
     trayTemplate[1].submenu.push({
       label: 'https://' + program.ddns.url, click: function () {
         shell.openExternal('https://' + program.ddns.url)
@@ -174,7 +173,7 @@ function bootServer(program) {
   }
 
   // Create Tray Icon
-  appIcon = new Tray(process.platform === 'darwin' ? fe.join(__dirname, '/electron/images/icon.png') :  fe.join(__dirname, '/electron/mstream-logo-cut.png'));
+  appIcon = new Tray(process.platform === 'darwin' ? fe.join(__dirname, '/electron/images/icon.png') : fe.join(__dirname, '/electron/fogmachine.png'));
   appIcon.setContextMenu(Menu.buildFromTemplate(trayTemplate)); // Call this again if you modify the tray menu
   
   // The boot code

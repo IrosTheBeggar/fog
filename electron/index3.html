@@ -101,6 +101,8 @@
       loadJson.logs = path.join(app.getPath('userData'), 'save');
     }
 
+    console.log(loadJson)
+
     // if(!loadJson.directory){
     //   loadJson.directory = path.join(app.getAppPath(), 'examples/basic');
     // }
@@ -147,9 +149,9 @@
                   </div>\
                   <div class="row row-mod server-select-row">\
                     <div class="col s12 port-form-container">\
-                      <select v-model="lJson.server" id="server-select">\
+                      <select  v-model="lJson.server" id="server-select">\
                         <option value="" disabled>Supported Servers</option>\
-                        <option value="file" selected>Basic Web Server</option>\
+                        <option value="file">Basic File Server</option>\
                         <option value="bitwarden">Bitwarden RS</option>\
                         <option value="minecraft">Minecraft Server</option>\
                       </select>\
@@ -472,13 +474,22 @@
         }
         document.getElementById("boot-server-checkbox").disabled = true;
 
+        // save
+        fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+
         setTimeout(() => {
           ipcRenderer.send('start-server', loadJson);
           setTimeout(() => {
             document.getElementById("boot-server-button").innerHTML = 'Success';
             document.getElementById("boot-server-text").innerHTML = 'Server Booted!';
 
-            const localhostAdd = loadJson.ssl && loadJson.ssl.cert && loadJson.ssl.key ? 'https' : 'http' + '://localhost:' + loadJson.port;            
+            // RPN Link
+            let rpnLink = '';
+            if (loadJson.ddns.tested === true) {
+              rpnLink += '<div>Your server is available online at: <a href="https://'+loadJson.ddns.url+'">https://' + loadJson.ddns.url + '</a></div>';
+            }
+
+            const localhostAdd = loadJson.ssl && loadJson.ssl.cert && loadJson.ssl.key ? 'https' : 'http' + '://localhost:' + loadJson.port;
             document.getElementById("post-boot-content").innerHTML = '<div class="row">\
               <div class="col s12">\
                 <div class="card">\
@@ -486,6 +497,7 @@
                     <div>This window will automatically close in <span id="countdown">30</span> seconds to save on memory</div>\
                     <br>\
                     <div>Test your server locally at: <a href="'+localhostAdd+'">'+localhostAdd+'</a></div>\
+                    '+rpnLink+'\
                   </div>\
                 </div>\
               </div>\
