@@ -34,7 +34,7 @@ html, body {
 
 .main-left-col {
   width: 200px;
-  background-color: #333;
+  background-color: #212121;
   height: 100%;
   display: flex;
   flex-flow: column;
@@ -408,4 +408,8 @@ ul.left-nav-menu li.left-nav-selected {
 .center-logo {
   display: block;
   margin: auto;
+}
+
+.server-logo {
+  max-height: 180px;
 }
