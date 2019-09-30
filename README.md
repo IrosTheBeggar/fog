@@ -1,106 +1,67 @@
-# mStream
+## Fog Machine
 
-[![Downloads](https://img.shields.io/npm/dt/mstream.svg?style=for-the-badge)](https://github.com/IrosTheBeggar/mStream/releases)
+Fog Machine is a cross platform app that lets you manage several popular servers.  The goal is to make deploying and managing self-hosted servers as easy as possible
 
-### [Check Out The Demo!](https://demo.mstream.io/)
+## RPN
 
-mStream is a personal music streaming server.  You can use mStream to stream your music from your home computer to any device, anywhere.
+#### [Sign Up Here. It's Free!](https://fogmachine.io/sign-up.html)
 
-### Server Features
-* Works Cross Platform. Tested on Windows, OSX, Ubuntu, Arch, and Raspbian
-* Light on memory and CPU
-* Tested on multi-terabyte libraries
-* Runs on ARM board like the Raspberry Pi
+The most difficult part of managing a server is getting it accessible online.  RPN is a service that does this automatically.  The RPN client is built into the Fog Machine app, but it is usable as it's own program and can be ported to work with any server.
 
-### WebApp Features
-* Gapless Playback
-* Milkdrop Visualizer
-* Playlist Sharing
-* Upload Files through the file explorer
-* AutoDJ - Queues up random songs
+#### Comes with these features
 
-### Mobile App Features
-* [Available on Google Play](https://play.google.com/store/apps/details?id=mstream.music)
-* Easily syncs music to your phone for offline playback
-* Multi server support
-* Coming soon to iOS
+* Get your own domain at: alias.fogmachine.io
+* Automatically sets up SSL Certificates for your domain
+* Hole Punching software guarantees your server stays online as long as you have a working internet connection
+* IP Obfuscation hides your IP address and adds an additional layer of security
 
-![mStream Web App](/public/img/designs/mstreamv4.png?raw=true)
+RPN is a Reverse Proxy Network.  This means it takes several servers to keep it running.  I seeded the service with enough money to last into early 2020.  After this money runs out, the servers will be shut down and replaced with a paid version.
 
-## Install mStream Binaries for Win/OSX/Linux
+If you want to keep the free version around longer, you can donate to our Patreon.  Donations will to keeping the free tier up and running for everyone
 
-### [Download the latest versions from our release page](https://github.com/IrosTheBeggar/mStream/releases)
+## Pre-Compiled Version With UI
 
-This is the easiest way to install mStream.  They have no dependencies so you can just download and run them.  These releases come with an additional set of UI tools and features:
+The pre-compiled version of Fog Machine comes with everything you need for effortless deployment:
+* Server can be booted and configured entirely through the GUI
+* Automatically restarts when your computer reboots
+* Binaries are code signed for easy installation
 
-* Adds tray icon for easy server management
-* Auto boots server on startup
-* Comes with a GUI tools for server configuration
-* [No command line needed! Any user can install and run these](https://www.youtube.com/watch?v=IzuxYTaixpU)
+## Headless Version
 
-## Install mStream with Docker
-
-[LinuxServer.io](https://www.linuxserver.io/) have produced a multiarch Alpine container for mStream for `x86-64`, `arm64` & `armhf` which is rebuilt automatically with any base image package updates or new releases of mStream and features persistent database and album images, and the possibility of advanced usage by editing `config.json` directly.
-
-Simply pulling `linuxserver/mstream` should retrieve the correct image for your arch, but you can also pull specific arch images or mStream releases via tags.
-
-See the readme for details on how to get up and running using docker or docker compose on either: 
-
-* [Github](https://github.com/linuxserver/docker-mstream) *or*
-* [Docker Hub](https://hub.docker.com/r/linuxserver/mstream)
-
-## Install mStream From The Command Line
-
-If you just want the core part of mStream without all the UI tools, you can install mStream from the NPM or Git repositories. 
+You will need NodeJS installed.
 
 ```shell
-# Install From Git
-git clone https://github.com/IrosTheBeggar/mStream.git
-cd mStream
+# Install
+git clone https://github.com/IrosTheBeggar/fog.git
+cd fog
 npm install
-sudo npm link 
 
-# To update mStream just pull from git and reboot the server
-git pull
+# Run File Server
+# The -d flag points to the directory that will be served. All files in this directory will be made accessible through your server!
+node cli-boot-wrapper.js -s file -d /path/to/your/web-root -p 5050
+
+# Run Minecraft Server
+# The -d flag sets the directory where your world data is stored. Changing the -d flag will generate a brand new world.  Just copy this folder to backup your world
+node cli-boot-wrapper.js -s minecraft -d /path/to/your/minecraft/storage
+
+# Run Bitwarden RS
+# The -d flag sets the directory where your database and private keys are stored.  If you want to move your server or backup your data, just copy this directory
+node cli-boot-wrapper.js -s bitwarden -d /path/to/your/bitwarden/data
+
+# Use RPN with Fog Machine
+node cli-boot-wrapper.js -s file -d /path/to/your/web-root -u USERNAME -x PASSWORD
 ```
 
-You can also install mStream through npm with `npm install -g mstream`. This is not recommended since some OSes (like Ubuntu) require sudo to do this.
+[Check out the guide on how to run the headless version in the background](run-forever.md)
 
-## Configuring and Booting
+## Install On Android
 
-mStream can be configured with a JSON file that is loaded on boot. You can use the built in wizard to manage this file or [read the docs on how to edit it by hand.](docs/json_config.md)
+Fog Machine can be installed on Android [with Termux](https://termux.com/).  This is VERY experimental, and not guaranteed work on every device.  After installing Termux, install NodeJS
 
 ```shell
-# Brings up an interactive shell program to edit all things in the config
-mstream --wizard /path/to/config.json
-
-# Boot mStream with the config file
-mstream -j /path/to/config.json
+pkg install nodejs
 ```
 
-## Quick Test Configurations
+After that you can use the commands in the section above.
 
-[Command line flags can be used to test different mStream configurations](docs/cli_arguments.md)
-
-```shell
-# the login system will be disabled if these values are not set
-mstream -u username -x password
-# set music directory
-mstream -m /path/to/music
-```
-
-## The Docs
-
-[All the details about mStream are available in the docs folder](docs/)
-
-
-## Credits
-
-mStream is is built on top some great open-source libraries:
-
-* [music-metadata](https://github.com/Borewit/music-metadata) - The best metadata parser for NodeJS
-* [LokiJS](https://github.com/techfort/LokiJS) - A native, in-memory, database written in JavaScript.  LokiJS is the reason mStream is so fast and easy to install
-* [Audioplayers](https://github.com/luanpotter/audioplayers) - Cross platform audio library for Android and iOS that powers the mobile apps
-* [Howler](https://github.com/goldfire/howler.js) - An audio library that powers the WebApp
-* [Butterchurn](https://github.com/jberg/butterchurn) - A clone of Milkdrop Visualizer written in JavaScript
-* [WebAmp](https://github.com/captbaritone/webamp) - A WinAmp clone that works in the browser
+NOTE: Java is not supported by Termux, but you can search some hacks to get it working.  So don't expect to be able to host your minecraft server.
