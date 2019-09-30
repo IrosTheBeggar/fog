@@ -305,7 +305,7 @@
                   <div class="row row-mod">
                     <div class="col s12 port-form-container">
                       <div class="input-field">
-                        <input v-on:click="selectLogsPath($event)" v-model="lJson.directory" @blur="updateConfig()" id="server-logs-folder" type="text" class="active" required />
+                        <input v-on:click="selectDirectory($event)" v-model="lJson.directory" @blur="updateConfig()" id="server-logs-folder" type="text" class="active" required />
                         <label class="active" for="server-logs-folder">Logs Folder</label>
                       </div>
                     </div>
@@ -321,7 +321,20 @@
           updateConfig: function() {
             fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
           },
-          resetStorageValues: function() {}
+          selectDirectory: function(el) {
+            dialog.showOpenDialog({properties: ['openDirectory']}, (selectedFile) => {
+              if(selectedFile.length === 0){
+                return;
+              }
+              el.target.value = selectedFile[0];
+              loadJson.directory = selectedFile[0];
+              el.target.blur();
+              fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+            });
+          },
+          resetStorageValues: function() {
+            loadJson.directory = app.getPath('userData')
+          }
         }
       });
 

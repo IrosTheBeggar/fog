@@ -1,27 +1,15 @@
 ## Fog Machine
 
-Fog Machine is a cross platform app that lets you manage several popular servers.  The goal is to make deploying and managing self-hosted servers as easy as possible
+Fog Machine is a cross platform app that lets you manage several popular servers.  The goal is to make deploying and managing self-hosted servers as easy as possible. Fog Machine currently supports the following servers:
 
-## RPN
-
-#### [Sign Up Here. It's Free!](https://fogmachine.io/sign-up.html)
-
-The most difficult part of managing a server is getting it accessible online.  RPN is a service that does this automatically.  The RPN client is built into the Fog Machine app, but it is usable as it's own program and can be ported to work with any server.
-
-#### Comes with these features
-
-* Get your own domain at: alias.fogmachine.io
-* Automatically sets up SSL Certificates for your domain
-* Hole Punching software guarantees your server stays online as long as you have a working internet connection
-* IP Obfuscation hides your IP address and adds an additional layer of security
-
-RPN is a Reverse Proxy Network.  This means it takes several servers to keep it running.  I seeded the service with enough money to last into early 2020.  After this money runs out, the servers will be shut down and replaced with a paid version.
-
-If you want to keep the free version around longer, you can donate to our Patreon.  Donations will to keeping the free tier up and running for everyone
+* [Bitwarden RS](https://github.com/dani-garcia/bitwarden_rs)
+* [Minecraft](https://www.minecraft.net/en-us/)
+* Simple File Server
 
 ## Pre-Compiled Version With UI
 
 The pre-compiled version of Fog Machine comes with everything you need for effortless deployment:
+
 * Server can be booted and configured entirely through the GUI
 * Automatically restarts when your computer reboots
 * Binaries are code signed for easy installation
@@ -48,7 +36,7 @@ node cli-boot-wrapper.js -s minecraft -d /path/to/your/minecraft/storage
 # The -d flag sets the directory where your database and private keys are stored.  If you want to move your server or backup your data, just copy this directory
 node cli-boot-wrapper.js -s bitwarden -d /path/to/your/bitwarden/data
 
-# Use RPN with Fog Machine
+# Use RPN
 node cli-boot-wrapper.js -s file -d /path/to/your/web-root -u USERNAME -x PASSWORD
 ```
 
@@ -65,3 +53,20 @@ pkg install nodejs
 After that you can use the commands in the section above.
 
 NOTE: Java is not supported by Termux, but you can search some hacks to get it working.  So don't expect to be able to host your minecraft server.
+
+## RPN (Reverse Proxy Network) Service
+
+#### [Sign Up Here. It's Free!](https://fogmachine.io/sign-up.html)
+
+The most difficult part of managing a server is getting it accessible online.  RPN is a service that does this automatically.  The RPN client is built into the Fog Machine app, but it is usable as it's own program and can be ported to work with any server.
+
+#### Comes with these features
+
+* Get your own domain at: alias.fogmachine.io
+* Automatically sets up SSL Certificates for your domain
+* Hole Punching software guarantees your server stays online as long as you have a working internet connection
+* IP Obfuscation hides your IP address and adds an additional layer of security
+
+RPN is a Reverse Proxy Network.  This means it takes several servers to keep it running.  I seeded the service with enough money to last into early 2020.  After this money runs out, the servers will be shut down and replaced with a paid version.
+
+If you want to keep the free version around longer, you can donate to our Patreon.  Donations will to keeping the free tier up and running for everyone
