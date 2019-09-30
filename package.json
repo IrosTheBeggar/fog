@@ -1,6 +1,6 @@
 {
   "name": "fogmachine",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "music streaming server",
   "main": "cli-boot-wrapper.js",
   "bin": {
@@ -26,13 +26,12 @@
   "homepage": "https://fogmachine.io/",
   "license": "GPL-3.0",
   "build": {
-    "appId": "io.fogmachine.server",
-    "productName": "Fogmachine Server",
+    "appId": "io.fogmachine.app",
+    "productName": "Fog Machine",
     "electronVersion": "4.2.2",
     "asar": false,
     "files": [
       "**/*",
-      "!docs/*",
       "!dist/*",
       "!frp/*",
       "!.git/*",
@@ -50,7 +49,7 @@
       "files": [
         "frp/fogmachine-ddns-osx"
       ],
-      "category": "public.app-category.music",
+      "category": "public.app-category.Utilities",
       "binaries": [
         "frp/fogmachine-ddns-osx"
       ]

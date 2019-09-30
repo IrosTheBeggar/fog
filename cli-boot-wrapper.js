@@ -24,7 +24,7 @@ console.log(colors.blue.bold(`An Experiment Developed By`));
 console.log(colors.bold(`Paul Sori - ${colors.underline('paul@fogmachine.io')}`));
 console.log();
 console.log(colors.magenta.bold('Find a bug? Report it at:'));
-console.log(colors.underline('https://github.com/IrosTheBeggar/mStream/issues'));
+console.log(colors.underline('https://github.com/IrosTheBeggar/fog/issues'));
 console.log();
 
 // Boot the server
