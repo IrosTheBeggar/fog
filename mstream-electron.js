@@ -5,7 +5,7 @@ const os = require('os');
 const mkdirp = require('make-dir');
 const AutoLaunch = require('auto-launch');
 
-const mstreamAutoLaunch = new AutoLaunch({ name: 'Fog Machine' });
+const fogAuthLaunch = new AutoLaunch({ name: 'Fog Machine' });
 const configFile = fe.join(app.getPath('userData'), 'save/server-config.json');
 let appIcon;
 
@@ -115,13 +115,20 @@ ipcMain.once('start-server', function (event, arg) {
   bootServer(arg);
 });
 
+const nameMapper = {
+  'file': 'File Server',
+  'minecraft': 'Minecraft',
+  'terraria': 'Terraria',
+  'bitwarden': 'Bitwarden RS'
+}
+
 var bootFlag = false;
 function bootServer(program) {
   program.ddns.iniFile = fe.join(app.getPath('userData'), 'save/frpc.ini');
 
   // Auto Boot
   if ((program.autoboot && program.autoboot === true)) {
-    mstreamAutoLaunch.enable();
+    fogAuthLaunch.enable();
     fs.writeFileSync(fe.join(app.getPath('userData'), 'save/temp-boot-disable.json'), JSON.stringify({ disable: false }), 'utf8');
   }
 
@@ -129,10 +136,16 @@ function bootServer(program) {
   const protocol = program.ssl && program.ssl.cert && program.ssl.key ? 'https' : 'http';
   var trayTemplate = [
     {
-      label: 'Fogmachine Server v' + app.getVersion(), click: function () {
+      label: `Fog Machine v${app.getVersion()}`, click: function () {
         shell.openExternal('http://mstream.io/mstream-express');
       }
     },
+    {
+      label: `Running: ${nameMapper[program.server]}`, click: function () {
+        shell.openExternal('http://mstream.io/mstream-express');
+      }
+    },
+    { type: 'separator' },
     { label: 'Links', submenu: [
       {
         label: protocol + '://localhost:' + program.port, click: function () {
@@ -140,7 +153,6 @@ function bootServer(program) {
         }
       }
     ] },
-    { type: 'separator' },
     {
       label: 'Restart and Reconfigure', click: function () {
         fs.writeFileSync(fe.join(app.getPath('userData'), 'save/temp-boot-disable.json'), JSON.stringify({ disable: true }), 'utf8');
@@ -149,12 +161,12 @@ function bootServer(program) {
         app.quit();
       }
     },
+    { type: 'separator' },
     {
-      label: 'Disable Autoboot', click: function () {
-        mstreamAutoLaunch.disable();
+      label: 'Disable Boot On Startup', click: function () {
+        fogAuthLaunch.disable();
       }
     },
-    { type: 'separator' },
     {
       label: 'Quit', click: function () {
         app.isQuiting = true;
@@ -165,7 +177,7 @@ function bootServer(program) {
 
   // Check if Auto DNS is logged in
   if(program.ddns.tested === true) {
-    trayTemplate[1].submenu.push({
+    trayTemplate[3].submenu.push({
       label: 'https://' + program.ddns.url, click: function () {
         shell.openExternal('https://' + program.ddns.url)
       }

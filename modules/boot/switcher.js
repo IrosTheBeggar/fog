@@ -9,6 +9,9 @@ exports.boot = function (program) {
     case 'bitwarden':
       require("./bitwarden").boot(program);
       break;
+    case 'terraria':
+        require("./terraria").boot(program);
+        break;
     default:
       throw new Error('Unknown Server');
   } 

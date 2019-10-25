@@ -49,7 +49,7 @@
         <div class="boot-server-flex-wrapper">
           <label class="autoboot-label">
             <input id="boot-server-checkbox" type="checkbox" checked="checked" />
-            <span>Boot on startup</span>
+            <span>Boot On Startup</span>
           </label>
           <a id="boot-server-button" class="waves-effect waves-light btn blue accent-3">Boot Server</a>
         </div>
@@ -112,6 +112,16 @@
 
     if(!loadJson.logs){
       loadJson.logs = path.join(app.getPath('userData'), 'save');
+    }
+
+    if(!loadJson.minecraft){
+      loadJson.minecraft = {
+        maxPlayers: 20,
+        serverName: 'Dedicated Server',
+        serverMessage: '',
+        gameMode: 'survival',
+        pvp: true
+      };
     }
 
     // if(!loadJson.directory){
@@ -219,6 +229,27 @@
         </div>`
       });
 
+      const terrariaServerBanner = Vue.component('terraria-banner', {
+        template: `
+        <div>
+          <div class="row">
+            <div class="col s12">
+              <div class="card">
+                <div class="row row-mod">
+                  <div class="section-header">
+                    <img class="center-logo terraria-logo"  src="terraria.png">
+                  </div>
+                  <div class="col s12">
+                    <br>
+                    Host your own terraria server to team up with your friends to 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`
+      });
+
       const serverView = Vue.component('server-view', {
         data() {
           return {
@@ -230,7 +261,8 @@
         components: {
           'minecraft-banner': minecraftServerBanner,
           'bitwarden-banner': bitwardenServerBanner,
-          'file-banner': fileServerBanner
+          'file-banner': fileServerBanner,
+          'terraria-banner': terrariaServerBanner
         },
         template: '\
           <div>\
@@ -247,8 +279,9 @@
                         <option value="file">Basic File Server</option>\
                         <option value="bitwarden">Bitwarden RS</option>\
                         <option value="minecraft">Minecraft Server</option>\
+                        <option value="terraria">Terraria Server</option>\
                       </select>\
-                      <label for="new-user-dirs">Select Server Type</label>\
+                      <label for="server-select">Select Server Type</label>\
                     </div>\
                   </div>\
                 </div>\
@@ -288,7 +321,141 @@
         }
       });
 
-      const configView = Vue.component('config-view', {
+      const configViewBitwarden = Vue.component('config-view-bitwarden', {
+        data() {
+          return {
+            lJson: loadJson
+          };
+        },
+        template: `
+          <div>
+            <div class="row">
+              <div class="col s12">
+                <div class="card">
+                  <div class="row row-mod">
+                    <div class="section-header">Storage Directory</div>
+                  </div>
+                  <div class="row row-mod">
+                    <div class="col s12 port-form-container">
+                      <p>This directory holds your database and encryption keys. You can backup all your data by copying this folder</p>
+                      <br>
+                      <div class="input-field">
+                        <input v-on:click="selectDirectory($event)" v-model="lJson.directory" @blur="updateConfig()" id="server-logs-folder" type="text" class="active" required />
+                        <label class="active" for="server-logs-folder">Select Directory</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="row row-mod">
+                    <div class="section-header">Server Options</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>`,
+        methods: {
+          updateConfig: function() {
+            fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+          },
+          selectDirectory: function(el) {
+            dialog.showOpenDialog({properties: ['openDirectory']}, (selectedFile) => {
+              if(selectedFile.length === 0){
+                return;
+              }
+              el.target.value = selectedFile[0];
+              loadJson.directory = selectedFile[0];
+              el.target.blur();
+              fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+            });
+          },
+          resetStorageValues: function() {
+            loadJson.directory = app.getPath('userData')
+          }
+        }
+      });
+
+      const configViewMinecraft = Vue.component('config-view-minecraft', {
+        data() {
+          return {
+            lJson: loadJson,
+            selectInstance: null
+          };
+        },
+        template: `
+          <div>
+            <div class="row">
+              <div class="col s12">
+                <div class="card">
+                  <div class="row row-mod">
+                    <div class="section-header">Storage Directory</div>
+                  </div>
+                  <div class="row row-mod">
+                    <div class="col s12 port-form-container">
+                      <p>This directory is where your world data is stored. You can backup all your data by copying this folder</p>
+                      <br>
+                      <div class="input-field">
+                        <input v-on:click="selectDirectory($event)" v-model="lJson.directory" @blur="updateConfig()" id="server-logs-folder" type="text" class="active" required />
+                        <label class="active" for="server-logs-folder">Logs Folder</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="row row-mod">
+                    <div class="section-header">Server Settings</div>
+                  </div>
+                  <div class="row row-mod">
+                    <div class="col s12 port-form-container">
+                      <div class="input-field">
+                        <select @change="updateConfig()" v-model="lJson.minecraft.gameMode" id="minecraft-mode-select">\
+                          <option value="" disabled>Game Modes</option>\
+                          <option value="survival">Survival</option>\
+                          <option value="creative">Creative</option>\
+                          <option value="adventure">Adventure</option>\
+                          <option value="spectator">Spectator</option>\
+                        </select>\
+                        <label for="minecraft-mode-select">Game Mode</label>\
+                      </div>
+                      <div class="input-field">
+                        <input v-model="lJson.minecraft.serverName" @blur="updateConfig()" id="minecraft-server-name" type="text" class="active" required />
+                        <label class="active" for="minecraft-server-name">Server Name</label>
+                      </div>
+                      <div class="input-field">
+                        <input v-model="lJson.minecraft.serverMessage" @blur="updateConfig()" id="minecraft-server-name" type="text" class="active" required />
+                        <label class="active" for="minecraft-server-name">Server Message</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>`,
+        mounted: function () {
+          this.selectInstance = M.FormSelect.init(document.querySelectorAll("#minecraft-mode-select"));
+        },
+        beforeDestroy: function() {
+          this.selectInstance[0].destroy();
+        },
+        methods: {
+          updateConfig: function() {
+            fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+          },
+          selectDirectory: function(el) {
+            dialog.showOpenDialog({properties: ['openDirectory']}, (selectedFile) => {
+              if(selectedFile.length === 0){
+                return;
+              }
+              el.target.value = selectedFile[0];
+              loadJson.directory = selectedFile[0];
+              el.target.blur();
+              fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+            });
+          }
+        }
+      });
+
+      const configViewFile = Vue.component('config-view-file', {
         data() {
           return {
             lJson: loadJson
@@ -532,7 +699,9 @@
         components: {
           'server-view': serverView,
           'boot-view': bootView,
-          'config-view': configView,
+          'config-view-file': configViewFile,
+          'config-view-bitwarden': configViewBitwarden,
+          'config-view-minecraft': configViewMinecraft,
           'auto-dns-view': autoDnsView,
           'about-view': aboutView
         },
@@ -555,7 +724,19 @@
         if(bootFlag === true) {
           return;
         }
-        vm.currentViewMain = 'config-view';
+
+        switch (loadJson.server) {
+          case 'minecraft':
+            vm.currentViewMain = 'config-view-minecraft';
+            break;
+          case 'bitwarden':
+            vm.currentViewMain = 'config-view-bitwarden';
+            break;
+          default:
+            vm.currentViewMain = 'config-view-file';
+        }
+
+        // vm.currentViewMain = 'config-view';
         resetNav(this);
       }
 
