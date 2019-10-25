@@ -22,3 +22,5 @@ appx/dist/*
 
 bitwarden/data/*
 !bitwarden/data/README.md
+
+terraria/*

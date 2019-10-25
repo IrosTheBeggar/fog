@@ -180,10 +180,6 @@ ul.left-nav-menu li.left-nav-selected {
   width: 100%;
 }
 
-.mstream-logo {
-  max-height: 100px;
-}
-
 .about-content-header {
   font-size: 18px;
   font-weight: bold;
@@ -408,6 +404,10 @@ ul.left-nav-menu li.left-nav-selected {
 .center-logo {
   display: block;
   margin: auto;
+}
+
+.terraria-logo {
+  max-width: 280px;
 }
 
 .server-logo {

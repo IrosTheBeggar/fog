@@ -3,7 +3,7 @@
 Use the `nohup` command and `&` symbol to run a process in the background 
 
 ```
-nohup mstream -j /path/to/config.json &
+nohup node ./cli-boot-wrapper -s file -d /path/to/files &
 ```
 
 Or you can install screen to run a terminal session forever
@@ -27,9 +27,9 @@ Write your PM2 config file.
 ```
 module.exports = {
   apps : [{
-    name   : "mstream",
+    name   : "Fog Machine",
     script : "./cli-boot-wrapper.js",
-    cwd    : "./mStream",
+    cwd    : "./fog",
     args   : [ "-j", "/path/to/config.json"]
   }]
 }
