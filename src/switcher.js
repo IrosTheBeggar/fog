@@ -1,16 +1,18 @@
 exports.boot = function (program) {
+  // Handle DDNS Here
+
   switch (program.server) {
     case 'file':
-      require("../../mstream").boot(program);
+      require("../servers/file-server/server").boot(program);
       break;
     case 'minecraft':
-      require("./minecraft").boot(program);
+      require("./boot/minecraft").boot(program);
       break;
     case 'bitwarden':
-      require("./bitwarden").boot(program);
+      require("./boot/bitwarden").boot(program);
       break;
     case 'terraria':
-        require("./terraria").boot(program);
+        require("./boot/terraria").boot(program);
         break;
     default:
       throw new Error('Unknown Server');

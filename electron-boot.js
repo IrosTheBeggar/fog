@@ -190,8 +190,7 @@ function bootServer(program) {
   
   // The boot code
   try {
-    const switcher = require('./modules/boot/switcher');
-    switcher.boot(program);
+    require('./src/switcher').boot(program);
     bootFlag = true;
   } catch (error) {
     console.log(colors.red('Boot Error'));

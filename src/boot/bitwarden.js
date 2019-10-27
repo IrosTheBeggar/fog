@@ -33,7 +33,7 @@ exports.boot = function (program) {
 
   // Copy files to bootpath, if none exist
   if (!fs.existsSync(path.join(program.directory, '.env'))) {
-    fs.copyFileSync(path.join(__dirname, '../../bitwarden/.env'), path.join(program.directory, '.env'));
+    fs.copyFileSync(path.join(__dirname, '../../servers/bitwarden/.env'), path.join(program.directory, '.env'));
   }
 
   if (!fs.existsSync(path.join(program.directory, 'data'))) {
@@ -43,7 +43,7 @@ exports.boot = function (program) {
   // Handle port
   let file = fs.readFileSync(path.join(program.directory, '.env'), 'utf-8');
   file = file.replace(/ROCKET_PORT=.*/g, `ROCKET_PORT=${program.port}`);
-  file = file.replace(/WEB_VAULT_FOLDER=.*/g, `WEB_VAULT_FOLDER=${path.join(__dirname, '../../bitwarden/web-vault')}`);
+  file = file.replace(/WEB_VAULT_FOLDER=.*/g, `WEB_VAULT_FOLDER=${path.join(__dirname, '../../servers/bitwarden/web-vault')}`);
   fs.writeFileSync(path.join(program.directory, '.env'), file, 'utf-8');
 
   bootServer(program.directory);
@@ -56,7 +56,7 @@ function bootServer(bootPath) {
   }
 
   try {
-    spawnedServer = spawn(path.join(__dirname, `../../bitwarden/${osMap[platform]}`), [], {
+    spawnedServer = spawn(path.join(__dirname, `../../servers/bitwarden/${osMap[platform]}`), [], {
       // shell: true,
       cwd: bootPath,
     });

@@ -24,8 +24,8 @@ exports.boot = function (program) {
 
   // Copy files to bootpath, if none exist
   if (!fs.existsSync(path.join(program.directory, 'eula.txt'))) {
-    fs.copyFileSync(path.join(__dirname, '../../minecraft/eula.txt'), path.join(program.directory, 'eula.txt'));
-    fs.copyFileSync(path.join(__dirname, '../../minecraft/server.properties'), path.join(program.directory, 'server.properties'));
+    fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-java/eula.txt'), path.join(program.directory, 'eula.txt'));
+    fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-java/server.properties'), path.join(program.directory, 'server.properties'));
   }
 
   // Handle port
@@ -43,7 +43,7 @@ function bootServer(bootPath) {
   }
 
   try {
-    spawnedServer = spawn('java', ['-Xmx1024M', '-Xms1024M', '-jar', path.join(__dirname, '../../minecraft/server.jar'), 'nogui'], {
+    spawnedServer = spawn('java', ['-Xmx1024M', '-Xms1024M', '-jar', path.join(__dirname, '../../server/minecraft-java/server.jar'), 'nogui'], {
       // shell: true,
       cwd: bootPath,
     });

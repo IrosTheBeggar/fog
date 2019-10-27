@@ -56,7 +56,7 @@ function bootServer(bootPath) {
   }
 
   try {
-    spawnedServer = spawn(path.join(__dirname, `../../terraria/${osMap[platform]}`), [], {
+    spawnedServer = spawn(path.join(__dirname, `../../server/terraria/${osMap[platform]}`), [], {
       // shell: true,
       cwd: bootPath,
     });

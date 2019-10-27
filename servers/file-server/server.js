@@ -8,7 +8,6 @@ const bodyParser = require('body-parser');
 const serveIndex = require('serve-index');
 
 const defaults = require('./modules/defaults.js');
-const ddns = require('./modules/ddns');
 
 exports.boot = function (program) {
   // Setup default values
@@ -53,6 +52,5 @@ exports.boot = function (program) {
   server.listen(program.port, () => {
     const protocol = program.ssl && program.ssl.cert && program.ssl.key ? 'https' : 'http';
     winston.info(`Access your server locally: ${protocol + '://localhost:' + program.port}`);
-    ddns.setup(program);
   });
 }
