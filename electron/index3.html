@@ -64,7 +64,7 @@
 
   <script>
     const remote = require('electron').remote;
-    const {ipcRenderer} = require('electron');
+    const { ipcRenderer } = require('electron');
     const app = remote.app;
     const dialog = remote.require('electron').dialog;
     const axios = require('axios');
@@ -77,13 +77,13 @@
     var loadJson = {};
     var bootFlag = false;
 
-    var javaCheck = null;
+    let javaError = false;
     const spawn = require('child_process').spawn('java', ['-version']);
     spawn.on('error', function(err){
-      javaCheck = false;
+      javaError = true;
     })
     spawn.stderr.on('data', function(data) {
-      javaCheck = true;
+      // javaCheck = true;
     });
 
     // Open a tags in OS browser
@@ -378,6 +378,7 @@
       const configViewMinecraft = Vue.component('config-view-minecraft', {
         data() {
           return {
+            showError: javaError,
             lJson: loadJson,
             selectInstance: null
           };
@@ -386,6 +387,16 @@
           <div>
             <div class="row">
               <div class="col s12">
+                <div v-show="showError" class="card">
+                  <div class="row row-mod">
+                    <div class="section-header">ERROR: Java Not Installed</div>
+                  </div>  
+                  <div class="row row-mod">
+                    <div class="col s12">
+                      <p>You must install java before using Minecraft</p>
+                    </div>
+                  </div>
+                </div>
                 <div class="card">
                   <div class="row row-mod">
                     <div class="section-header">Storage Directory</div>
