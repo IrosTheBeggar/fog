@@ -1,5 +1,3 @@
-const logger = require('../logger');
-logger.init();
 const winston = require('winston');
 const path = require('path');
 const { spawn } = require('child_process');
@@ -27,17 +25,17 @@ exports.boot = function (program) {
     }
 
     // Copy files to bootpath, if none exist
-    if (!fs.existsSync(path.join(program.directory, 'eula.txt'))) {
-      fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-java/eula.txt'), path.join(program.directory, 'eula.txt'));
-      fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-java/server.properties'), path.join(program.directory, 'server.properties'));
+    if (!fs.existsSync(path.join(program.serverConfig.minecraftJava.directory, 'eula.txt'))) {
+      fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-java/eula.txt'), path.join(program.serverConfig.minecraftJava.directory, 'eula.txt'));
+      fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-java/server.properties'), path.join(program.serverConfig.minecraftJava.directory, 'server.properties'));
     }
 
     // Handle port
-    let file = fs.readFileSync(path.join(program.directory, 'server.properties'), 'utf-8');
+    let file = fs.readFileSync(path.join(program.serverConfig.minecraftJava.directory, 'server.properties'), 'utf-8');
     file = file.replace(/server-port=[0-9]*/g, `server-port=${program.port}`);
-    fs.writeFileSync(path.join(program.directory, 'server.properties'), file, 'utf-8');
+    fs.writeFileSync(path.join(program.serverConfig.minecraftJava.directory, 'server.properties'), file, 'utf-8');
 
-    bootServer(program.directory);
+    bootServer(program.serverConfig.minecraftJava.directory);
   });
 }
 
