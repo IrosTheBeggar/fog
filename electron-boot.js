@@ -121,7 +121,7 @@ ipcMain.once('start-server', function (event, arg) {
 
 const nameMapper = {
   'file': 'File Server',
-  'minecraft-java': 'Minecraft Bedrock',
+  'minecraft-bedrock': 'Minecraft Bedrock',
   'minecraft-java': 'Minecraft Java',
   'terraria': 'Terraria',
   'bitwarden': 'Bitwarden RS'
@@ -199,6 +199,6 @@ function bootServer(program) {
     bootFlag = true;
   } catch (error) {
     console.log('Boot Error');
-    console.log(error);
+    throw error;
   }
 }

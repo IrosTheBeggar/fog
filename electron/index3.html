@@ -81,9 +81,6 @@
     const spawn = require('child_process').spawn('java', ['-version']);
     spawn.on('error', function(err){
       javaError = true;
-    })
-    spawn.stderr.on('data', function(data) {
-      // javaCheck = true;
     });
 
     // Open a tags in OS browser
@@ -156,7 +153,7 @@
       const minecraftServerBanner = Vue.component('minecraft-banner', {
         data() {
           return{
-            isJava: javaCheck
+            isJava: javaError
           };
         },
         template: `
@@ -171,9 +168,10 @@
                     <div class="col s12">
                       <br>
                       Fog Machine now supports Minecraft!  Setting up your private Minecraft server has never been so easy
-                      <br><br>
-                      Java must be installed for this to work
                     </div>
+                    <div v-show="isJava" class="col s12">
+                      <div class="section-header">ERROR: Java Not Installed</div>
+                    </div> 
                   </div>
                 </div>
               </div>
@@ -259,7 +257,8 @@
           };
         },
         components: {
-          'minecraft-banner': minecraftServerBanner,
+          'minecraft-java-banner': minecraftServerBanner,
+          'minecraft-bedrock-banner': minecraftServerBanner,
           'bitwarden-banner': bitwardenServerBanner,
           'file-banner': fileServerBanner,
           'terraria-banner': terrariaServerBanner
@@ -278,7 +277,8 @@
                         <option value="" disabled>Supported Servers</option>
                         <option value="file">Basic File Server</option>
                         <option value="bitwarden">Bitwarden RS</option>
-                        <option value="minecraft">Minecraft Server</option>
+                        <option value="minecraft-java">Minecraft Java Server</option>
+                        <option value="minecraft-bedrock">Minecraft Bedrock Server</option>
                         <option value="terraria">Terraria Server</option>
                       </select>
                       <label for="server-select">Select Server Type</label>
@@ -393,7 +393,7 @@
                   </div>  
                   <div class="row row-mod">
                     <div class="col s12">
-                      <p>You must install java before using Minecraft</p>
+                      <p>You must install java before using Minecraft. <a href="https://www.java.com/en/download/">Download Java Here</a></p>
                     </div>
                   </div>
                 </div>
@@ -737,7 +737,8 @@
         }
 
         switch (loadJson.server) {
-          case 'minecraft':
+          case 'minecraft-bedrock':
+          case 'minecraft-java':
             vm.currentViewMain = 'config-view-minecraft';
             break;
           case 'bitwarden':
@@ -778,7 +779,7 @@
       }
 
       document.getElementById("boot-server-button").onclick = function(){
-        if(!loadJson.port) {
+        if (!loadJson.port) {
           iziToast.warning({
             title: 'You must set the port before booting the server',
             position: 'topCenter',
@@ -789,7 +790,16 @@
           return;
         }
 
-        if(bootFlag === true) {
+        if (loadJson.server === 'minecraft-java' && javaError === true) {
+          iziToast.warning({
+            title: 'Error: Java Not Installed',
+            position: 'topCenter',
+            timeout: 3500
+          });
+          return;
+        }
+
+        if (bootFlag === true) {
           return;
         }
 
