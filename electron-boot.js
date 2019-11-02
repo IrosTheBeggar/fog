@@ -13,8 +13,12 @@ if (!fs.existsSync(fe.join(app.getPath('userData'), 'save'))) {
   mkdirp(fe.join(app.getPath('userData'), 'save'));
 }
 
-if (!fs.existsSync(fe.join(app.getPath('userData'), 'minecraft'))) {
-  mkdirp(fe.join(app.getPath('userData'), 'minecraft'));
+if (!fs.existsSync(fe.join(app.getPath('userData'), 'minecraft-java'))) {
+  mkdirp(fe.join(app.getPath('userData'), 'minecraft-java'));
+}
+
+if (!fs.existsSync(fe.join(app.getPath('userData'), 'minecraft-bedrock'))) {
+  mkdirp(fe.join(app.getPath('userData'), 'minecraft-bedrock'));
 }
 
 if (!fs.existsSync(fe.join(app.getPath('userData'), 'bitwarden'))) {
@@ -117,7 +121,8 @@ ipcMain.once('start-server', function (event, arg) {
 
 const nameMapper = {
   'file': 'File Server',
-  'minecraft': 'Minecraft',
+  'minecraft-java': 'Minecraft Bedrock',
+  'minecraft-java': 'Minecraft Java',
   'terraria': 'Terraria',
   'bitwarden': 'Bitwarden RS'
 }
@@ -193,7 +198,7 @@ function bootServer(program) {
     require('./src/switcher').boot(program);
     bootFlag = true;
   } catch (error) {
-    console.log(colors.red('Boot Error'));
+    console.log('Boot Error');
     console.log(error);
   }
 }

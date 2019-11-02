@@ -1,9 +1,9 @@
 node_modules/*
 
-minecraft/*
-!minecraft/server.jar
-!minecraft/eula.txt
-!minecraft/server.properties
+servers/minecraft-java/*
+!servers/minecraft-java/server.jar
+!servers/minecraft-java/eula.txt
+!servers/minecraft-java/server.properties
 
 package-lock.json
 .DS_Store
@@ -20,7 +20,7 @@ app/dist/*
 appx/node_modules/*
 appx/dist/*
 
-bitwarden/data/*
-!bitwarden/data/README.md
+servers/bitwarden/data/*
+!servers/bitwarden/data/README.md
 
 terraria/*

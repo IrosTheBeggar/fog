@@ -16,20 +16,17 @@ const osMap = {
   "android": "fogmachine-rpn-android64"
 };
 
-exports.setup = function (program, killIt) {
-  process.on('exit', (code) => {
-    // kill all workers
-    if(spawnedTunnel) {
-      spawnedTunnel.stdin.pause();
-      spawnedTunnel.kill();
+exports.setup = function (program) {
+  program.killThese.push(
+    () => {
+      if (spawnedTunnel) {
+        spawnedTunnel.stdin.pause();
+        spawnedTunnel.kill();
+      }
     }
+  );
 
-    if(killIt) {
-      killIt();
-    }
-  });
-
-  if(!program.ddns || !program.ddns.email || !program.ddns.password) {
+  if (!program.ddns || !program.ddns.email || !program.ddns.password) {
     return;
   }
 

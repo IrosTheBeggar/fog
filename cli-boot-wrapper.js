@@ -17,7 +17,7 @@ console.log(colors.bold(`
   / /_  / __ \\/ __ \`/  / /|_/ / __ \`/ ___/ __ \\/ / __ \\/ _ \\
  / __/ / /_/ / /_/ /  / /  / / /_/ / /__/ / / / / / / /  __/
 /_/    \\____/\\__, /  /_/  /_/\\__,_/\\___/_/ /_/_/_/ /_/\\___/ 
-            /____/                                      v0.1  
+            /____/                                    v.1.0
 `));
 console.log(colors.blue.bold(`An Experiment Developed By`));
 console.log(colors.bold(`Paul Sori - ${colors.underline('paul@fogmachine.io')}`));

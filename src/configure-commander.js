@@ -46,24 +46,18 @@ exports.setup = function (args) {
     program3.ddns = {
       email: program.user,
       password: program.password,
-      iniFile: path.join(__dirname, '../../frp/frpc.ini')
+      iniFile: path.join(__dirname, '../frp/frpc.ini')
     };
   }
 
+  // LOL
   if (program.directory) {
-    program3.directory = program.directory;
-  } else {
-    switch (program3.server) {
-      case 'file':
-        program3.directory = path.join(__dirname, '../../examples/basic');
-        break;
-      case 'minecraft':
-        program3.directory = path.join(__dirname, '../../minecraft');
-        break;
-      case 'bitwarden':
-        program3.directory = path.join(__dirname, '../../bitwarden');
-        break;
-    } 
+    program3.serverConfig = {};
+    program3.serverConfig.bitwarden.directory = program.directory;
+    program3.serverConfig.fileServer.directory = program.directory;
+    program3.serverConfig.minecraftBedrock.directory = program.directory;
+    program3.serverConfig.minecraftJava.directory = program.directory;
+    program3.serverConfig.terraria.directory = program.directory;
   }
 
   return program3;
