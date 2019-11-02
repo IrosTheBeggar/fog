@@ -32,8 +32,7 @@ exports.boot = function (program) {
     fs.copyFileSync(path.join(__dirname, '../../servers/bitwarden/.env'), path.join(program.serverConfig.bitwarden.directory, '.env'));
   }
 
-  if (!fs.existsSync(path.join(
-    program.serverConfig.bitwarden.directory, 'data'))) {
+  if (!fs.existsSync(path.join(program.serverConfig.bitwarden.directory, 'data'))) {
     mkdirp(path.join(program.serverConfig.bitwarden.directory, 'data'));
   }
   
@@ -47,7 +46,7 @@ exports.boot = function (program) {
 }
 
 function bootServer(bootPath) {
-  if(spawnedServer) {
+  if (spawnedServer) {
     winston.warn('Server Already Running');
     return;
   }
