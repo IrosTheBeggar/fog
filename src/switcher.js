@@ -20,6 +20,18 @@ exports.boot = function (config) {
     directory: Joi.string().default(path.join(__dirname, '../servers/file-server/examples/basic'))
   });
 
+  const minecraftBedrockJoi = Joi.object({
+    directory: Joi.string().default(path.join(__dirname, '../servers/minecraft-bedrock'))
+  });
+
+  const minecraftJavaJoi = Joi.object({
+    directory: Joi.string().default(path.join(__dirname, '../servers/minecraft-java'))
+  });
+
+  const terrariaJoi = Joi.object({
+    directory: Joi.string().default(path.join(__dirname, '../servers/terraria'))
+  });
+
   const schema = Joi.object({
     autoboot: Joi.boolean().optional(),
     port: Joi.number().default(5555),
@@ -35,15 +47,9 @@ exports.boot = function (config) {
     serverConfig: Joi.object({
       fileServer: fileServerJoi.default(fileServerJoi.validate({}).value),
       bitwarden: bitwardenJoi.default(bitwardenJoi.validate({}).value),
-      minecraftBedrock: Joi.object({
-        directory: Joi.string().default(path.join(__dirname, '../servers/minecraft-bedrock'))      
-      }),
-      minecraftJava: Joi.object({
-        directory: Joi.string().default(path.join(__dirname, '../servers/minecraft-java'))      
-      }),
-      terraria: Joi.object({
-        directory: Joi.string().default(path.join(__dirname, '../servers/terraria'))
-      })
+      minecraftBedrock: minecraftBedrockJoi.default(minecraftBedrockJoi.validate({}).value),
+      minecraftJava: minecraftJavaJoi.default(minecraftJavaJoi.validate({}).value),
+      terraria: terrariaJoi.default(terrariaJoi.validate({}).value),
     })
   });
 
@@ -53,7 +59,6 @@ exports.boot = function (config) {
   }
 
   const program = value;
-  console.log(program)
 
   // Handle kills
   program.killThese = [];

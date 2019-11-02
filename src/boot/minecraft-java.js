@@ -4,36 +4,41 @@ const winston = require('winston');
 const path = require('path');
 const { spawn } = require('child_process');
 const fs = require("fs");
-const defaults = require('../defaults');
-const ddns = require('../ddns');
 
 var spawnedServer;
 
 exports.boot = function (program) {
-  defaults.setup(program);
-
-  // Setup DDNS Here so we handle exit codes properly
-  const killIt = function() {
-    if(spawnedServer) {
-      spawnedServer.stdin.pause();
-      spawnedServer.kill();
+  program.killThese.push(
+    () => {
+      if(spawnedServer) {
+        spawnedServer.stdin.pause();
+        spawnedServer.kill();
+      }
     }
-  }
+  );
 
-  ddns.setup(program, killIt);
+  const foo = spawn('java', ['-version']);
+  foo.on('error', data => {
+    winston.error('Java Is Not Installed! Download Java at: https://www.java.com/en/download/');
+  });
+  foo.on('close', code => {
+    if (code !== 0) {
+      throw new Error('Java Is Not Installed! Download Java at: https://www.java.com/en/download/');
+    }
 
-  // Copy files to bootpath, if none exist
-  if (!fs.existsSync(path.join(program.directory, 'eula.txt'))) {
-    fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-java/eula.txt'), path.join(program.directory, 'eula.txt'));
-    fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-java/server.properties'), path.join(program.directory, 'server.properties'));
-  }
+    // Copy files to bootpath, if none exist
+    if (!fs.existsSync(path.join(program.directory, 'eula.txt'))) {
+      fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-java/eula.txt'), path.join(program.directory, 'eula.txt'));
+      fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-java/server.properties'), path.join(program.directory, 'server.properties'));
+    }
 
-  // Handle port
-  let file = fs.readFileSync(path.join(program.directory, 'server.properties'), 'utf-8');
-  file = file.replace(/server-port=[0-9]*/g, `server-port=${program.port}`);
-  fs.writeFileSync(path.join(program.directory, 'server.properties'), file, 'utf-8');
+    // Handle port
+    let file = fs.readFileSync(path.join(program.directory, 'server.properties'), 'utf-8');
+    file = file.replace(/server-port=[0-9]*/g, `server-port=${program.port}`);
+    fs.writeFileSync(path.join(program.directory, 'server.properties'), file, 'utf-8');
 
-  bootServer(program.directory);
+    bootServer(program.directory);
+  });
 }
 
 function bootServer(bootPath) {

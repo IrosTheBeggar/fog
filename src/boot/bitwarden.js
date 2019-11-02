@@ -17,7 +17,6 @@ const osMap = {
 };
 
 exports.boot = function (program) {
-  // Setup DDNS Here so we handle exit codes properly
   program.killThese.push(
     () => {
       if(spawnedServer) {
