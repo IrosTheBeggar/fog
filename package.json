@@ -1,7 +1,7 @@
 {
   "name": "fogmachine",
-  "version": "0.0.1",
-  "description": "music streaming server",
+  "version": "0.1.0",
+  "description": "server management software",
   "main": "cli-boot-wrapper.js",
   "bin": {
     "fogmachine": "cli-boot-wrapper.js"
@@ -11,7 +11,6 @@
   },
   "scripts": {
     "start": "node cli-boot-wrapper.js",
-    "wizard": "node cli-boot-wrapper.js --wizard",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
@@ -32,6 +31,17 @@
     "asar": false,
     "files": [
       "**/*",
+      "!servers/bitwarden/*",
+      "servers/bitwarden/web-vault.zip",
+      "servers/bitwarden/.env",
+      "servers/bitwarden/VERSION.md",
+      "!servers/minecraft-bedrock/*",
+      "servers/minecraft-bedrock/VERSION.md",
+      "!servers/minecraft-java/*",
+      "servers/minecraft-java/eula.txt",
+      "servers/minecraft-java/server.jar",
+      "servers/minecraft-java/server.properties",
+      "servers/minecraft-java/VERSION.md",
       "!dist/*",
       "!frp/*",
       "!.git/*",
@@ -47,21 +57,27 @@
     ],
     "mac": {
       "files": [
-        "frp/fogmachine-ddns-osx"
+        "frp/fogmachine-ddns-osx",
+        "servers/bitwarden/bitwarden-osx"
       ],
       "category": "public.app-category.Utilities",
       "binaries": [
-        "frp/fogmachine-ddns-osx"
+        "frp/fogmachine-ddns-osx",
+        "servers/bitwarden/bitwarden-osx"
       ]
     },
     "win": {
       "files": [
-        "frp/fogmachine-ddns-win.exe"
+        "frp/fogmachine-ddns-win.exe",
+        "servers/minecraft-bedrock/bedrock-server-win.zip",
+        "servers/bitwarden/bitwarden.exe"
       ]
     },
     "linux": {
       "files": [
-        "frp/fogmachine-ddns-linux"
+        "frp/fogmachine-ddns-linux",
+        "servers/minecraft-bedrock/bedrock-server-linux.zip",
+        "servers/bitwarden/bitwarden-linux"
       ]
     }
   },
@@ -73,6 +89,7 @@
     "body-parser": "^1.19.0",
     "colors": "^1.4.0",
     "commander": "^3.0.1",
+    "electron-updater": "^4.2.0",
     "express": "^4.17.1",
     "make-dir": "^3.0.0",
     "serve-index": "^1.9.1",

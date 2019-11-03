@@ -4,9 +4,11 @@ servers/minecraft-java/*
 !servers/minecraft-java/server.jar
 !servers/minecraft-java/eula.txt
 !servers/minecraft-java/server.properties
+!servers/minecraft-java/VERSION.md
 
 servers/minecraft-bedrock/*
 !servers/minecraft-bedrock/*.zip
+!servers/minecraft-bedrock/VERSION.md
 
 servers/terraria/*
 !servers/terraria/*.zip

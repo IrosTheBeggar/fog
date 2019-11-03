@@ -126,13 +126,15 @@
       };
     }
 
-    if(!loadJson.minecraft){
-      loadJson.minecraft = {
-        maxPlayers: 20,
-        serverName: 'Dedicated Server',
-        serverMessage: '',
-        gameMode: 'survival',
-        pvp: true
+    if (!loadJson.serverConfig.fileServer) {
+      loadJson.serverConfig.fileServer = {
+        directory: path.join(__dirname,  '../servers/file-server/examples/basic')
+      };
+    }
+
+    if (!loadJson.serverConfig.bitwarden) {
+      loadJson.serverConfig.bitwarden = {
+        directory: path.join(app.getPath('userData'), 'bitwarden'),
       };
     }
 
@@ -418,7 +420,7 @@
                       <br>
                       <div class="input-field">
                         <input v-on:click="selectDirectory($event)" v-model="lJson.directory" @blur="updateConfig()" id="server-logs-folder" type="text" class="active" required />
-                        <label class="active" for="server-logs-folder">Logs Folder</label>
+                        <label class="active" for="server-logs-folder">Storage Folder</label>
                       </div>
                     </div>
                   </div>
@@ -494,7 +496,7 @@
                   <div class="row row-mod">
                     <div class="col s12 port-form-container">
                       <div class="input-field">
-                        <input v-on:click="selectDirectory($event)" v-model="lJson.directory" @blur="updateConfig()" id="server-logs-folder" type="text" class="active" required />
+                        <input v-on:click="selectDirectory($event)" v-model="lJson.serverConfig.fileServer.directory" @blur="updateConfig()" id="server-logs-folder" type="text" class="active" required />
                         <label class="active" for="server-logs-folder">Logs Folder</label>
                       </div>
                     </div>
