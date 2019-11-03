@@ -841,7 +841,7 @@
               rpnLink += '<div>Your server is available online at: <a href="https://'+loadJson.ddns.url+'">https://' + loadJson.ddns.url + '</a></div>';
             }
 
-            const localhostAdd = loadJson.ssl && loadJson.ssl.cert && loadJson.ssl.key ? 'https' : 'http' + '://localhost:' + loadJson.port;
+            const localhostAdd = 'http://localhost:' + loadJson.port;
             document.getElementById("post-boot-content").innerHTML = `<div class="row">
               <div class="col s12">
                 <div class="card">

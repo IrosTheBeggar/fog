@@ -140,7 +140,6 @@ function bootServer(program) {
   }
 
   // Tray Template Object
-  const protocol = program.ssl && program.ssl.cert && program.ssl.key ? 'https' : 'http';
   var trayTemplate = [
     {
       label: `Fog Machine v${app.getVersion()}`, click: () => {
@@ -158,8 +157,8 @@ function bootServer(program) {
     },
     { label: 'Links', submenu: [
       {
-        label: protocol + '://localhost:' + program.port, click: () => {
-          shell.openExternal(protocol + '://localhost:' + program.port)
+        label: 'http://localhost:' + program.port, click: () => {
+          shell.openExternal('http://localhost:' + program.port)
         }
       }
     ] },

@@ -12,10 +12,6 @@ exports.setup = function (args) {
     // Basic Webserver Only
     .option('-L, --logs <logs>', 'Set folder to save logs to')
 
-    // SSL
-    .option('-c, --cert <cert>', 'SSL Certificate File')
-    .option('-k, --key <key>', 'SSL Key File')
-
     // RPN Login
     .option('-u, --user <user>', 'Set Username')
     .option('-x, --password <password>', 'Set Password')
@@ -24,12 +20,6 @@ exports.setup = function (args) {
 
   let program3 = { port: Number(program.port) };
 
-  // SSL stuff
-  if (program.key && program.cert) {
-    program3.ssl = {};
-    program3.ssl.key = program.key;
-    program3.ssl.cert = program.cert;
-  }
 
   // logs
   if (program.logs) {

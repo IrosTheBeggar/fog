@@ -249,15 +249,6 @@ ul.left-nav-menu li.left-nav-selected {
   display: grid;
 }
 
-.ssl-choice {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-
-  min-height: 212px;
-  grid-column: 1;
-  grid-row: 1;
-}
 
 .security-diy {
   grid-column: 1;
@@ -285,14 +276,6 @@ ul.left-nav-menu li.left-nav-selected {
   background-color: #fff8e1;
   transition: background-color 0.4s ease-out;
 }
-
-
-.ssl-svg3{
-  height: 95px;
-  width: 100%;
-  margin-top: 50px;
-}
-
 
 .center {
   text-align: center;
