@@ -27,7 +27,7 @@
   "build": {
     "appId": "io.fogmachine.app",
     "productName": "Fog Machine",
-    "electronVersion": "4.2.2",
+    "electronVersion": "6.1.2",
     "asar": false,
     "files": [
       "**/*",
