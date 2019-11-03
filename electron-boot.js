@@ -4,10 +4,12 @@ const fe = require('path');
 const os = require('os');
 const mkdirp = require('make-dir');
 const AutoLaunch = require('auto-launch');
+const { autoUpdater } = require("electron-updater");
 
 const fogAuthLaunch = new AutoLaunch({ name: 'Fog Machine' });
 const configFile = fe.join(app.getPath('userData'), 'save/server-config.json');
 let appIcon;
+let trayTemplate;
 
 if (!fs.existsSync(fe.join(app.getPath('userData'), 'save'))) {
   mkdirp(fe.join(app.getPath('userData'), 'save'));
@@ -141,44 +143,47 @@ function bootServer(program) {
   const protocol = program.ssl && program.ssl.cert && program.ssl.key ? 'https' : 'http';
   var trayTemplate = [
     {
-      label: `Fog Machine v${app.getVersion()}`, click: function () {
-        shell.openExternal('http://mstream.io/mstream-express');
+      label: `Fog Machine v${app.getVersion()}`, click: () => {
+        shell.openExternal('https://fogmachine.io');
       }
     },
     {
-      label: `Running: ${nameMapper[program.server]}`, click: function () {
-        shell.openExternal('http://mstream.io/mstream-express');
+      label: 'Check For Updates', click: function () {
+        autoUpdater.checkForUpdatesAndNotify();
       }
     },
     { type: 'separator' },
+    {
+      label: `Running: ${nameMapper[program.server]}`, click: () => {}
+    },
     { label: 'Links', submenu: [
       {
-        label: protocol + '://localhost:' + program.port, click: function () {
+        label: protocol + '://localhost:' + program.port, click: () => {
           shell.openExternal(protocol + '://localhost:' + program.port)
         }
       }
     ] },
     { 
-      label: 'Open Server Storage', click: function () {
+      label: 'Open Server Storage', click: () => {
         shell.openItem(app.getPath('userData'));
       } 
     },
+    { type: 'separator' },
     {
-      label: 'Restart and Reconfigure', click: function () {
+      label: 'Restart and Reconfigure', click: () => {
         fs.writeFileSync(fe.join(app.getPath('userData'), 'save/temp-boot-disable.json'), JSON.stringify({ disable: true }), 'utf8');
         app.relaunch();
         app.isQuiting = true;
         app.quit();
       }
     },
-    { type: 'separator' },
     {
-      label: 'Disable Boot On Startup', click: function () {
+      label: 'Disable Boot On Startup', click: () => {
         fogAuthLaunch.disable();
       }
     },
     {
-      label: 'Quit', click: function () {
+      label: 'Quit', click: () => {
         app.isQuiting = true;
         app.quit();
       }
@@ -187,8 +192,8 @@ function bootServer(program) {
 
   // Check if Auto DNS is logged in
   if(program.ddns.tested === true) {
-    trayTemplate[3].submenu.push({
-      label: 'https://' + program.ddns.url, click: function () {
+    trayTemplate[4].submenu.push({
+      label: 'https://' + program.ddns.url, click: () => {
         shell.openExternal('https://' + program.ddns.url)
       }
     });
@@ -207,3 +212,29 @@ function bootServer(program) {
     throw error;
   }
 }
+
+autoUpdater.on('update-available', (info) => {
+  if (!trayTemplate) { return; }
+
+  trayTemplate[1] = {
+    label: 'Update Ready: Quit And Install', click: () => {
+      autoUpdater.quitAndInstall();
+    }
+  };
+
+  trayTemplate[8] = {
+    label: 'Restart and Reconfigure', click: () => {
+      fs.writeFileSync(fe.join(app.getPath('userData'), 'save/temp-boot-disable.json'), JSON.stringify({ disable: true }), 'utf8');
+      app.isQuiting = true;
+      autoUpdater.quitAndInstall();
+    }
+  };
+
+  trayTemplate[9] = {
+    label: 'Quit', click: () => {
+      autoUpdater.quitAndInstall();
+    }
+  };
+
+  appIcon.setContextMenu(Menu.buildFromTemplate(trayTemplate));
+});
