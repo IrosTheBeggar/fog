@@ -39,11 +39,12 @@ exports.boot = function (program) {
   }
 
   // Create 'data' directory where bitwarden stores all it's critical files
-  if (!fs.existsSync(path.join(program.serverConfig.bitwarden.directory, 'web-vault'))) {
+  const webVaultPath = path.join(program.serverConfig.bitwarden.directory, 'web-vault');
+  if (!fs.existsSync(webVaultPath) || !fs.existsSync(path.join(webVaultPath, 'index.html'))) {
     mkdirp(path.join(program.serverConfig.bitwarden.directory, 'web-vault'));
     winston.info('Unzipping Bitwarden Web UI');
     const unzippedArchive = new unzip(path.join(__dirname, "../../servers/bitwarden/web-vault.zip"));
-    unzippedArchive.extractAllTo(path.join(program.serverConfig.bitwarden.directory, 'web-vault'));
+    unzippedArchive.extractAllTo(program.serverConfig.bitwarden.directory);
   }
   
   // Handle port

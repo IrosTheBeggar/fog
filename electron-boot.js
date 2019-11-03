@@ -158,6 +158,11 @@ function bootServer(program) {
         }
       }
     ] },
+    { 
+      label: 'Open Server Storage', click: function () {
+        shell.openItem(app.getPath('userData'));
+      } 
+    },
     {
       label: 'Restart and Reconfigure', click: function () {
         fs.writeFileSync(fe.join(app.getPath('userData'), 'save/temp-boot-disable.json'), JSON.stringify({ disable: true }), 'utf8');
