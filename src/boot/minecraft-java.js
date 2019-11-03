@@ -46,7 +46,7 @@ function bootServer(bootPath) {
   }
 
   try {
-    spawnedServer = spawn('java', ['-Xmx1024M', '-Xms1024M', '-jar', path.join(__dirname, '../../server/minecraft-java/server.jar'), 'nogui'], {
+    spawnedServer = spawn('java', ['-Xmx1024M', '-Xms1024M', '-jar', path.join(__dirname, '../../servers/minecraft-java/server.jar'), 'nogui'], {
       // shell: true,
       cwd: bootPath,
     });
