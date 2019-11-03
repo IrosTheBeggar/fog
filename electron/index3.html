@@ -78,8 +78,9 @@
     var bootFlag = false;
 
     let javaError = false;
-    const spawn = require('child_process').spawn('java', ['-version']);
-    spawn.on('error', function(err){
+    const spawnJavaCheck = require('child_process').spawn('java', ['-version']);
+    spawnJavaCheck.on('error', err => {
+      console.log(err);
       javaError = true;
     });
 

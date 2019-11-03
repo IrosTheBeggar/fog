@@ -5,6 +5,12 @@ servers/minecraft-java/*
 !servers/minecraft-java/eula.txt
 !servers/minecraft-java/server.properties
 
+servers/minecraft-bedrock/*
+!servers/minecraft-bedrock/*.zip
+
+servers/terraria/*
+!servers/terraria/*.zip
+
 package-lock.json
 .DS_Store
 
