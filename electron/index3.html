@@ -108,8 +108,22 @@
       loadJson.server = 'file';
     }
 
-    if(!loadJson.logs){
+    if (!loadJson.logs){
       loadJson.logs = path.join(app.getPath('userData'), 'save');
+    }
+
+    if (!loadJson.serverConfig) {
+      loadJson.serverConfig = {};
+    }
+
+    if (!loadJson.serverConfig.minecraftJava) {
+      loadJson.serverConfig.minecraftJava = {
+        directory: path.join(app.getPath('userData'), 'minecraft-java'),
+        serverName: 'Dedicated Server',
+        serverMessage: 'Created With Fog Machine',
+        gameMode: 'survival',
+        pvp: true
+      };
     }
 
     if(!loadJson.minecraft){
@@ -121,10 +135,6 @@
         pvp: true
       };
     }
-
-    // if(!loadJson.directory){
-    //   loadJson.directory = path.join(app.getAppPath(), 'examples/basic');
-    // }
 
     // Auto DNS Testing
     if (!loadJson.ddns) {
@@ -280,7 +290,7 @@
                         <option value="bitwarden">Bitwarden RS</option>
                         <option value="minecraft-java">Minecraft Java Server</option>
                         <option value="minecraft-bedrock">Minecraft Bedrock Server</option>
-                        <option value="terraria">Terraria Server</option>
+                        <!-- <option value="terraria">Terraria Server</option> -->
                       </select>
                       <label for="server-select">Select Server Type</label>
                     </div>
@@ -420,7 +430,7 @@
                   <div class="row row-mod">
                     <div class="col s12 port-form-container">
                       <div class="input-field">
-                        <select @change="updateConfig()" v-model="lJson.minecraft.gameMode" id="minecraft-mode-select">
+                        <select @change="updateConfig()" v-model="lJson.serverConfig.minecraftJava.gameMode" id="minecraft-mode-select">
                           <option value="" disabled>Game Modes</option>
                           <option value="survival">Survival</option>
                           <option value="creative">Creative</option>
@@ -430,12 +440,12 @@
                         <label for="minecraft-mode-select">Game Mode</label>
                       </div>
                       <div class="input-field">
-                        <input v-model="lJson.minecraft.serverName" @blur="updateConfig()" id="minecraft-server-name" type="text" class="active" required />
+                        <input v-model="lJson.serverConfig.minecraftJava.serverName" @blur="updateConfig()" id="minecraft-server-name" type="text" class="active" required />
                         <label class="active" for="minecraft-server-name">Server Name</label>
                       </div>
                       <div class="input-field">
-                        <input v-model="lJson.minecraft.serverMessage" @blur="updateConfig()" id="minecraft-server-name" type="text" class="active" required />
-                        <label class="active" for="minecraft-server-name">Server Message</label>
+                        <input v-model="lJson.serverConfig.minecraftJava.serverMessage" @blur="updateConfig()" id="minecraft-server-message" type="text" class="active" required />
+                        <label class="active" for="minecraft-server-message">Server Message</label>
                       </div>
                     </div>
                   </div>
@@ -836,8 +846,8 @@
                   <div class="about-content-section">
                     <div>This window will automatically close in <span id="countdown">30</span> seconds to save on memory</div>
                     <br>
-                    <div>Test your server locally at: <a href="'+localhostAdd+'">'+localhostAdd+'</a></div>
-                    '+rpnLink+'
+                    <div>Test your server locally at: <a href="${localhostAdd}">${localhostAdd}</a></div>
+                    ${rpnLink}
                   </div>
                 </div>
               </div>

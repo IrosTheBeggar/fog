@@ -25,7 +25,11 @@ exports.boot = function (config) {
   });
 
   const minecraftJavaJoi = Joi.object({
-    directory: Joi.string().default(path.join(__dirname, '../servers/minecraft-java'))
+    directory: Joi.string().default(path.join(__dirname, '../servers/minecraft-java')),
+    serverName: Joi.string().default('My Server'),
+    serverMessage: Joi.string().allow('').default('Created With Fog Machine'),
+    gameMode: Joi.string().valid('survival', 'creative', 'adventure', 'spectator').required(),
+    pvp: Joi.boolean().default(true)
   });
 
   const terrariaJoi = Joi.object({
@@ -43,7 +47,7 @@ exports.boot = function (config) {
       token: Joi.string().optional(),
       url: Joi.string().optional()
     }),
-    server: Joi.string().valid('minecraft-bedrock', 'minecraft-java', 'bitwarden', 'file', 'terraria').required(),
+    server: Joi.string().valid('minecraft-bedrock', 'minecraft-java', 'bitwarden', 'file').required(),
     serverConfig: Joi.object({
       fileServer: fileServerJoi.default(fileServerJoi.validate({}).value),
       bitwarden: bitwardenJoi.default(bitwardenJoi.validate({}).value),
@@ -53,7 +57,7 @@ exports.boot = function (config) {
     })
   });
 
-  const { error, value } = schema.validate(config);
+  const { error, value } = schema.validate(config, { allowUnknown: true });
   if (error) {
     throw new Error(error);
   }

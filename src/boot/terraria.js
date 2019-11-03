@@ -1,62 +1,66 @@
-const logger = require('../logger');
-logger.init();
-const winston = require('winston');
 const path = require('path');
 const { spawn } = require('child_process');
 const fs = require("fs");
 const os = require('os');
-const mkdirp = require('make-dir');
-const defaults = require('../defaults');
-const ddns = require('../ddns');
+const winston = require('winston');
+const unzip = require('adm-zip');
 
 var spawnedServer;
 const platform = os.platform();
+const arch = os.arch();
+
 const osMap = {
-  "win32": "bitwarden-win.exe",
-  "darwin": "terraria-OSX.app/Contents/MacOS/TerrariaServer.bin.osx",
-  "linux": "bitwarden-linux",
-  "android": "bitwarden-android64"
+  "win32-x64": {
+    zip: "terraria-1353-win.zip",
+    executable: "TerrariaServer.exe"
+  },
+  "linux-x64": {
+    zip: "terraria-1353-linux.zip",
+    executable: "TerrariaServer"
+  },
+  "darwin-x64": {
+    zip: "terraria-1353-osx.zip",
+    executable: "TerrariaServer"
+  }
 };
 
 exports.boot = function (program) {
-  defaults.setup(program);
-
-  // Setup DDNS Here so we handle exit codes properly
-  const killIt = function() {
-    if(spawnedServer) {
-      spawnedServer.stdin.pause();
-      spawnedServer.kill();
+  program.killThese.push(
+    () => {
+      if(spawnedServer) {
+        spawnedServer.stdin.pause();
+        spawnedServer.kill();
+      }
     }
+  );
+
+  if (!osMap[`${platform}-${arch}`]) {
+    throw new Error('Unsupported System');
   }
 
-  ddns.setup(program, killIt);
+  // Check file &and unzip
+  if (!fs.existsSync(path.join(program.serverConfig.terraria.directory, osMap[`${platform}-${arch}`].executable))) {
+    winston.info('Unzipping Server Files');
+    const unzippedArchive = new unzip(path.join(__dirname, "../../servers/terraria/" + osMap[`${platform}-${arch}`].zip));
+    unzippedArchive.extractAllTo(program.serverConfig.terraria.directory, true);
+  }
 
-  // Copy files to bootpath, if none exist
-  // if (!fs.existsSync(path.join(program.directory, '.env'))) {
-  //   fs.copyFileSync(path.join(__dirname, '../../bitwarden/.env'), path.join(program.directory, '.env'));
-  // }
+  // Edit config
+  // let configFile = fs.readFileSync(path.join(program.serverConfig.terraria.directory, 'server.properties'), 'utf-8');
+  // configFile = configFile.replace(/server-port=.*/g, `server-port=${program.port}`);
+  // fs.writeFileSync(path.join(program.serverConfig.terraria.directory, 'server.properties'), configFile, 'utf-8');
 
-  // if (!fs.existsSync(path.join(program.directory, 'data'))) {
-  //   mkdirp(path.join(program.directory, 'data'));
-  // }
-  
-  // Handle port
-  // let file = fs.readFileSync(path.join(program.directory, '.env'), 'utf-8');
-  // file = file.replace(/ROCKET_PORT=.*/g, `ROCKET_PORT=${program.port}`);
-  // file = file.replace(/WEB_VAULT_FOLDER=.*/g, `WEB_VAULT_FOLDER=${path.join(__dirname, '../../bitwarden/web-vault')}`);
-  // fs.writeFileSync(path.join(program.directory, '.env'), file, 'utf-8');
-
-  bootServer(program.directory);
+  bootServer(program.serverConfig.terraria.directory);
 }
 
 function bootServer(bootPath) {
-  if(spawnedServer) {
+  if (spawnedServer) {
     winston.warn('Server Already Running');
     return;
   }
 
   try {
-    spawnedServer = spawn(path.join(__dirname, `../../server/terraria/${osMap[platform]}`), [], {
+    spawnedServer = spawn(path.join(bootPath, osMap[`${platform}-${arch}`].executable), [], {
       // shell: true,
       cwd: bootPath,
     });
@@ -70,7 +74,7 @@ function bootServer(bootPath) {
     });
 
     spawnedServer.on('close', (code) => {
-      winston.info('BitwardenRS Server Failed. Rebooting...');
+      winston.info('Minecraft Bedrock Server Failed. Rebooting...');
       setTimeout(() => {
         winston.info('Rebooting Server...');
         delete spawnedServer;
