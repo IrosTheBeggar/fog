@@ -2,7 +2,6 @@ const path = require('path');
 const { spawn } = require('child_process');
 const fs = require("fs");
 const os = require('os');
-const mkdirp = require('make-dir');
 const winston = require('winston');
 const unzip = require('adm-zip');
 
@@ -12,11 +11,11 @@ const arch = os.arch();
 
 const osMap = {
   "win32-x64": {
-    zip: "bedrock-server-1.13.0.34-win.zip",
+    zip: "bedrock-server-win.zip",
     executable: "bedrock_server.exe"
   },
   "linux-x64": {
-    zip: "bedrock-server-1.13.0.34-linux.zip",
+    zip: "bedrock-server-linux.zip",
     executable: "bedrock_server"
   }
 };
@@ -40,7 +39,10 @@ exports.boot = function (program) {
     winston.info('Unzipping Server Files');
     const unzippedArchive = new unzip(path.join(__dirname, "../../servers/minecraft-bedrock/" + osMap[`${platform}-${arch}`].zip));
     unzippedArchive.extractAllTo(program.serverConfig.minecraftBedrock.directory, true);
-  }
+
+    // Copy README
+    fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-bedrock/README.md'), path.join(program.serverConfig.minecraftBedrock.directory, 'README.md'));
+  }  
 
   // Edit config
   let configFile = fs.readFileSync(path.join(program.serverConfig.minecraftBedrock.directory, 'server.properties'), 'utf-8');

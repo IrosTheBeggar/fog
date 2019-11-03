@@ -3,6 +3,7 @@ const { spawn } = require('child_process');
 const fs = require("fs");
 const os = require('os');
 const mkdirp = require('make-dir');
+const unzip = require('adm-zip');
 const winston = require('winston');
 
 var spawnedServer;
@@ -29,16 +30,25 @@ exports.boot = function (program) {
   // Copy files to bootpath, if none exist
   if (!fs.existsSync(path.join(program.serverConfig.bitwarden.directory, '.env'))) {
     fs.copyFileSync(path.join(__dirname, '../../servers/bitwarden/.env'), path.join(program.serverConfig.bitwarden.directory, '.env'));
+    fs.copyFileSync(path.join(__dirname, '../../servers/bitwarden/README.md'), path.join(program.serverConfig.bitwarden.directory, 'README.md'));
   }
 
+  // Create 'data' directory where bitwarden stores all it's critical files
   if (!fs.existsSync(path.join(program.serverConfig.bitwarden.directory, 'data'))) {
     mkdirp(path.join(program.serverConfig.bitwarden.directory, 'data'));
+  }
+
+  // Create 'data' directory where bitwarden stores all it's critical files
+  if (!fs.existsSync(path.join(program.serverConfig.bitwarden.directory, 'web-vault'))) {
+    mkdirp(path.join(program.serverConfig.bitwarden.directory, 'web-vault'));
+    winston.info('Unzipping Bitwarden Web UI');
+    const unzippedArchive = new unzip(path.join(__dirname, "../../servers/bitwarden/web-vault.zip"));
+    unzippedArchive.extractAllTo(path.join(program.serverConfig.bitwarden.directory, 'web-vault'));
   }
   
   // Handle port
   let file = fs.readFileSync(path.join(program.serverConfig.bitwarden.directory, '.env'), 'utf-8');
   file = file.replace(/ROCKET_PORT=.*/g, `ROCKET_PORT=${program.port}`);
-  file = file.replace(/WEB_VAULT_FOLDER=.*/g, `WEB_VAULT_FOLDER=${path.join(__dirname, '../../servers/bitwarden/web-vault')}`);
   fs.writeFileSync(path.join(program.serverConfig.bitwarden.directory, '.env'), file, 'utf-8');
 
   bootServer(program.serverConfig.bitwarden.directory);
