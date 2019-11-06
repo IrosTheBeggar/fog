@@ -21,7 +21,7 @@ const init = () => {
   });
 };
 
-const addFileLogger = (filepath) => {
+const addFileLogger = filepath => {
   winston.add(new winston.transports.File({
     filename: path.join(filepath, logFileName),
     format: winston.format.combine(
