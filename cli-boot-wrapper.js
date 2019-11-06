@@ -3,11 +3,9 @@
 
 // Check if we are in an electron environment
 if (process.versions["electron"]) {
-  // off to a separate electron boot environment
   require("./electron-boot");
   return;
 }
-
 
 console.clear();
 console.log(`
@@ -19,7 +17,6 @@ console.log(`
             /____/                        Paul Sori - v0.1.0`);
 console.log();
 
-// Boot the server
 try {
   const program = require("./src/configure-commander.js").setup(process.argv);
   require('./src/switcher').boot(program);
@@ -27,4 +24,3 @@ try {
   console.log('Boot Error');
   console.log(error);
 }
-

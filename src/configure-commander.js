@@ -18,8 +18,7 @@ exports.setup = function (args) {
 
     .parse(args);  
 
-  let program3 = { port: Number(program.port) };
-
+  const program3 = { port: Number(program.port) };
 
   // logs
   if (program.logs) {

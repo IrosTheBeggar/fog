@@ -140,7 +140,7 @@ function bootServer(program) {
   }
 
   // Tray Template Object
-  var trayTemplate = [
+  trayTemplate = [
     {
       label: `Fog Machine v${app.getVersion()}`, click: () => {
         shell.openExternal('https://fogmachine.io');
@@ -225,12 +225,6 @@ autoUpdater.on('update-available', (info) => {
     label: 'Restart and Reconfigure', click: () => {
       fs.writeFileSync(fe.join(app.getPath('userData'), 'save/temp-boot-disable.json'), JSON.stringify({ disable: true }), 'utf8');
       app.isQuiting = true;
-      autoUpdater.quitAndInstall();
-    }
-  };
-
-  trayTemplate[9] = {
-    label: 'Quit', click: () => {
       autoUpdater.quitAndInstall();
     }
   };
