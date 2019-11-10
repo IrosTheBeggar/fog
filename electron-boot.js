@@ -89,17 +89,22 @@ function createMainWindow() {
     return;
   }
 
-  try{
-    if(fs.statSync(fe.join(app.getPath('userData'), 'save/temp-boot-disable.json')).isFile()){
-      var loadJson9 = JSON.parse(fs.readFileSync(fe.join(app.getPath('userData'), 'save/temp-boot-disable.json'), 'utf8'));
-      if(loadJson9.disable === false && fs.statSync(configFile).isFile()){
-        var loadJson = JSON.parse(fs.readFileSync(configFile, 'utf8'));
-        bootServer(loadJson);
-        return;
+  let loadJson = false;
+  try {
+    if (fs.statSync(fe.join(app.getPath('userData'), 'save/temp-boot-disable.json')).isFile()) {
+      const loadJson9 = JSON.parse(fs.readFileSync(fe.join(app.getPath('userData'), 'save/temp-boot-disable.json'), 'utf8'));
+      if (loadJson9.disable === false && fs.statSync(configFile).isFile()) {
+        loadJson = JSON.parse(fs.readFileSync(configFile, 'utf8'));
       }
     }
-  }catch(error){
+  } catch(error){
+    loadJson = false;
     console.log('Failed To Load JSON');
+  }
+
+  if (loadJson) {
+    bootServer(loadJson);
+    return;
   }
 
   // Create the browser window.
@@ -110,14 +115,14 @@ function createMainWindow() {
   // mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
-  mainWindow.on('closed', function () {
+  mainWindow.on('closed', () => {
     // Dereference the window object, usually you would store windows
     mainWindow = null;
   });
 }
 
 // Boot Server Event
-ipcMain.once('start-server', function (event, arg) {
+ipcMain.once('start-server', (event, arg) => {
   bootServer(arg);
 });
 
