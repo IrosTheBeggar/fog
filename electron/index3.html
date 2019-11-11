@@ -286,7 +286,7 @@
                   </div>
                   <div class="row row-mod server-select-row">
                     <div class="col s12 port-form-container">
-                      <select @change="updateServer" v-model="lJson.server" id="server-select">
+                      <select @change="updateServer()" v-model="lJson.server" id="server-select">
                         <option value="" disabled>Supported Servers</option>
                         <option value="file">Basic File Server</option>
                         <option value="bitwarden">Bitwarden RS</option>
@@ -294,7 +294,6 @@
                         <option value="minecraft-bedrock">Minecraft Bedrock Server</option>
                         <!-- <option value="terraria">Terraria Server</option> -->
                       </select>
-                      <label for="server-select">Select Server Type</label>
                     </div>
                   </div>
                 </div>
@@ -326,7 +325,8 @@
         },
         methods: {
           updateServer: function() {
-            this.currentViewBanner = this.lJson.server + '-banner'
+            this.currentViewBanner = this.lJson.server + '-banner';
+            fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
           },
           updateConfig: function() {
             fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
@@ -482,7 +482,8 @@
       const configViewFile = Vue.component('config-view-file', {
         data() {
           return {
-            lJson: loadJson
+            lJson: loadJson,
+            selectInstance: null
           };
         },
         template: `
@@ -495,21 +496,62 @@
                   </div>
                   <div class="row row-mod">
                     <div class="col s12 port-form-container">
+                      <p>Select your folder or choose from an example below</p>
+                      <br>
                       <div class="input-field">
-                        <input v-on:click="selectDirectory($event)" v-model="lJson.serverConfig.fileServer.directory" @blur="updateConfig()" id="server-logs-folder" type="text" class="active" required />
-                        <label class="active" for="server-logs-folder">Logs Folder</label>
+                        <input v-on:click="selectDirectory($event)" v-model="lJson.serverConfig.fileServer.directory" @blur="updateConfig()" id="file-server-folder" type="text" class="active" required />
+                        <label class="active" for="file-server-folder">Logs Folder</label>
                       </div>
                     </div>
                   </div>
                   <div class="row row-mod clearfix">
-                    <a class="reset-defaults-link" href="#!" v-on:click="resetStorageValues" >Reset To Default Values</a>
+                    <a class="reset-defaults-link" href="#!" v-on:click="resetStorageValues" >Open in File Explorer</a>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="row row-mod">
+                    <div class="section-header">Examples</div>
+                  </div>
+                  <div class="row row-mod">
+                    <div class="col s12 port-form-container">
+                      <div class="input-field">
+                        <select @change="updateWithExample($event)" id="example-select">
+                          <option value="" disabled selected>Pick An Example</option>
+                          <option value="basic">Basic File Server</option>
+                          <option value="blog">Blog</option>
+                          <option value="emu">NES Emulator</option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>`,
+        mounted: function () {
+          this.selectInstance = M.FormSelect.init(document.querySelectorAll("#example-select"));
+        },
+        beforeDestroy: function() {
+          this.selectInstance[0].destroy();
+        },
         methods: {
           updateConfig: function() {
+            fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+          },
+          updateWithExample: function(e) {
+            switch(e.target.value) {
+              case 'basic':
+                loadJson.serverConfig.fileServer.directory = path.join(__dirname,  '../servers/file-server/examples/basic')
+                break;
+              case 'blog':
+                loadJson.serverConfig.fileServer.directory = path.join(__dirname,  '../servers/file-server/examples/blog')
+                break;
+              case 'emu':
+                loadJson.serverConfig.fileServer.directory = path.join(__dirname,  '../servers/file-server/examples/emu')
+                break;
+              default:
+                // code block
+              }
             fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
           },
           selectDirectory: function(el) {
@@ -518,13 +560,13 @@
                 return;
               }
               el.target.value = selectedFile[0];
-              loadJson.directory = selectedFile[0];
+              loadJson.serverConfig.fileServer.directory = selectedFile[0];
               el.target.blur();
               fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
             });
           },
           resetStorageValues: function() {
-            loadJson.directory = app.getPath('userData')
+            shell.showItemInFolder(loadJson.serverConfig.fileServer.directory);
           }
         }
       });

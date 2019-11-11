@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>jsNES</title>
+		
+		<script type="text/javascript" src="/emulator/jsnes.js"></script>
+		<script type="text/javascript" src="/emulator/setup.js"></script>
+    <script>
+      window.onload = function() {
+        var url = new URL(window.location.href);
+        var query_string = url.search;
+        var search_params = new URLSearchParams(query_string); 
+        var id = search_params.get('rom');
+        document.getElementById("rom-title").innerHTML = id;
+
+        nes_load_url("nes-canvas", "/roms/" + id);
+      }
+    </script>
+    <link rel="stylesheet" type="text/css" href="/emulator/index.css">
+	</head>
+	<body>
+    <canvas id="nes-canvas" width="256" height="240"></canvas>
+    <div id="controls">
+      <h1><b id="rom-title"></b></h1>
+
+      <p><b>CONTROLS</b></p>
+      <p>
+        <b>A Btn:</b> A<br>
+        <b>B Btn:</b> S<br>
+        <b>Start:</b> Return<br>
+        <b>Select:</b> Tab<br>
+        <b>D-Pad:</b> Arrow keys<br>
+      </p>
+      <p><a id="fullscreen" href="#" onclick="return fullscreen();">FULLSCREEN</a></p>
+    </div>
+	</body>
+</html>

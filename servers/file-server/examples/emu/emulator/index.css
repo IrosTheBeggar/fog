@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+}
+
+p{
+    font-family: "Lucida Console", Monaco, monospace;
+}
+
+#nes-canvas {
+    overflow: auto;
+}
+
+@media (orientation: landscape) { 
+    #nes-canvas {
+        height: calc(100vh - 20px);
+    }
+}
+
+@media (orientation: portrait) { 
+    #nes-canvas {
+        width: calc(100vw - 20px);
+    }
+}
+
+#controls {
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 25px;
+}
