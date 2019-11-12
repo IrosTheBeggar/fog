@@ -128,7 +128,7 @@
 
     if (!loadJson.serverConfig.fileServer) {
       loadJson.serverConfig.fileServer = {
-        directory: path.join(__dirname,  '../servers/file-server/examples/basic')
+        directory: path.join(__dirname,  '../servers/file-server/examples/blog')
       };
     }
 
@@ -288,7 +288,7 @@
                     <div class="col s12 port-form-container">
                       <select @change="updateServer()" v-model="lJson.server" id="server-select">
                         <option value="" disabled>Supported Servers</option>
-                        <option value="file">Basic File Server</option>
+                        <option value="file">File Server</option>
                         <option value="bitwarden">Bitwarden RS</option>
                         <option value="minecraft-java">Minecraft Java Server</option>
                         <option value="minecraft-bedrock">Minecraft Bedrock Server</option>
@@ -514,11 +514,13 @@
                   </div>
                   <div class="row row-mod">
                     <div class="col s12 port-form-container">
+                      <p>Examples get overwritten on updates.  Copy an example to another directory if you want to edit it.</p>
+                      <br>
                       <div class="input-field">
                         <select @change="updateWithExample($event)" id="example-select">
                           <option value="" disabled selected>Pick An Example</option>
                           <option value="media">Media Player</option>
-                          <option value="blog">Blog</option>
+                          <option value="blog">Simple Blog</option>
                           <option value="emu">NES Emulator</option>
                         </select>
                       </div>
