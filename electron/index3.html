@@ -517,7 +517,7 @@
                       <div class="input-field">
                         <select @change="updateWithExample($event)" id="example-select">
                           <option value="" disabled selected>Pick An Example</option>
-                          <option value="basic">Basic File Server</option>
+                          <option value="media">Media Player</option>
                           <option value="blog">Blog</option>
                           <option value="emu">NES Emulator</option>
                         </select>
@@ -540,8 +540,8 @@
           },
           updateWithExample: function(e) {
             switch(e.target.value) {
-              case 'basic':
-                loadJson.serverConfig.fileServer.directory = path.join(__dirname,  '../servers/file-server/examples/basic')
+              case 'media':
+                loadJson.serverConfig.fileServer.directory = path.join(__dirname,  '../servers/file-server/examples/media')
                 break;
               case 'blog':
                 loadJson.serverConfig.fileServer.directory = path.join(__dirname,  '../servers/file-server/examples/blog')
