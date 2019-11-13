@@ -30,7 +30,6 @@ exports.boot = function (program) {
   // Copy files to bootpath, if none exist
   if (!fs.existsSync(path.join(program.serverConfig.bitwarden.directory, '.env'))) {
     fs.copyFileSync(path.join(__dirname, '../../servers/bitwarden/.env'), path.join(program.serverConfig.bitwarden.directory, '.env'));
-    fs.copyFileSync(path.join(__dirname, '../../servers/bitwarden/README.md'), path.join(program.serverConfig.bitwarden.directory, 'README.md'));
   }
 
   // Create 'data' directory where bitwarden stores all it's critical files
@@ -38,7 +37,7 @@ exports.boot = function (program) {
     mkdirp(path.join(program.serverConfig.bitwarden.directory, 'data'));
   }
 
-  // Create 'data' directory where bitwarden stores all it's critical files
+  // Create 'web-vault' where the webapp lives
   const webVaultPath = path.join(program.serverConfig.bitwarden.directory, 'web-vault');
   if (!fs.existsSync(webVaultPath) || !fs.existsSync(path.join(webVaultPath, 'index.html'))) {
     mkdirp(path.join(program.serverConfig.bitwarden.directory, 'web-vault'));
