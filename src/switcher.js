@@ -28,7 +28,7 @@ exports.boot = function (config) {
 
   const minecraftJavaJoi = Joi.object({
     directory: Joi.string().default(path.join(__dirname, '../servers/minecraft-java')),
-    serverMessage: Joi.string().allow('').length(59).default('Created With Fog Machine'),
+    serverMessage: Joi.string().allow('').max(59).default('Created With Fog Machine'),
     gameMode: Joi.string().valid('survival', 'creative', 'adventure', 'spectator').required(),
     pvp: Joi.boolean().default(true)
   });

@@ -14,6 +14,26 @@
     <script src="./js/butterchurn-presets.js"></script>
     <script>
         const Webamp = window.Webamp;
+        let butterChurnOptions = {
+            butterchurnOpen: false
+        };
+
+        if (window.safari === undefined) {
+            butterChurnOptions = {
+                importButterchurn: () => Promise.resolve(window.butterchurn),
+                getPresets: () => {
+                    const presets = window.butterchurnPresets.getPresets();
+                    return Object.keys(presets).map((name) => {
+                        return {
+                            name,
+                            butterchurnPresetObject: presets[name]
+                        };
+                    });
+                },
+                butterchurnOpen: true
+            };
+        }
+
         new Webamp({
             initialTracks: [{
                 metaData: {
@@ -39,19 +59,7 @@
               { url: "./skins/saphire.wsz", name: "Saphire"},
               { url: "./skins/zelda_amp_3_update_by_luigihann_d28rgf.wsz", name: "LoZ"},
             ],
-            __butterchurnOptions: {
-                importButterchurn: () => Promise.resolve(window.butterchurn),
-                getPresets: () => {
-                    const presets = window.butterchurnPresets.getPresets();
-                    return Object.keys(presets).map((name) => {
-                        return {
-                            name,
-                            butterchurnPresetObject: presets[name]
-                        };
-                    });
-                },
-                butterchurnOpen: true
-            },
+            __butterchurnOptions: butterChurnOptions,
             __initialWindowLayout: {
                 main: { position: { x: 0, y: 0 } },
                 equalizer: { position: { x: 0, y: 116 } },
