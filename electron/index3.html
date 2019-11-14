@@ -385,8 +385,8 @@
                       <label class="input-field">
                         <input v-model="lJson.serverConfig.bitwarden.signUpEnabled" v-on:blur="updateConfig" type="checkbox" />
                         <span>Enable Public Sign Ups</span>
-                      </label>\
-                    </div>\
+                      </label>
+                    </div>
                   </div>
                 </div>
                 <div class="card">
@@ -507,6 +507,19 @@
                         <input v-model="lJson.serverConfig.minecraftJava.serverMessage" @blur="updateConfig()" id="minecraft-server-message" type="text" class="active" required />
                         <label class="active" for="minecraft-server-message">Server Message</label>
                       </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="row row-mod">
+                    <div class="section-header">Advanced Game Settings</div>
+                  </div>
+                  <div class="row row-mod">
+                    <div class="col s12">
+                      <label class="input-field">
+                        <input v-model="lJson.serverConfig.bitwarden.signUpEnabled" v-on:blur="updateConfig" type="checkbox" />
+                        <span>Enable Public Sign Ups</span>
+                      </label>
                     </div>
                   </div>
                 </div>

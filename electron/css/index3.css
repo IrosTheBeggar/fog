@@ -20,7 +20,6 @@ html, body {
 .hide {
   display: none;
 }
-  
 
 /* 2 Columns */
 .main {
@@ -47,7 +46,6 @@ html, body {
   background-color: #f2f2f2;
   overflow-y: scroll;
 }
-
 
 /* left col */
 ul.left-nav-menu {
