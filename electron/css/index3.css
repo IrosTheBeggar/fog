@@ -130,31 +130,14 @@ ul.left-nav-menu li.left-nav-selected {
   background-color: #505061;
 }
 
-
 /* Right Col */
 #switcherMain {
   padding: 5px 12px;
 }
 
-/* Folders */
-.collapsible-header {
-  /* flex-direction: column; */
-  display: flex;
-}
-
-.select-folder-button {
-  width: 180px;
-}
-
 .directory-name-field {
   display: inline-block;
   width: calc(100% - 200px);
-}
-
-.choose-directory-form {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
 }
 
 .section-header {
@@ -166,18 +149,10 @@ ul.left-nav-menu li.left-nav-selected {
   font-family: 'Jura', sans-serif;
 }
 
-.folder-button-group {
-  float: right;
-}
-
 .row-mod {
   margin-bottom: 5px !important;
   margin-left: 0px !important;
   margin-right: 0px !important;
-}
-
-#submit-add-user-form {
-  width: 100%;
 }
 
 .about-content-header {
@@ -206,23 +181,6 @@ ul.left-nav-menu li.left-nav-selected {
   margin-top: 10px;
 }
 
-.accordion-header-left {
-  flex: 0 0 44px;
-}
-
-.user-folders-line {
-  display: flex;
-}
-
-.accordion-header-right {
-  flex: 1;
-}
-
-.collapsible-header:hover {
-  background-color: #fff8e1;
-  transition: background-color 0.4s ease-out;
-}
-
 .boot-server-text {
   text-align: center;
   font-family: 'Jura', sans-serif;
@@ -231,114 +189,8 @@ ul.left-nav-menu li.left-nav-selected {
   padding-top: 20px;
 }
 
-.remove-ssl {
-  position: absolute;
-  right: 0;
-  margin: 12px;
-  opacity: .5;
-  cursor: pointer;
-  transition: background-color 0.4s ease-out;
-}
-
-.remove-ssl:hover {
-  opacity: .8;
-
-}
-
-.security-container {
-  display: grid;
-}
-
-
-.security-diy {
-  grid-column: 1;
-  grid-row: 1;
-}
-
-.signup-button {
-  flex: 1;
-  cursor: pointer;
-  border: 1px solid #ccc;
-}
-
-.signup-button:hover {
-  background-color: #fff8e1;
-  transition: background-color 0.4s ease-out;
-}
-
-.diy-button {
-  flex: 1;
-  cursor: pointer;
-  border: 1px solid #ccc;
-}
-
-.diy-button:hover {
-  background-color: #fff8e1;
-  transition: background-color 0.4s ease-out;
-}
-
 .center {
   text-align: center;
-}
-
-.signup-price {
-  font-family: "Roboto", helvetica, arial, sans-serif;
-
-  text-align: right;
-  padding-right: 15px;
-  font-size: 18px;
-  padding-top: 10px;
-
-  right: 0;
-  bottom: 0;
-  position: absolute;
-}
-
-.bigger-text {
-  font-size: 19px;
-  margin-top: 12px;
-}
-
-.logged-in-panel {
-  height: 100%;
-  width: 100%;
-  background-color: rgba(50, 194, 77, 0.8);
-  display: none;
-}
-
-.logged-in-checkmark {
-  height: 80%;
-  padding-left: 20px;
-  padding-top: 14px;
-  padding-right: 35px;
-}
-
-.no-pad-bot {
-  padding-bottom: 0px !important;
-}
-
-.pad-15 {
-  padding-bottom: 15px;
-}
-
-.edit-user-guest{
-  padding-top: 15px;
-
-}
-
-.auto-dns-link-button {
-  margin-top: 12px;
-  float: right;
-}
-
-.component-fade-enter-active, .component-fade-leave-active {
-  transition: opacity .3s ease;
-}
-.component-fade-enter, .component-fade-leave-to
-/* .component-fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-  transition: opacity .3s ease;
-
 }
 
 .login-button {
