@@ -64,7 +64,7 @@
 
   <script>
     const remote = require('electron').remote;
-    const { ipcRenderer } = require('electron');
+    const { ipcRenderer, clipboard  } = require('electron');
     const app = remote.app;
     const dialog = remote.require('electron').dialog;
     const axios = require('axios');
@@ -135,7 +135,16 @@
     if (!loadJson.serverConfig.bitwarden) {
       loadJson.serverConfig.bitwarden = {
         directory: path.join(app.getPath('userData'), 'bitwarden'),
+        signUpEnabled: true
       };
+    }
+
+    if (!('signUpEnabled' in loadJson.serverConfig.bitwarden)) {
+      loadJson.serverConfig.bitwarden.signUpEnabled = true;
+    }
+
+    if (!('adminToken' in loadJson.serverConfig.bitwarden)) {
+      loadJson.serverConfig.bitwarden.adminToken = '';
     }
 
     // Auto DNS Testing
@@ -353,15 +362,51 @@
                       <p>This directory holds your database and encryption keys. You can backup all your data by copying this folder</p>
                       <br>
                       <div class="input-field">
-                        <input v-on:click="selectDirectory($event)" v-model="lJson.directory" @blur="updateConfig()" id="server-logs-folder" type="text" class="active" required />
-                        <label class="active" for="server-logs-folder">Select Directory</label>
+                        <input v-on:click="selectDirectory($event)" v-model="lJson.serverConfig.bitwarden.directory" @blur="updateConfig()" id="server-bitwarden-folder" type="text" class="active" required />
+                        <label class="active" for="server-bitwarden-folder">Select Directory</label>
                       </div>
                     </div>
+                  </div>
+                  <div class="row row-mod clearfix">
+                    <a class="reset-defaults-link" href="#!" v-on:click="resetStorageValues" >Reset To Default</a>
+                    <br>
+                    <a class="reset-defaults-link" href="#!" v-on:click="openInExplorer" >Open In File Explorer</a>
                   </div>
                 </div>
                 <div class="card">
                   <div class="row row-mod">
-                    <div class="section-header">Server Options</div>
+                    <div class="section-header">Public Sign-Up</div>
+                  </div>
+                  <div class="row row-mod">
+                    <div class="col s12">
+                      <p>You should disable sign-ups when you are finished with account creation</p>
+                    </div>
+                    <div class="col s12">
+                      <label class="input-field">
+                        <input v-model="lJson.serverConfig.bitwarden.signUpEnabled" v-on:blur="updateConfig" type="checkbox" />
+                        <span>Enable Public Sign Ups</span>
+                      </label>\
+                    </div>\
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="row row-mod">
+                    <div class="section-header">Admin Access</div>
+                  </div>
+                  <div class="row row-mod">
+                    <div class="col s12">
+                      <p>The admin panel gives full control over your server.  The admin panel is disabled unless a admin password is set</p>
+                      <br>
+                      <div class="input-field">
+                        <input id="server-bitwarden-admin" placeholder="(ADMIN ACCESS DISABLED)" v-model="lJson.serverConfig.bitwarden.adminToken" @blur="updateConfig()" type="text"/>
+                        <label class="active" for="server-bitwarden-admin">Admin Password</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row row-mod clearfix">
+                    <a class="reset-defaults-link" href="#!" v-on:click="generateToken" >Generate Secure Password</a>
+                    <br>
+                    <a class="reset-defaults-link" href="#!" v-on:click="copyToClipboard" >Copy To Clipboard</a>
                   </div>
                 </div>
               </div>
@@ -371,19 +416,32 @@
           updateConfig: function() {
             fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
           },
+          openInExplorer: function() {
+            shell.showItemInFolder(loadJson.serverConfig.bitwarden.directory);
+          },
+          generateToken: function() {
+            require('crypto').randomBytes(64, (err, buffer) => {
+              loadJson.serverConfig.bitwarden.adminToken = buffer.toString('base64');
+              fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+            });
+          },
+          copyToClipboard: function() {
+            clipboard.writeText(loadJson.serverConfig.bitwarden.adminToken);
+          },
           selectDirectory: function(el) {
             dialog.showOpenDialog({properties: ['openDirectory']}, (selectedFile) => {
-              if(selectedFile.length === 0){
+              if (selectedFile.length === 0) {
                 return;
               }
               el.target.value = selectedFile[0];
-              loadJson.directory = selectedFile[0];
+              loadJson.serverConfig.bitwarden.directory = selectedFile[0];
               el.target.blur();
               fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
             });
           },
           resetStorageValues: function() {
-            loadJson.directory = app.getPath('userData')
+            loadJson.serverConfig.bitwarden.directory = path.join(app.getPath('userData'), 'bitwarden');
+            fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
           }
         }
       });
@@ -505,7 +563,7 @@
                     </div>
                   </div>
                   <div class="row row-mod clearfix">
-                    <a class="reset-defaults-link" href="#!" v-on:click="resetStorageValues" >Open in File Explorer</a>
+                    <a class="reset-defaults-link" href="#!" v-on:click="openInExplorer" >Open in File Explorer</a>
                   </div>
                 </div>
                 <div class="card">
@@ -567,7 +625,7 @@
               fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
             });
           },
-          resetStorageValues: function() {
+          openInExplorer: function() {
             shell.showItemInFolder(loadJson.serverConfig.fileServer.directory);
           }
         }
@@ -705,8 +763,6 @@
                   <div class="col s12">
                     <div>You are logged in as: <b>{{loadJson.ddns.email}}</b></div>
                     <div>Your Public URL: <b>https://{{loadJson.ddns.url}}</b></div>
-                    <br>
-                    <div>SSL Encryption: <b>Enabled</b></div>
                     <br>
                     <div v-if="this.$parent && this.$parent.$el && this.$parent.$el.id === 'switcherMain'"><a v-on:click="logout()" href="javascript:;">Logout</a></div>
                   </div>
