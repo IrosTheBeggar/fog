@@ -13,7 +13,9 @@ exports.boot = function (config) {
   }
 
   const bitwardenJoi = Joi.object({
-    directory: Joi.string().default(path.join(__dirname, '../servers/bitwarden'))
+    directory: Joi.string().default(path.join(__dirname, '../servers/bitwarden')),
+    adminToken: Joi.string().allow(''),
+    signUpEnabled: Joi.boolean().default(true)
   });
 
   const fileServerJoi = Joi.object({

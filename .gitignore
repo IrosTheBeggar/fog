@@ -10,25 +10,19 @@ servers/minecraft-bedrock/*
 !servers/minecraft-bedrock/*.zip
 !servers/minecraft-bedrock/VERSION.md
 
-servers/terraria/*
-!servers/terraria/*.zip
-
 package-lock.json
 .DS_Store
 
-!modules/ffmpeg/README.md
 .vscode/*
 
 frp/*.ini
 
 dist/*
-app/node_modules/*
-app/dist/*
-
-appx/node_modules/*
-appx/dist/*
 
 servers/bitwarden/data/*
-!servers/bitwarden/data/README.md
+servers/bitwarden/web-vault/*
+servers/bitwarden/.env
+servers/bitwarden/VERSION.md
+servers/bitwarden/WEB-VAULT-VERSION.md
 
-terraria/*
+!servers/bitwarden/data/README.md
