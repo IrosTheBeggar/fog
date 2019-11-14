@@ -905,6 +905,7 @@
       }
 
       document.getElementById("boot-server-button").onclick = function(){
+        // Port error
         if (!loadJson.port) {
           iziToast.warning({
             title: 'You must set the port before booting the server',
@@ -916,11 +917,22 @@
           return;
         }
 
+        // java error check
         if (loadJson.server === 'minecraft-java' && javaError === true) {
           iziToast.warning({
             title: 'Error: Java Not Installed',
             position: 'topCenter',
             timeout: 3500
+          });
+          return;
+        }
+
+        // Minecraft bedrock error
+        if (loadJson.server === 'minecraft-bedrock' && process.platform === 'darwin') {
+          iziToast.warning({
+            title: 'Error: Minecraft Bedrock is not supported for OSX',
+            position: 'topCenter',
+            timeout: 4000
           });
           return;
         }
