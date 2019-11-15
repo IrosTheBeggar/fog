@@ -31,7 +31,7 @@ exports.boot = function (program) {
 
     // Copy config file
     if (!fs.existsSync(path.join(program.serverConfig.minecraftJava.directory, 'server.properties'))) {
-      fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-java/server.properties'), path.join(program.serverConfig.minecraftJava.directory, 'server.properties'));
+      fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-java/server.properties.template'), path.join(program.serverConfig.minecraftJava.directory, 'server.properties'));
       fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-java/VERSION.template.md'), path.join(program.serverConfig.minecraftJava.directory, 'VERSION.md'));
     }
 
@@ -47,14 +47,24 @@ exports.boot = function (program) {
       winston.info('Upgrading config File');
       try { fs.unlinkSync(path.join(program.serverConfig.minecraftJava.directory, 'VERSION.md')); } catch(e){}
       try { fs.unlinkSync(path.join(program.serverConfig.minecraftJava.directory, 'server.properties')); } catch(e){}
-      fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-java/server.properties'), path.join(program.serverConfig.minecraftJava.directory, 'server.properties'));
+      fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-java/server.properties.template'), path.join(program.serverConfig.minecraftJava.directory, 'server.properties'));
       fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-java/VERSION.template.md'), path.join(program.serverConfig.minecraftJava.directory, 'VERSION.md'));
     }
 
-    // Handle port
+    // Edit config
     let file = fs.readFileSync(path.join(program.serverConfig.minecraftJava.directory, 'server.properties'), 'utf-8');
-    file = file.replace(/server-port=[0-9]*/g, `server-port=${program.port}`);
-    file = file.replace(/motd=[0-9]*/g, `motdt=${program.serverConfig.minecraftJava.serverMessage}`);
+    file = file.replace(/server-port=.*/g, `server-port=${program.port}`);
+    file = file.replace(/motd=.*/g, `motdt=${program.serverConfig.minecraftJava.serverMessage}`);
+    file = file.replace(/gamemode=.*/g, `gamemode=${program.serverConfig.minecraftJava.gameMode}`);
+    file = file.replace(/difficulty=.*/g, `difficulty=${program.serverConfig.minecraftJava.difficulty}`);
+    file = file.replace(/pvp=.*/g, `pvp=${program.serverConfig.minecraftJava.pvp}`);
+    file = file.replace(/allow-flight=.*/g, `allow-flight=${program.serverConfig.minecraftJava.flightMods}`);
+    file = file.replace(/enable-command-block=.*/g, `enable-command-block=${program.serverConfig.minecraftJava.commandBlocks}`);
+    file = file.replace(/hardcore=.*/g, `hardcore=${program.serverConfig.minecraftJava.hardcoreMode}`);
+    file = file.replace(/snooper-enabled=.*/g, `snooper-enabled=${program.serverConfig.minecraftJava.sendStats}`);
+    file = file.replace(/view-distance=.*/g, `view-distance=${program.serverConfig.minecraftJava.viewDistance}`);
+    file = file.replace(/max-players=.*/g, `max-players=${program.serverConfig.minecraftJava.maxPlayers}`);
+
     fs.writeFileSync(path.join(program.serverConfig.minecraftJava.directory, 'server.properties'), file, 'utf-8');
 
     bootServer(program.serverConfig.minecraftJava.directory);

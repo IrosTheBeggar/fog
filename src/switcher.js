@@ -29,8 +29,15 @@ exports.boot = function (config) {
   const minecraftJavaJoi = Joi.object({
     directory: Joi.string().default(path.join(__dirname, '../servers/minecraft-java')),
     serverMessage: Joi.string().allow('').max(59).default('Created With Fog Machine'),
-    gameMode: Joi.string().valid('survival', 'creative', 'adventure', 'spectator').required(),
-    pvp: Joi.boolean().default(true)
+    gameMode: Joi.string().valid('survival', 'creative', 'adventure', 'spectator').default('adventure'),
+    difficulty: Joi.string().valid('peaceful', 'easy', 'normal', 'hard').default('easy'),
+    pvp: Joi.boolean().default(true),
+    flightMods: Joi.boolean().default(false),
+    commandBlocks: Joi.boolean().default(false),
+    hardcoreMode: Joi.boolean().default(false),
+    sendStats: Joi.boolean().default(false),
+    viewDistance: Joi.number().integer().max(32).min(4).default(10),
+    maxPlayers: Joi.number().integer().min(2).default(20)
   });
 
   const terrariaJoi = Joi.object({
@@ -39,7 +46,7 @@ exports.boot = function (config) {
 
   const schema = Joi.object({
     autoboot: Joi.boolean().optional(),
-    port: Joi.number().default(5555),
+    port: Joi.number().port().default(5555),
     ddns: Joi.object({
       iniFile: Joi.string().default(path.join(__dirname, `../frp/frps.ini`)),
       email: Joi.string().allow('').optional(),

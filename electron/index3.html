@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
-  <title>Fog Machine Server</title>
+  <title>Fog Machine</title>
 
   <script src="js/materialize.min.js"></script>
   <link href="css/materialize.min.css" rel="stylesheet">
@@ -118,12 +118,48 @@
 
     if (!loadJson.serverConfig.minecraftJava) {
       loadJson.serverConfig.minecraftJava = {
-        directory: path.join(app.getPath('userData'), 'minecraft-java'),
-        serverName: 'Dedicated Server',
-        serverMessage: 'Created With Fog Machine',
-        gameMode: 'survival',
-        pvp: true
+        directory: path.join(app.getPath('userData'), 'minecraft-java')
       };
+    }
+
+    if (!('difficulty' in loadJson.serverConfig.minecraftJava)) {
+      loadJson.serverConfig.minecraftJava.difficulty = 'easy';
+    }
+
+    if (!('gameMode' in loadJson.serverConfig.minecraftJava)) {
+      loadJson.serverConfig.minecraftJava.gameMode = 'survival';
+    }
+
+    if (!(loadJson.serverConfig.minecraftJava.serverMessage)) {
+      loadJson.serverConfig.minecraftJava.serverMessage = 'Created With Fog Machine';
+    }
+
+    if (!('pvp' in loadJson.serverConfig.minecraftJava)) {
+      loadJson.serverConfig.minecraftJava.pvp = true;
+    }
+
+    if (!('maxPlayers' in loadJson.serverConfig.minecraftJava)) {
+      loadJson.serverConfig.minecraftJava.maxPlayers = 20;
+    }
+
+    if (!('viewDistance' in loadJson.serverConfig.minecraftJava)) {
+      loadJson.serverConfig.minecraftJava.viewDistance = 10;
+    }
+
+    if (!('sendStats' in loadJson.serverConfig.minecraftJava)) {
+      loadJson.serverConfig.minecraftJava.sendStats = false;
+    }
+
+    if (!('hardcoreMode' in loadJson.serverConfig.minecraftJava)) {
+      loadJson.serverConfig.minecraftJava.hardcoreMode = false;
+    }
+
+    if (!('commandBlocks' in loadJson.serverConfig.minecraftJava)) {
+      loadJson.serverConfig.minecraftJava.commandBlocks = false;
+    }
+
+    if (!('flightMods' in loadJson.serverConfig.minecraftJava)) {
+      loadJson.serverConfig.minecraftJava.flightMods = false;
     }
 
     if (!loadJson.serverConfig.fileServer) {
@@ -134,8 +170,7 @@
 
     if (!loadJson.serverConfig.bitwarden) {
       loadJson.serverConfig.bitwarden = {
-        directory: path.join(app.getPath('userData'), 'bitwarden'),
-        signUpEnabled: true
+        directory: path.join(app.getPath('userData'), 'bitwarden')
       };
     }
 
@@ -451,7 +486,9 @@
           return {
             showError: javaError,
             lJson: loadJson,
-            selectInstance: null
+            selectInstance: null,
+            selectInstance2: null
+
           };
         },
         template: `
@@ -477,8 +514,76 @@
                       <p>This directory is where your world data is stored. You can backup all your data by copying this folder</p>
                       <br>
                       <div class="input-field">
-                        <input v-on:click="selectDirectory($event)" v-model="lJson.directory" @blur="updateConfig()" id="server-logs-folder" type="text" class="active" required />
+                        <input v-on:click="selectDirectory($event)" v-model="lJson.serverConfig.minecraftJava.directory" @blur="updateConfig()" id="server-logs-folder" type="text" class="active" required />
                         <label class="active" for="server-logs-folder">Storage Folder</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row row-mod clearfix">
+                    <a class="reset-defaults-link" href="#!" v-on:click="resetStorageValues" >Reset To Default</a>
+                    <br>
+                    <a class="reset-defaults-link" href="#!" v-on:click="openInExplorer" >Open In File Explorer</a>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="row row-mod">
+                    <div class="section-header">Gameplay Settings</div>
+                  </div>
+                  <div class="row row-mod">
+                    <div class="col s12">
+                      <div class="row">
+                        <div class="col m6 s12">
+                          <div class="input-field">
+                            <select @change="updateConfig()" v-model="lJson.serverConfig.minecraftJava.gameMode" id="minecraft-java-mode-select">
+                              <option value="" disabled>Game Modes</option>
+                              <option value="survival">Survival</option>
+                              <option value="creative">Creative</option>
+                              <option value="adventure">Adventure</option>
+                              <option value="spectator">Spectator</option>
+                            </select>
+                            <label for="minecraft-java-mode-select">Game Mode</label>
+                          </div>
+                        </div>
+                        <div class="col m6 s12">
+                          <div class="input-field">
+                            <select @change="updateConfig()" v-model="lJson.serverConfig.minecraftJava.difficulty" id="minecraft-java-difficulty-select">
+                              <option value="" disabled>Game Difficulty</option>
+                              <option value="peaceful">Peaceful</option>
+                              <option value="easy">Easy</option>
+                              <option value="normal">Normal</option>
+                              <option value="hard">Hard</option>
+                            </select>
+                            <label for="minecraft-java-difficulty-select">Game Difficulty</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col m6 s12">
+                          <label class="input-field">
+                            <input v-model="lJson.serverConfig.minecraftJava.pvp" v-on:blur="updateConfig" type="checkbox" />
+                            <span>PvP Enabled</span>
+                          </label>
+                        </div>
+                        <div class="col m6 s12">
+                          <label class="input-field">
+                            <input v-model="lJson.serverConfig.minecraftJava.commandBlocks" v-on:blur="updateConfig" type="checkbox" />
+                            <span>Enable Command Blocks</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col m6 s12">
+                          <label class="input-field">
+                            <input v-model="lJson.serverConfig.minecraftJava.hardcoreMode" v-on:blur="updateConfig" type="checkbox" />
+                            <span>Hardcore Mode Enabled</span>
+                          </label>
+                        </div>
+                        <div class="col m6 s12">
+                          <label class="input-field">
+                            <input v-model="lJson.serverConfig.minecraftJava.flightMods" v-on:blur="updateConfig" type="checkbox" />
+                            <span>Enable Flight Mods</span>
+                          </label>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -489,37 +594,36 @@
                   </div>
                   <div class="row row-mod">
                     <div class="col s12 port-form-container">
-                      <div class="input-field">
-                        <select @change="updateConfig()" v-model="lJson.serverConfig.minecraftJava.gameMode" id="minecraft-mode-select">
-                          <option value="" disabled>Game Modes</option>
-                          <option value="survival">Survival</option>
-                          <option value="creative">Creative</option>
-                          <option value="adventure">Adventure</option>
-                          <option value="spectator">Spectator</option>
-                        </select>
-                        <label for="minecraft-mode-select">Game Mode</label>
+                      <div class="row">
+                        <div class="col s12">
+                          <div class="input-field">
+                            <input v-model="lJson.serverConfig.minecraftJava.serverMessage" @blur="updateConfig()" id="minecraft-java-message" type="text" class="active" required />
+                            <label class="active" for="minecraft-java-message">Server Message</label>
+                          </div>
+                        </div>
                       </div>
-                      <div class="input-field">
-                        <input v-model="lJson.serverConfig.minecraftJava.serverName" @blur="updateConfig()" id="minecraft-server-name" type="text" class="active" required />
-                        <label class="active" for="minecraft-server-name">Server Name</label>
+                      <div class="row">
+                        <div class="col m6 s12">
+                          <div class="input-field">
+                            <input v-model="lJson.serverConfig.minecraftJava.maxPlayers" @blur="updateConfig()" id="minecraft-java-max-players" type="number" step="1" class="active" required />
+                            <label class="active" for="minecraft-java-max-players">Max Players</label>
+                          </div>
+                        </div>
+                        <div class="col m6 s12">
+                          <div class="input-field">
+                            <input v-model="lJson.serverConfig.minecraftJava.viewDistance" @blur="updateConfig()" id="minecraft-java-view-distance" type="number" step="1" class="active" required />
+                            <label class="active" for="minecraft-java-view-distance">View Distance</label>
+                          </div>
+                        </div>
                       </div>
-                      <div class="input-field">
-                        <input v-model="lJson.serverConfig.minecraftJava.serverMessage" @blur="updateConfig()" id="minecraft-server-message" type="text" class="active" required />
-                        <label class="active" for="minecraft-server-message">Server Message</label>
+                      <div class="row">
+                        <div class="col m6 s12">
+                          <label class="input-field">
+                            <input v-model="lJson.serverConfig.minecraftJava.sendStats" v-on:blur="updateConfig" type="checkbox" />
+                            <span>Send Stats To Mojang</span>
+                          </label>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="row row-mod">
-                    <div class="section-header">Advanced Game Settings</div>
-                  </div>
-                  <div class="row row-mod">
-                    <div class="col s12">
-                      <label class="input-field">
-                        <input v-model="lJson.serverConfig.bitwarden.signUpEnabled" v-on:blur="updateConfig" type="checkbox" />
-                        <span>Enable Public Sign Ups</span>
-                      </label>
                     </div>
                   </div>
                 </div>
@@ -527,13 +631,22 @@
             </div>
           </div>`,
         mounted: function () {
-          this.selectInstance = M.FormSelect.init(document.querySelectorAll("#minecraft-mode-select"));
+          this.selectInstance = M.FormSelect.init(document.querySelectorAll("#minecraft-java-mode-select"));
+          this.selectInstance2 = M.FormSelect.init(document.querySelectorAll("#minecraft-java-difficulty-select"));
         },
         beforeDestroy: function() {
           this.selectInstance[0].destroy();
+          this.selectInstance2[0].destroy();
         },
         methods: {
           updateConfig: function() {
+            fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+          },
+          openInExplorer: function() {
+            shell.showItemInFolder(loadJson.serverConfig.minecraftJava.directory);
+          },
+          resetStorageValues: function() {
+            loadJson.serverConfig.minecraftJava.directory = path.join(app.getPath('userData'), 'minecraft-java');
             fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
           },
           selectDirectory: function(el) {
@@ -542,7 +655,7 @@
                 return;
               }
               el.target.value = selectedFile[0];
-              loadJson.directory = selectedFile[0];
+              loadJson.serverConfig.minecraftJava.directory = selectedFile[0];
               el.target.blur();
               fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
             });
