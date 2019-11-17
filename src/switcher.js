@@ -3,11 +3,8 @@ const path = require('path');
 const ddns = require('./ddns')
 const logger = require('./logger');
 logger.init();
-const winston = require('winston');
 
 exports.boot = function (config) {
-  // Handle DDNS Here
-
   if (!config.serverConfig) {
     config.serverConfig = {}
   }
@@ -47,7 +44,9 @@ exports.boot = function (config) {
     verifyPlayers: Joi.boolean().default(true),
     sendStats: Joi.boolean().default(false),
     viewDistance: Joi.number().integer().max(32).min(4).default(10),
-    maxPlayers: Joi.number().integer().min(1).default(20)
+    maxPlayers: Joi.number().integer().min(1).default(20),
+    minMem: Joi.string().valid('256M', '512M', '1G', '2G', '4G', '6G','8G').default('1G'),
+    minMem: Joi.string().valid('256M', '512M', '1G', '2G', '4G', '6G','8G').default('1G')
   });
 
   const terrariaJoi = Joi.object({
