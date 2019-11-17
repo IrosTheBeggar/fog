@@ -122,6 +122,14 @@
       };
     }
 
+    if (!('maxMem' in loadJson.serverConfig.minecraftJava)) {
+      loadJson.serverConfig.minecraftJava.maxMem = '1G';
+    }
+
+    if (!('minMem' in loadJson.serverConfig.minecraftJava)) {
+      loadJson.serverConfig.minecraftJava.minMem = '1G';
+    }
+
     if (!('difficulty' in loadJson.serverConfig.minecraftJava)) {
       loadJson.serverConfig.minecraftJava.difficulty = 'easy';
     }
@@ -136,6 +144,10 @@
 
     if (!('pvp' in loadJson.serverConfig.minecraftJava)) {
       loadJson.serverConfig.minecraftJava.pvp = true;
+    }
+
+    if (!('verifyPlayers' in loadJson.serverConfig.minecraftJava)) {
+      loadJson.serverConfig.minecraftJava.verifyPlayers = true;
     }
 
     if (!('maxPlayers' in loadJson.serverConfig.minecraftJava)) {
@@ -160,6 +172,44 @@
 
     if (!('flightMods' in loadJson.serverConfig.minecraftJava)) {
       loadJson.serverConfig.minecraftJava.flightMods = false;
+    }
+
+    if (!loadJson.serverConfig.minecraftBedrock) {
+      loadJson.serverConfig.minecraftBedrock = {
+        directory: path.join(app.getPath('userData'), 'minecraft-bedrock')
+      };
+    }
+
+    if (!('difficulty' in loadJson.serverConfig.minecraftBedrock)) {
+      loadJson.serverConfig.minecraftBedrock.difficulty = 'easy';
+    }
+
+    if (!('gameMode' in loadJson.serverConfig.minecraftBedrock)) {
+      loadJson.serverConfig.minecraftBedrock.gameMode = 'survival';
+    }
+
+    if (!('allowCheats' in loadJson.serverConfig.minecraftBedrock)) {
+      loadJson.serverConfig.minecraftBedrock.allowCheats = false;
+    }
+
+    if (!('verifyPlayers' in loadJson.serverConfig.minecraftBedrock)) {
+      loadJson.serverConfig.minecraftBedrock.verifyPlayers = true;
+    }
+
+    if (!('maxPlayers' in loadJson.serverConfig.minecraftBedrock)) {
+      loadJson.serverConfig.minecraftBedrock.maxPlayers = 20;
+    }
+
+    if (!('viewDistance' in loadJson.serverConfig.minecraftBedrock)) {
+      loadJson.serverConfig.minecraftBedrock.viewDistance = 10;
+    }
+
+    if (!('tickDistance' in loadJson.serverConfig.minecraftBedrock)) {
+      loadJson.serverConfig.minecraftBedrock.tickDistance = 4;
+    }
+
+    if (!('maxThreads' in loadJson.serverConfig.minecraftBedrock)) {
+      loadJson.serverConfig.minecraftBedrock.maxThreads = 8;
     }
 
     if (!loadJson.serverConfig.fileServer) {
@@ -481,14 +531,212 @@
         }
       });
 
+      const configViewMinecraftBedrock = Vue.component('config-view-minecraft-bedrock', {
+        data() {
+          return {
+            lJson: loadJson,
+            showError: process.platform === 'darwin',
+            selectInstance: null,
+            selectInstance2: null
+          };
+        },
+        template: `
+        <div>
+          <div class="row">
+            <div class="col s12">
+              <div v-show="showError" class="card">
+                <div class="row row-mod">
+                  <div class="section-header">ERROR: Not Available for OSX</div>
+                </div>  
+                <div class="row row-mod">
+                  <div class="col s12">
+                    <p>
+                      Minecraft Bedrock Edition is only available for Windows and Linux
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="row row-mod">
+                  <div class="section-header">Storage Directory</div>
+                </div>
+                <div class="row row-mod">
+                  <div class="col s12 port-form-container">
+                    <p>This directory is where your world data is stored. You can backup all your data by copying this folder</p>
+                    <br>
+                    <div class="input-field">
+                      <input v-on:click="selectDirectory($event)" v-model="lJson.serverConfig.minecraftBedrock.directory" @blur="updateConfig()" id="server-bedrock-folder" type="text" class="active" required />
+                      <label class="active" for="server-bedrock-folder">Storage Folder</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row row-mod clearfix">
+                  <a class="reset-defaults-link" href="#!" v-on:click="resetStorageValues" >Reset To Default</a>
+                  <br>
+                  <a class="reset-defaults-link" href="#!" v-on:click="openInExplorer" >Open In File Explorer</a>
+                </div>
+              </div>
+              <div class="card">
+                <div class="row row-mod">
+                  <div class="section-header">Gameplay Settings</div>
+                </div>
+                <div class="row row-mod">
+                  <div class="col s12">
+                    <div class="row">
+                      <div class="col m6 s12">
+                        <div class="input-field">
+                          <select @change="updateConfig()" v-model="lJson.serverConfig.minecraftBedrock.gameMode" id="minecraft-java-mode-select">
+                            <option value="" disabled>Game Modes</option>
+                            <option value="survival">Survival</option>
+                            <option value="creative">Creative</option>
+                            <option value="adventure">Adventure</option>
+                          </select>
+                          <label for="minecraft-java-mode-select">Game Mode</label>
+                        </div>
+                      </div>
+                      <div class="col m6 s12">
+                        <div class="input-field">
+                          <select @change="updateConfig()" v-model="lJson.serverConfig.minecraftBedrock.difficulty" id="minecraft-java-difficulty-select">
+                            <option value="" disabled>Game Difficulty</option>
+                            <option value="peaceful">Peaceful</option>
+                            <option value="easy">Easy</option>
+                            <option value="normal">Normal</option>
+                            <option value="hard">Hard</option>
+                          </select>
+                          <label for="minecraft-java-difficulty-select">Game Difficulty</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s12">
+                        <label class="input-field">
+                          <input v-model="lJson.serverConfig.minecraftBedrock.allowCheats" v-on:blur="updateConfig" type="checkbox" />
+                          <span>Allow Cheat Commands</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="row row-mod">
+                  <div class="section-header">Server Settings</div>
+                </div>
+                <div class="row row-mod">
+                  <div class="col s12 port-form-container">
+                    <div class="row">
+                      <div class="col m8 s12">
+                        <div class="input-field">
+                          <input v-model="lJson.serverConfig.minecraftBedrock.serverName" @blur="updateConfig()" id="minecraft-bedrock-server-name" type="text" class="active" required />
+                          <label class="active" for="minecraft-bedrock-server-name">Server Name</label>
+                        </div>
+                      </div>
+                      <div class="col m4 s12">
+                        <div class="input-field">
+                          <input v-model="lJson.serverConfig.minecraftBedrock.maxPlayers" @blur="updateConfig()" id="minecraft-bedrock-max-players" type="number" step="1" class="active" required />
+                          <label class="active" for="minecraft-bedrock-max-players">Max Players</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col m4 s12">
+                        <div class="input-field">
+                          <input v-model="lJson.serverConfig.minecraftBedrock.viewDistance" @blur="updateConfig()" id="minecraft-bedrock-view-distance" type="number" step="1" class="active" required min="3" max="32" />
+                          <label class="active" for="minecraft-bedrock-view-distance">View Distance</label>
+                          <span class="helper-text">
+                            <a href="#!" v-on:click="resetViewDist" >Reset</a>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col m4 s12">
+                        <div class="input-field">
+                          <input v-model="lJson.serverConfig.minecraftBedrock.maxThreads" @blur="updateConfig()" id="minecraft-bedrock-max-threads" type="number" step="1" class="active" required />
+                          <label class="active" for="minecraft-bedrock-max-threads">Max Threads</label>
+                          <span class="helper-text">
+                            <a href="#!" v-on:click="resetMaxThreads" >Reset</a>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col m4 s12">
+                        <div class="input-field">
+                          <input v-model="lJson.serverConfig.minecraftBedrock.tickDistance" @blur="updateConfig()" id="minecraft-bedrock-tick-distance" type="number" step="1" class="active" required min="3" max="32" />
+                          <label class="active" for="minecraft-bedrock-tick-distance">Tick Distance</label>
+                          <span class="helper-text">
+                            (4 - 12)
+                            <a href="#!" v-on:click="resetTickDist" >Reset</a>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s12">
+                        <label class="input-field">
+                          <input v-model="lJson.serverConfig.minecraftBedrock.verifyPlayers" v-on:blur="updateConfig" type="checkbox" />
+                          <span>Verify Connecting Players</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`,
+        mounted: function () {
+          this.selectInstance = M.FormSelect.init(document.querySelectorAll("#minecraft-java-mode-select"));
+          this.selectInstance2 = M.FormSelect.init(document.querySelectorAll("#minecraft-java-difficulty-select"));
+          M.updateTextFields();
+        },
+        beforeDestroy: function() {
+          this.selectInstance[0].destroy();
+          this.selectInstance2[0].destroy();
+        },
+        methods: {
+          updateConfig: function() {
+            fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+          },
+          resetStorageValues: function() {
+            loadJson.serverConfig.minecraftBedrock.directory = path.join(app.getPath('userData'), 'minecraft-bedrock');
+            fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+          },
+          resetViewDist: function() {
+            loadJson.serverConfig.minecraftBedrock.viewDistance = 10;
+            fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+          },
+          resetTickDist: function() {
+            loadJson.serverConfig.minecraftBedrock.tickDistance = 4;
+            fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+          },
+          resetMaxThreads: function() {
+            loadJson.serverConfig.minecraftBedrock.maxThreads = 8;
+            fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+          },
+          openInExplorer: function() {
+            shell.showItemInFolder(loadJson.serverConfig.minecraftBedrock.directory);
+          },
+          selectDirectory: function(el) {
+            dialog.showOpenDialog({properties: ['openDirectory']}, (selectedFile) => {
+              if(selectedFile.length === 0){
+                return;
+              }
+              el.target.value = selectedFile[0];
+              loadJson.serverConfig.minecraftBedrock.directory = selectedFile[0];
+              el.target.blur();
+              fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+            });
+          }
+        }
+      });
+
       const configViewMinecraft = Vue.component('config-view-minecraft', {
         data() {
           return {
             showError: javaError,
             lJson: loadJson,
             selectInstance: null,
-            selectInstance2: null
-
+            selectInstance2: null,
+            selectInstance3: null,
+            selectInstance4: null
           };
         },
         template: `
@@ -575,13 +823,13 @@
                         <div class="col m6 s12">
                           <label class="input-field">
                             <input v-model="lJson.serverConfig.minecraftJava.hardcoreMode" v-on:blur="updateConfig" type="checkbox" />
-                            <span>Hardcore Mode Enabled</span>
+                            <span>Hardcore Mode</span>
                           </label>
                         </div>
                         <div class="col m6 s12">
                           <label class="input-field">
                             <input v-model="lJson.serverConfig.minecraftJava.flightMods" v-on:blur="updateConfig" type="checkbox" />
-                            <span>Enable Flight Mods</span>
+                            <span>Allow Flight Mods</span>
                           </label>
                         </div>
                       </div>
@@ -597,8 +845,9 @@
                       <div class="row">
                         <div class="col s12">
                           <div class="input-field">
-                            <input v-model="lJson.serverConfig.minecraftJava.serverMessage" @blur="updateConfig()" id="minecraft-java-message" type="text" class="active" required />
+                            <input v-model="lJson.serverConfig.minecraftJava.serverMessage" @blur="updateConfig()" id="minecraft-java-message" type="text" class="active" required maxlength="59" />
                             <label class="active" for="minecraft-java-message">Server Message</label>
+                            <span class="helper-text">59 Character Limit</span>
                           </div>
                         </div>
                       </div>
@@ -611,13 +860,25 @@
                         </div>
                         <div class="col m6 s12">
                           <div class="input-field">
-                            <input v-model="lJson.serverConfig.minecraftJava.viewDistance" @blur="updateConfig()" id="minecraft-java-view-distance" type="number" step="1" class="active" required />
+                            <input v-model="lJson.serverConfig.minecraftJava.viewDistance" @blur="updateConfig()" id="minecraft-java-view-distance" type="number" step="1" class="active" required min="3" max="32" />
                             <label class="active" for="minecraft-java-view-distance">View Distance</label>
+                            <span class="helper-text">
+                              (3 - 32)
+                              <a href="#!" v-on:click="resetViewDist" >Reset</a>
+                            </span>
                           </div>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col m6 s12">
+                        <div class="col s12">
+                          <label class="input-field">
+                            <input v-model="lJson.serverConfig.minecraftJava.verifyPlayers" v-on:blur="updateConfig" type="checkbox" />
+                            <span>Verify Connecting Players</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col s12">
                           <label class="input-field">
                             <input v-model="lJson.serverConfig.minecraftJava.sendStats" v-on:blur="updateConfig" type="checkbox" />
                             <span>Send Stats To Mojang</span>
@@ -627,19 +888,80 @@
                     </div>
                   </div>
                 </div>
+                <div class="card">
+                  <div class="row row-mod">
+                    <div class="section-header">Java Settings</div>
+                  </div>
+                  <div class="row row-mod">
+                    <div class="col s12 port-form-container">
+                      <div class="row">
+                        <div class="col m6 s12">
+                          <div class="input-field">
+                            <select @change="updateJavaSettings()" v-model="lJson.serverConfig.minecraftJava.minMem" id="minecraft-java-min-mem">
+                              <option value="256M">0.25 GB</option>
+                              <option value="512M">0.5 GB</option>
+                              <option value="1G">1 GB</option>
+                              <option value="2G">2 GB</option>
+                              <option value="4G">4 GB</option>
+                              <option value="6G">6 GB</option>
+                              <option value="8G">8 GB</option>
+                            </select>
+                            <label for="minecraft-java-min-mem">Min Mem</label>
+                          </div>
+                        </div>
+                        <div class="col m6 s12">
+                          <div class="input-field">
+                            <select @change="updateJavaSettings()" v-model="lJson.serverConfig.minecraftJava.maxMem" id="minecraft-java-max-mem">
+                              <option value="256M">0.25 GB</option>
+                              <option value="512M">0.5 GB</option>
+                              <option value="1G">1 GB</option>
+                              <option value="2G">2 GB</option>
+                              <option value="4G">4 GB</option>
+                              <option value="6G">6 GB</option>
+                              <option value="8G">8 GB</option>
+                            </select>
+                            <label for="minecraft-java-max-mem">Max Mem</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row row-mod clearfix">
+                    <a class="reset-defaults-link" href="#!" v-on:click="resetJavaSettings" >Reset To Default</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>`,
         mounted: function () {
           this.selectInstance = M.FormSelect.init(document.querySelectorAll("#minecraft-java-mode-select"));
           this.selectInstance2 = M.FormSelect.init(document.querySelectorAll("#minecraft-java-difficulty-select"));
+          this.selectInstance3 = M.FormSelect.init(document.querySelectorAll("#minecraft-java-min-mem"));
+          this.selectInstance4 = M.FormSelect.init(document.querySelectorAll("#minecraft-java-max-mem"));
+          M.updateTextFields();
         },
         beforeDestroy: function() {
           this.selectInstance[0].destroy();
           this.selectInstance2[0].destroy();
+          this.selectInstance3[0].destroy();
+          this.selectInstance4[0].destroy();
         },
         methods: {
           updateConfig: function() {
+            fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+          },
+          updateJavaSettings: function() {
+            let minMem = loadJson.serverConfig.minecraftJava.minMem.slice(0,-1);
+            let maxMem = loadJson.serverConfig.minecraftJava.maxMem.slice(0,-1);
+            if (loadJson.serverConfig.minecraftJava.minMem.slice(-1) === 'M') { minMem = minMem/1000 }
+            if (loadJson.serverConfig.minecraftJava.maxMem.slice(-1) === 'M') { maxMem = maxMem/1000 }
+
+            if (maxMem < minMem) {
+              loadJson.serverConfig.minecraftJava.maxMem = loadJson.serverConfig.minecraftJava.minMem;
+              this.selectInstance4[0].input.value = loadJson.serverConfig.minecraftJava.maxMem;
+              this.selectInstance4[0].el.value = loadJson.serverConfig.minecraftJava.maxMem;
+            }
+
             fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
           },
           openInExplorer: function() {
@@ -647,6 +969,19 @@
           },
           resetStorageValues: function() {
             loadJson.serverConfig.minecraftJava.directory = path.join(app.getPath('userData'), 'minecraft-java');
+            fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+          },
+          resetViewDist: function() {
+            loadJson.serverConfig.minecraftJava.viewDistance = 10;
+            fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+          },
+          resetJavaSettings: function() {
+            loadJson.serverConfig.minecraftJava.maxMem = '1G';
+            loadJson.serverConfig.minecraftJava.minMem = '1G';
+            this.selectInstance4[0].input.value = '1G';
+            this.selectInstance4[0].el.value = '1G';
+            this.selectInstance3[0].input.value = '1G';
+            this.selectInstance3[0].el.value = '1G';
             fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
           },
           selectDirectory: function(el) {
@@ -952,6 +1287,7 @@
           'config-view-file': configViewFile,
           'config-view-bitwarden': configViewBitwarden,
           'config-view-minecraft': configViewMinecraft,
+          'config-view-minecraft-bedrock': configViewMinecraftBedrock,
           'auto-dns-view': autoDnsView,
           'about-view': aboutView
         },
@@ -977,6 +1313,8 @@
 
         switch (loadJson.server) {
           case 'minecraft-bedrock':
+            vm.currentViewMain = 'config-view-minecraft-bedrock';
+            break;
           case 'minecraft-java':
             vm.currentViewMain = 'config-view-minecraft';
             break;

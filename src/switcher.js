@@ -23,7 +23,16 @@ exports.boot = function (config) {
   });
 
   const minecraftBedrockJoi = Joi.object({
-    directory: Joi.string().default(path.join(__dirname, '../servers/minecraft-bedrock'))
+    directory: Joi.string().default(path.join(__dirname, '../servers/minecraft-bedrock')),
+    gameMode: Joi.string().valid('survival', 'creative', 'adventure').default('adventure'),
+    difficulty: Joi.string().valid('peaceful', 'easy', 'normal', 'hard').default('easy'),
+    viewDistance: Joi.number().integer().max(32).min(4).default(10),
+    verifyPlayers: Joi.boolean().default(true),
+    allowCheats: Joi.boolean().default(false),
+    maxPlayers: Joi.number().integer().min(1).default(20),
+    tickDistance: Joi.number().integer().max(12).min(4).default(4),
+    maxThreads: Joi.number().integer().min(0).default(8),
+    viewDistance: Joi.number().integer().min(2).default(10)
   });
 
   const minecraftJavaJoi = Joi.object({
@@ -35,9 +44,10 @@ exports.boot = function (config) {
     flightMods: Joi.boolean().default(false),
     commandBlocks: Joi.boolean().default(false),
     hardcoreMode: Joi.boolean().default(false),
+    verifyPlayers: Joi.boolean().default(true),
     sendStats: Joi.boolean().default(false),
     viewDistance: Joi.number().integer().max(32).min(4).default(10),
-    maxPlayers: Joi.number().integer().min(2).default(20)
+    maxPlayers: Joi.number().integer().min(1).default(20)
   });
 
   const terrariaJoi = Joi.object({
