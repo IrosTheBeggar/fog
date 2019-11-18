@@ -1022,7 +1022,7 @@
                       <br>
                       <div class="input-field">
                         <input placeholder="Click To Select Directory" v-on:click="selectDirectory($event)" v-model="lJson.serverConfig.fileServer.directory" @blur="updateConfig()" id="file-server-folder" type="text" class="active" required />
-                        <label class="active" for="file-server-folder">Logs Folder</label>
+                        <label class="active" for="file-server-folder">Web Folder</label>
                       </div>
                     </div>
                   </div>
@@ -1418,12 +1418,7 @@
             throw new Error('Unknown Server');
         }
 
-        console.log(configKey);
-        console.log(loadJson.serverConfig[configKey]);
-        console.log(configViewName);
-
         const { error } = joiVal.validate(loadJson.serverConfig[configKey], { allowUnknown: true });
-        console.log(error);
         if (error) {
           iziToast.warning({
             title: 'Validation Failed',
@@ -1464,6 +1459,12 @@
               rpnLink += '<div>Your server is available online at: <a href="https://'+loadJson.ddns.url+'">https://' + loadJson.ddns.url + '</a></div>';
             }
 
+            // Bitwarden Link
+            let bitwardenAdminLink = '';
+            if (loadJson.server === 'bitwarden') {
+              bitwardenAdminLink += `<div>Bitwarden Admin panel: <a href="http://localhost:${loadJson.port}/admin">http://localhost:${loadJson.port}/admin</a></div>`;
+            }
+
             const localhostAdd = 'http://localhost:' + loadJson.port;
             document.getElementById("post-boot-content").innerHTML = `<div class="row">
               <div class="col s12">
@@ -1472,6 +1473,8 @@
                     <div>This window will automatically close in <span id="countdown">30</span> seconds to save on memory</div>
                     <br>
                     <div>Test your server locally at: <a href="${localhostAdd}">${localhostAdd}</a></div>
+                    ${bitwardenAdminLink}
+                    <br>
                     ${rpnLink}
                   </div>
                 </div>

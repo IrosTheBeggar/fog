@@ -162,8 +162,8 @@ function bootServer(program) {
     },
     { label: 'Links', submenu: [
       {
-        label: 'http://localhost:' + program.port, click: () => {
-          shell.openExternal('http://localhost:' + program.port)
+        label: `http://localhost:${program.port}`, click: () => {
+          shell.openExternal(`http://localhost:${program.port}`)
         }
       }
     ] },
@@ -194,8 +194,17 @@ function bootServer(program) {
     }
   ];
 
+  if (program.server === 'bitwarden') {
+    trayTemplate[4].submenu.push({
+      label: `http://localhost:${program.port}/admin`, click: () => {
+        shell.openExternal(`http://localhost:${program.port}/admin`)
+      }
+    });
+  }
+
   // Check if Auto DNS is logged in
-  if(program.ddns.tested === true) {
+  if (program.ddns.tested === true) {
+    trayTemplate[4].submenu.push({ type: 'separator' });
     trayTemplate[4].submenu.push({
       label: 'https://' + program.ddns.url, click: () => {
         shell.openExternal('https://' + program.ddns.url)
