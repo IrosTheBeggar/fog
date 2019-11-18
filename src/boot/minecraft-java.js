@@ -64,6 +64,7 @@ exports.boot = function (program) {
     file = file.replace(/snooper-enabled=.*/g, `snooper-enabled=${program.serverConfig.minecraftJava.sendStats}`);
     file = file.replace(/view-distance=.*/g, `view-distance=${program.serverConfig.minecraftJava.viewDistance}`);
     file = file.replace(/max-players=.*/g, `max-players=${program.serverConfig.minecraftJava.maxPlayers}`);
+    file = file.replace(/online-mode=.*/g, `online-mode=${program.serverConfig.minecraftJava.verifyPlayers}`);
 
     fs.writeFileSync(path.join(program.serverConfig.minecraftJava.directory, 'server.properties'), file, 'utf-8');
 

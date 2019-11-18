@@ -171,7 +171,7 @@ ul.left-nav-menu li.left-nav-selected {
   padding-bottom: 10px;
 }
 
-#server-port {
+.right-align {
   text-align: right;
 }
 

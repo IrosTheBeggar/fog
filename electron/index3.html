@@ -70,7 +70,9 @@
     const axios = require('axios');
     const path = require('path');
     const fs = require('fs');
-    const shell = require('electron').shell
+    const Joi = require('@hapi/joi');
+    const shell = require('electron').shell;
+    const validation = require('../src/validation');
 
     const apiEndpoint = 'https://api.mstream.io';
     const configFile = path.join(app.getPath('userData'), 'save/server-config.json');
@@ -400,7 +402,7 @@
                   <div class="row row-mod">
                     <div class="col s12 port-form-container">
                       <div class="input-field">
-                        <input v-model="lJson.port" @blur="updateConfig()" id="server-port" type="number" class="validate" min="1" max="65535" step="1" required />
+                        <input v-model="lJson.port" @blur="updateConfig()" id="server-port" type="number" class="validate right-align" min="1" max="65535" step="1" required />
                         <label for="server-port">Port #</label>
                       </div>
                     </div>
@@ -447,7 +449,7 @@
                       <p>This directory holds your database and encryption keys. You can backup all your data by copying this folder</p>
                       <br>
                       <div class="input-field">
-                        <input v-on:click="selectDirectory($event)" v-model="lJson.serverConfig.bitwarden.directory" @blur="updateConfig()" id="server-bitwarden-folder" type="text" class="active" required />
+                        <input placeholder="Click To Select Directory" v-on:click="selectDirectory($event)" v-model="lJson.serverConfig.bitwarden.directory" @blur="updateConfig()" id="server-bitwarden-folder" type="text" class="active" required />
                         <label class="active" for="server-bitwarden-folder">Select Directory</label>
                       </div>
                     </div>
@@ -565,7 +567,7 @@
                     <p>This directory is where your world data is stored. You can backup all your data by copying this folder</p>
                     <br>
                     <div class="input-field">
-                      <input v-on:click="selectDirectory($event)" v-model="lJson.serverConfig.minecraftBedrock.directory" @blur="updateConfig()" id="server-bedrock-folder" type="text" class="active" required />
+                      <input placeholder="Click To Select Directory" v-on:click="selectDirectory($event)" v-model="lJson.serverConfig.minecraftBedrock.directory" @blur="updateConfig()" id="server-bedrock-folder" type="text" class="active" required />
                       <label class="active" for="server-bedrock-folder">Storage Folder</label>
                     </div>
                   </div>
@@ -633,7 +635,7 @@
                       </div>
                       <div class="col m4 s12">
                         <div class="input-field">
-                          <input v-model="lJson.serverConfig.minecraftBedrock.maxPlayers" @blur="updateConfig()" id="minecraft-bedrock-max-players" type="number" step="1" class="active" required />
+                          <input v-model="lJson.serverConfig.minecraftBedrock.maxPlayers" @blur="updateConfig()" id="minecraft-bedrock-max-players" type="number" step="1" class="active right-align" required />
                           <label class="active" for="minecraft-bedrock-max-players">Max Players</label>
                         </div>
                       </div>
@@ -641,27 +643,27 @@
                     <div class="row">
                       <div class="col m4 s12">
                         <div class="input-field">
-                          <input v-model="lJson.serverConfig.minecraftBedrock.viewDistance" @blur="updateConfig()" id="minecraft-bedrock-view-distance" type="number" step="1" class="active" required min="3" max="32" />
+                          <input v-model="lJson.serverConfig.minecraftBedrock.viewDistance" @blur="updateConfig()" id="minecraft-bedrock-view-distance" type="number" step="1" class="active right-align" required min="3" max="32" />
                           <label class="active" for="minecraft-bedrock-view-distance">View Distance</label>
-                          <span class="helper-text">
+                          <span class="helper-text right-align">
                             <a href="#!" v-on:click="resetViewDist" >Reset</a>
                           </span>
                         </div>
                       </div>
                       <div class="col m4 s12">
                         <div class="input-field">
-                          <input v-model="lJson.serverConfig.minecraftBedrock.maxThreads" @blur="updateConfig()" id="minecraft-bedrock-max-threads" type="number" step="1" class="active" required />
+                          <input v-model="lJson.serverConfig.minecraftBedrock.maxThreads" @blur="updateConfig()" id="minecraft-bedrock-max-threads" type="number" step="1" class="active right-align" required />
                           <label class="active" for="minecraft-bedrock-max-threads">Max Threads</label>
-                          <span class="helper-text">
+                          <span class="helper-text right-align">
                             <a href="#!" v-on:click="resetMaxThreads" >Reset</a>
                           </span>
                         </div>
                       </div>
                       <div class="col m4 s12">
                         <div class="input-field">
-                          <input v-model="lJson.serverConfig.minecraftBedrock.tickDistance" @blur="updateConfig()" id="minecraft-bedrock-tick-distance" type="number" step="1" class="active" required min="3" max="32" />
+                          <input v-model="lJson.serverConfig.minecraftBedrock.tickDistance" @blur="updateConfig()" id="minecraft-bedrock-tick-distance" type="number" step="1" class="active right-align" required min="3" max="32" />
                           <label class="active" for="minecraft-bedrock-tick-distance">Tick Distance</label>
-                          <span class="helper-text">
+                          <span class="helper-text right-align">
                             (4 - 12)
                             <a href="#!" v-on:click="resetTickDist" >Reset</a>
                           </span>
@@ -728,7 +730,7 @@
         }
       });
 
-      const configViewMinecraft = Vue.component('config-view-minecraft', {
+      const configViewMinecraft = Vue.component('config-view-minecraft-java', {
         data() {
           return {
             showError: javaError,
@@ -762,7 +764,7 @@
                       <p>This directory is where your world data is stored. You can backup all your data by copying this folder</p>
                       <br>
                       <div class="input-field">
-                        <input v-on:click="selectDirectory($event)" v-model="lJson.serverConfig.minecraftJava.directory" @blur="updateConfig()" id="server-logs-folder" type="text" class="active" required />
+                        <input placeholder="Click To Select Directory" v-on:click="selectDirectory($event)" v-model="lJson.serverConfig.minecraftJava.directory" @blur="updateConfig()" id="server-logs-folder" type="text" class="active" required />
                         <label class="active" for="server-logs-folder">Storage Folder</label>
                       </div>
                     </div>
@@ -854,15 +856,15 @@
                       <div class="row">
                         <div class="col m6 s12">
                           <div class="input-field">
-                            <input v-model="lJson.serverConfig.minecraftJava.maxPlayers" @blur="updateConfig()" id="minecraft-java-max-players" type="number" step="1" class="active" required />
+                            <input v-model="lJson.serverConfig.minecraftJava.maxPlayers" @blur="updateConfig()" id="minecraft-java-max-players" type="number" step="1" class="active right-align" required />
                             <label class="active" for="minecraft-java-max-players">Max Players</label>
                           </div>
                         </div>
                         <div class="col m6 s12">
                           <div class="input-field">
-                            <input v-model="lJson.serverConfig.minecraftJava.viewDistance" @blur="updateConfig()" id="minecraft-java-view-distance" type="number" step="1" class="active" required min="3" max="32" />
+                            <input v-model="lJson.serverConfig.minecraftJava.viewDistance" @blur="updateConfig()" id="minecraft-java-view-distance" type="number" step="1" class="active right-align" required min="3" max="32" />
                             <label class="active" for="minecraft-java-view-distance">View Distance</label>
-                            <span class="helper-text">
+                            <span class="helper-text right-align">
                               (3 - 32)
                               <a href="#!" v-on:click="resetViewDist" >Reset</a>
                             </span>
@@ -973,6 +975,7 @@
           },
           resetViewDist: function() {
             loadJson.serverConfig.minecraftJava.viewDistance = 10;
+            document.getElementById('minecraft-java-view-distance').blur();
             fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
           },
           resetJavaSettings: function() {
@@ -1018,7 +1021,7 @@
                       <p>Select your folder or choose from an example below</p>
                       <br>
                       <div class="input-field">
-                        <input v-on:click="selectDirectory($event)" v-model="lJson.serverConfig.fileServer.directory" @blur="updateConfig()" id="file-server-folder" type="text" class="active" required />
+                        <input placeholder="Click To Select Directory" v-on:click="selectDirectory($event)" v-model="lJson.serverConfig.fileServer.directory" @blur="updateConfig()" id="file-server-folder" type="text" class="active" required />
                         <label class="active" for="file-server-folder">Logs Folder</label>
                       </div>
                     </div>
@@ -1286,7 +1289,7 @@
           'boot-view': bootView,
           'config-view-file': configViewFile,
           'config-view-bitwarden': configViewBitwarden,
-          'config-view-minecraft': configViewMinecraft,
+          'config-view-minecraft-java': configViewMinecraft,
           'config-view-minecraft-bedrock': configViewMinecraftBedrock,
           'auto-dns-view': autoDnsView,
           'about-view': aboutView
@@ -1316,7 +1319,7 @@
             vm.currentViewMain = 'config-view-minecraft-bedrock';
             break;
           case 'minecraft-java':
-            vm.currentViewMain = 'config-view-minecraft';
+            vm.currentViewMain = 'config-view-minecraft-java';
             break;
           case 'bitwarden':
             vm.currentViewMain = 'config-view-bitwarden';
@@ -1325,7 +1328,6 @@
             vm.currentViewMain = 'config-view-file';
         }
 
-        // vm.currentViewMain = 'config-view';
         resetNav(this);
       }
 
@@ -1385,6 +1387,51 @@
             position: 'topCenter',
             timeout: 4000
           });
+          return;
+        }
+
+        let joiVal;
+        let configKey;
+        let configViewName;
+        switch (loadJson.server) {
+          case 'file':
+            configKey = 'fileServer';
+            joiVal = validation.fileServer();
+            configViewName = 'config-view-file';
+            break;
+          case 'minecraft-java':
+            configKey = 'minecraftJava';
+            joiVal = validation.minecraftJava();
+            configViewName = 'config-view-minecraft-java';
+            break;
+          case 'minecraft-bedrock':
+            configKey = 'minecraftBedrock';
+            joiVal = validation.minecraftBedrock();
+            configViewName = 'config-view-minecraft-bedrock';
+            break;
+          case 'bitwarden':
+            configKey = 'bitwarden';
+            joiVal = validation.bitwarden();
+            configViewName = 'config-view-bitwarden';
+            break;
+          default:
+            throw new Error('Unknown Server');
+        }
+
+        console.log(configKey);
+        console.log(loadJson.serverConfig[configKey]);
+        console.log(configViewName);
+
+        const { error } = joiVal.validate(loadJson.serverConfig[configKey], { allowUnknown: true });
+        console.log(error);
+        if (error) {
+          iziToast.warning({
+            title: 'Validation Failed',
+            position: 'topCenter',
+            timeout: 3500
+          });
+          resetNav(document.getElementById("nav-config"));
+          vm.currentViewMain = configViewName;
           return;
         }
 
