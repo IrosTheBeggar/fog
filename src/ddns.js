@@ -7,7 +7,7 @@ const { spawn } = require('child_process');
 const eol = os.EOL;
 
 var spawnedTunnel;
-const apiEndpoint = 'http://localhost:2022';
+const apiEndpoint = 'https://api.fog.fm';
 const platform = os.platform();
 const osMap = {
   "win32": "fogmachine-ddns-win.exe",
