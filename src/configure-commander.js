@@ -15,6 +15,7 @@ exports.setup = function (args) {
     // RPN Login
     .option('-u, --user <user>', 'Set Username')
     .option('-x, --password <password>', 'Set Password')
+    .option('-c, --domain <domain>', 'Set Default Domain (only needed if you have multiple domains')
 
     .parse(args);  
 
@@ -35,13 +36,14 @@ exports.setup = function (args) {
     program3.ddns = {
       email: program.user,
       password: program.password,
+      chosenDomain: program.domain,
       iniFile: path.join(__dirname, '../frp/frpc.ini')
     };
   }
 
   // LOL
+  program3.serverConfig = { bitwarden: {}, fileServer: {}, minecraftBedrock: {}, minecraftJava: {}, terraria: {} };
   if (program.directory) {
-    program3.serverConfig = {};
     program3.serverConfig.bitwarden.directory = program.directory;
     program3.serverConfig.fileServer.directory = program.directory;
     program3.serverConfig.minecraftBedrock.directory = program.directory;

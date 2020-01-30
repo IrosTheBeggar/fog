@@ -83,7 +83,7 @@
     }
   },
   "dependencies": {
-    "@hapi/joi": "^16.1.7",
+    "@hapi/joi": "^17.1.0",
     "adm-zip": "^0.4.13",
     "auto-launch": "^5.0.5",
     "axios": "^0.19.2",

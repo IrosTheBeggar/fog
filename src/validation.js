@@ -22,7 +22,7 @@ const bitwardenJoi = Joi.object({
 });
 
 const fileServerJoi = Joi.object({
-  directory: Joi.string().default(path.join(__dirname, '../servers/file-server/examples/blog')).required()
+  directory: Joi.string().default(path.join(__dirname, '../servers/file-server/examples/blog'))
 });
 
 const minecraftBedrockJoi = Joi.object({
