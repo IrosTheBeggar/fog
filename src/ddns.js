@@ -75,6 +75,7 @@ async function login(program) {
     }
 
   } catch (err) {
+    console.log(err)
     winston.error('Login to Auto DNS Failed');
     winston.error(err);
     return;
