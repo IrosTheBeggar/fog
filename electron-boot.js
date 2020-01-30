@@ -203,11 +203,11 @@ function bootServer(program) {
   }
 
   // Check if Auto DNS is logged in
-  if (program.ddns.tested === true) {
+  if (program.ddns.tested === true && program.ddns.domains.length > 0) {
     trayTemplate[4].submenu.push({ type: 'separator' });
     trayTemplate[4].submenu.push({
-      label: 'https://' + program.ddns.url, click: () => {
-        shell.openExternal('https://' + program.ddns.url)
+      label: 'https://' + program.ddns.chosenDomain, click: () => {
+        shell.openExternal('https://' + program.ddns.chosenDomain)
       }
     });
   }

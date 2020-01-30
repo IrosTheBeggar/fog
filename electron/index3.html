@@ -1513,8 +1513,8 @@
 
             // RPN Link
             let rpnLink = '';
-            if (loadJson.ddns.tested === true) {
-              rpnLink += '<div>Your server is available online at: <a href="https://'+loadJson.ddns.url+'">https://' + loadJson.ddns.url + '</a></div>';
+            if (loadJson.ddns.tested === true && loadJson.ddns.domains.length > 0) {
+              rpnLink += '<div>Your server is available online at: <a href="https://'+loadJson.ddns.chosenDomain+'">https://' + loadJson.ddns.chosenDomain + '</a></div>';
             }
 
             // Bitwarden Link
