@@ -56,7 +56,6 @@ async function login(program) {
       responseType: 'json'
     });
 
-
     if (configRes.data.domains.length === 0) {
       winston.error('RPN ERROR: No domains found for account');
       throw new Error('No domains found for account');
@@ -83,7 +82,12 @@ async function login(program) {
 
   // write config file for FRP
   try {
-    const iniString = `[common]${eol}server_addr = ${info.fullDomain}${eol}server_port = ${info.bindPort}${eol}token = ${info.tunnelPassword}${eol}${eol}[web]${eol}type = http${eol}local_ip = 127.0.0.1${eol}custom_domains = ${info.fullDomain}${eol}local_port = ${program.port}`;
+    let iniString = `[common]${eol}server_addr = ${info.fullDomain}${eol}server_port = ${info.bindPort}${eol}token = ${info.tunnelPassword}${eol}${eol}[web]${eol}type = http${eol}local_ip = 127.0.0.1${eol}custom_domains = ${info.fullDomain}${eol}local_port = ${program.port}`;
+    if (program.server === 'minecraft-java') {
+      iniString = `[common]${eol}server_addr = ${info.fullDomain}${eol}server_port = ${info.bindPort}${eol}token = ${info.tunnelPassword}${eol}${eol}[web]${eol}type = tcp${eol}local_ip = 127.0.0.1${eol}${eol}local_port = ${program.port}${eol}remote_port = ${info.rawPort}`;
+    } else if (program.server === 'minecraft-bedrock') {
+      iniString = `[common]${eol}server_addr = ${info.fullDomain}${eol}server_port = ${info.bindPort}${eol}token = ${info.tunnelPassword}${eol}${eol}[web]${eol}type = udp${eol}local_ip = 127.0.0.1${eol}${eol}local_port = ${program.port}${eol}remote_port = ${info.rawPort}`;
+    }
     fs.writeFileSync(program.ddns.iniFile, iniString);
   } catch(err) {
     winston.error('Failed to write FRP ini');
@@ -98,7 +102,7 @@ async function login(program) {
 function bootReverseProxy(program, info) {
   if(spawnedTunnel) {
     winston.warn('Auto DNS: Tunnel already setup');
-    return;
+    // return;
   }
 
   try {
@@ -108,11 +112,11 @@ function bootReverseProxy(program, info) {
     });
 
     spawnedTunnel.stdout.on('data', (data) => {
-      // console.log(`stdout: ${data}`);
+      console.log(`stdout: ${data}`);
     });
     
     spawnedTunnel.stderr.on('data', (data) => {
-      // console.log(`stderr: ${data}`);
+      console.log(`stderr: ${data}`);
     });
 
     spawnedTunnel.on('close', (code) => {

@@ -64,7 +64,7 @@
 
   <script>
     const remote = require('electron').remote;
-    const { ipcRenderer, clipboard  } = require('electron');
+    const { ipcRenderer, clipboard } = require('electron');
     const app = remote.app;
     const dialog = remote.require('electron').dialog;
     const axios = require('axios');
@@ -240,6 +240,7 @@
 
     if (!loadJson.ddns.domains) {
       loadJson.ddns.domains = [];
+      loadJson.ddns.portMap = {};
     }
 
 
@@ -274,8 +275,10 @@
         });
 
         loadJson.ddns.domains = [];
+        loadJson.ddns.portMap = {};
         configRes.data.domains.forEach(el => {
           loadJson.ddns.domains.push(el.fullDomain);
+          loadJson.ddns.portMap[el.fullDomain] = el.rawPort;
         });
 
         // Set the default domain
@@ -1514,7 +1517,7 @@
             // RPN Link
             let rpnLink = '';
             if (loadJson.ddns.tested === true && loadJson.ddns.domains.length > 0) {
-              rpnLink += '<div>Your server is available online at: <a href="https://'+loadJson.ddns.chosenDomain+'">https://' + loadJson.ddns.chosenDomain + '</a></div>';
+              rpnLink += `<div>Your server is available online at: <a href="https://${loadJson.ddns.chosenDomain}">https://${loadJson.ddns.chosenDomain}</a></div>`;
             }
 
             // Bitwarden Link
@@ -1524,13 +1527,21 @@
             }
 
             const localhostAdd = 'http://localhost:' + loadJson.port;
+            let stuffString = `<div>Test your server locally at: <a href="${localhostAdd}">${localhostAdd}</a></div>`;
+            if (loadJson.server === 'minecraft-java' || loadJson.server === 'minecraft-bedrock' || loadJson.server === 'terraria') {
+              stuffString = `<div>Your game server can be accessed locally at: <b>localhost:${loadJson.port}</b></div>`;
+              if (loadJson.ddns.tested === true && loadJson.ddns.domains.length > 0) {
+                rpnLink = `<div>Your server is available online at: <b>${loadJson.ddns.chosenDomain}:${loadJson.ddns.portMap[loadJson.ddns.chosenDomain]}</b></div>`;
+              }
+            }
+
             document.getElementById("post-boot-content").innerHTML = `<div class="row">
               <div class="col s12">
                 <div class="card">
                   <div class="about-content-section">
                     <div>This window will automatically close in <span id="countdown">30</span> seconds to save on memory</div>
                     <br>
-                    <div>Test your server locally at: <a href="${localhostAdd}">${localhostAdd}</a></div>
+                    ${stuffString}
                     ${bitwardenAdminLink}
                     <br>
                     ${rpnLink}

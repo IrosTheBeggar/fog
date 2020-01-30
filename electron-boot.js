@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, Tray, Menu, dialog, shell } = require('electron');
+const { app, BrowserWindow, ipcMain, Tray, Menu, dialog, shell, clipboard } = require('electron');
 const fs = require('fs');
 const fe = require('path');
 const os = require('os');
@@ -206,10 +206,32 @@ function bootServer(program) {
   if (program.ddns.tested === true && program.ddns.domains.length > 0) {
     trayTemplate[4].submenu.push({ type: 'separator' });
     trayTemplate[4].submenu.push({
-      label: 'https://' + program.ddns.chosenDomain, click: () => {
-        shell.openExternal('https://' + program.ddns.chosenDomain)
+      label: `https://${program.ddns.chosenDomain}`, click: () => {
+        shell.openExternal(`https://${program.ddns.chosenDomain}`)
       }
     });
+  }
+
+  if (program.server === 'minecraft-java' || program.server === 'minecraft-bedrock' || program.server === 'terraria') {
+    trayTemplate[4].submenu = [];
+    trayTemplate[4].submenu.push({
+      label: 'Click to copy to clipboard', enabled: false
+    });
+    trayTemplate[4].submenu.push({ type: 'separator' });
+
+    trayTemplate[4].submenu.push({
+      label: `localhost:${program.port}`, click: () => {
+        clipboard.writeText(`localhost:${program.port}`);
+      }
+    });
+
+    if (program.ddns.tested === true && program.ddns.domains.length > 0) {
+      trayTemplate[4].submenu.push({
+        label: `${program.ddns.chosenDomain}:${program.ddns.portMap[program.ddns.chosenDomain]}`, click: () => {
+          clipboard.writeText(`${program.ddns.chosenDomain}:${program.ddns.portMap[program.ddns.chosenDomain]}`);
+        }
+      });
+    }
   }
 
   // Create Tray Icon

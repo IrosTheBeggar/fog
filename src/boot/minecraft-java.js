@@ -97,7 +97,7 @@ function bootServer(bootPath) {
       setTimeout(() => {
         winston.info('Rebooting Server...');
         delete spawnedServer;
-        bootServer(program);
+        bootServer(bootPath);
       }, 4000);
     });
 
