@@ -7,7 +7,7 @@ const { spawn } = require('child_process');
 const eol = os.EOL;
 
 var spawnedTunnel;
-const apiEndpoint = 'https://api.mstream.io';
+const apiEndpoint = 'http://localhost:2022';
 const platform = os.platform();
 const osMap = {
   "win32": "fogmachine-ddns-win.exe",
@@ -55,16 +55,35 @@ async function login(program) {
       headers: { 'x-access-token': loginRes.data.token, 'accept': 'application/json' },
       responseType: 'json'
     });
-    info = configRes.data;
+
+
+    if (configRes.data.domains.length === 0) {
+      winston.error('RPN ERROR: No domains found for account');
+      throw new Error('No domains found for account');
+    }else if (configRes.data.domains.length === 1) {
+      info = configRes.data.domains[0];
+    } else {
+      configRes.data.domains.forEach(el => {
+        if (program.ddns.chosenDomain === el.fullDomain) {
+          info = el;
+        }
+      });
+    }
+
+    if (!info) {
+      winston.error('RPN ERROR: You have multiple domains and did not specify which one to use');
+      throw new Error('No domain specified for account');
+    }
+
   } catch (err) {
     winston.error('Login to Auto DNS Failed');
-    winston.error(err.message);
+    winston.error(err);
     return;
   }
 
   // write config file for FRP
-  try{
-    const iniString = `[common]${eol}server_addr = ${info.ddnsAddress}${eol}server_port = ${info.ddnsPort}${eol}token = ${info.ddnsPassword}${eol}${eol}[web]${eol}type = http${eol}local_ip = 127.0.0.1${eol}custom_domains = ${info.subdomain}.${info.domain}${eol}local_port = ${program.port}`;
+  try {
+    const iniString = `[common]${eol}server_addr = ${info.fullDomain}${eol}server_port = ${info.bindPort}${eol}token = ${info.tunnelPassword}${eol}${eol}[web]${eol}type = http${eol}local_ip = 127.0.0.1${eol}custom_domains = ${info.fullDomain}${eol}local_port = ${program.port}`;
     fs.writeFileSync(program.ddns.iniFile, iniString);
   } catch(err) {
     winston.error('Failed to write FRP ini');

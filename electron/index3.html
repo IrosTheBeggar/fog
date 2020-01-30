@@ -74,7 +74,7 @@
     const shell = require('electron').shell;
     const validation = require('../src/validation');
 
-    const apiEndpoint = 'https://api.mstream.io';
+    const apiEndpoint = 'http://localhost:2022';
     const configFile = path.join(app.getPath('userData'), 'save/server-config.json');
     var loadJson = {};
     var bootFlag = false;
@@ -234,15 +234,21 @@
       loadJson.serverConfig.bitwarden.adminToken = '';
     }
 
-    // Auto DNS Testing
     if (!loadJson.ddns) {
-      loadJson.ddns = {};
-    } else {
-      loadJson.ddns.tested = false;
-      testAutoDns();
+      loadJson.ddns = { };
     }
-    
-    async function testAutoDns() {
+
+    if (!loadJson.ddns.domains) {
+      loadJson.ddns.domains = [];
+    }
+
+
+    loadJson.ddns.tested = false;
+    if (loadJson.ddns.email && loadJson.ddns.password) {
+      testAutoDns(loadJson.ddns.email, loadJson.ddns.password);
+    }
+
+    async function testAutoDns(email, password, throwError) {
       try {
         const loginRes = await axios({
           method: 'post',
@@ -250,12 +256,39 @@
           headers: { 'accept': 'application/json' },
           responseType: 'json',
           data: {
-            email: loadJson.ddns.email,
-            password: loadJson.ddns.password
+            email: email,
+            password: password
           }
         });
+
         loadJson.ddns.tested = true;
-      } catch(err) {}
+        loadJson.ddns.token = loginRes.data.token;
+        loadJson.ddns.email = email;
+        loadJson.ddns.password = password;
+
+        const configRes = await axios({
+          method: 'get',
+          url: apiEndpoint + '/account/info',
+          headers: { 'x-access-token': loginRes.data.token, 'accept': 'application/json' },
+          responseType: 'json'
+        });
+
+        loadJson.ddns.domains = [];
+        configRes.data.domains.forEach(el => {
+          loadJson.ddns.domains.push(el.fullDomain);
+        });
+
+        // Set the default domain
+        if (loadJson.ddns.domains.length > 0 && !loadJson.ddns.domains.includes(loadJson.ddns.chosenDomain) ) {
+          loadJson.ddns.chosenDomain = loadJson.ddns.domains[0];
+        }
+
+        fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+        console.log(loadJson.ddns)
+      } catch(err) {
+        console.log(err)
+        if (throwError === true) { throw err; }
+      }
     }
 
     window.onload = function () {
@@ -1174,30 +1207,31 @@
           login: async function() {
             try {
               this.pending = true;
-              const loginRes = await axios({
-                method: 'post',
-                url: apiEndpoint + '/login', 
-                headers: { 'accept': 'application/json' },
-                responseType: 'json',
-                data: {
-                  email: this.username,
-                  password: this.password
-                }
-              });
-              const configRes = await axios({
-                method: 'get',
-                url: apiEndpoint + '/account/info',
-                headers: { 'x-access-token': loginRes.data.token, 'accept': 'application/json' },
-                responseType: 'json'
-              });
-              loadJson.ddns = {
-                email: this.username,
-                password: this.password,
-                token: loginRes.data.token,
-                tested: true,
-                url: configRes.data.subdomain + '.' + configRes.data.domain
-              };
-              fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+              await testAutoDns(this.username, this.password, true);
+              // const loginRes = await axios({
+              //   method: 'post',
+              //   url: apiEndpoint + '/login', 
+              //   headers: { 'accept': 'application/json' },
+              //   responseType: 'json',
+              //   data: {
+              //     email: this.username,
+              //     password: this.password
+              //   }
+              // });
+              // const configRes = await axios({
+              //   method: 'get',
+              //   url: apiEndpoint + '/account/info',
+              //   headers: { 'x-access-token': loginRes.data.token, 'accept': 'application/json' },
+              //   responseType: 'json'
+              // });
+              // loadJson.ddns = {
+              //   email: this.username,
+              //   password: this.password,
+              //   token: loginRes.data.token,
+              //   tested: true,
+              //   url: configRes.data.subdomain + '.' + configRes.data.domain
+              // };
+              // fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
               iziToast.success({
                 title: 'Logged In',
                 position: 'topCenter',
@@ -1218,27 +1252,51 @@
       });
 
       const autoDnsLoggedInView = Vue.component('auto-dns-logged-in-view', {
+        data() {
+          return {
+            ddns: loadJson.ddns,
+          };
+        },
         template: `
           <div class="row">
             <div class="col s12">
               <div class="card">
                 <div class="row row-mod">
                   <div class="section-header">Fog Machine RPN</div>
+                  <br>
                   <div class="col s12">
-                    <div>You are logged in as: <b>{{loadJson.ddns.email}}</b></div>
-                    <div>Your Public URL: <b>https://{{loadJson.ddns.url}}</b></div>
+                    <div>You are logged in as: <b>{{ddns.email}}</b></div>
                     <br>
-                    <div v-if="this.$parent && this.$parent.$el && this.$parent.$el.id === 'switcherMain'"><a v-on:click="logout()" href="javascript:;">Logout</a></div>
+                    <div v-if="ddns.domains.length === 0"><b>WARNING: </b> Your account has no domains attached to it</div>
+                    <div v-if="ddns.domains.length === 1">Your Public URL: <b>https://{{loadJson.ddns.domains[0]}}</b></div>
+                    <div v-if="ddns.domains.length > 1">
+                      <select @change="updateConfig()" id="domain-select" v-model="ddns.chosenDomain">
+                        <option v-bind:value="domain" v-for="domain in ddns.domains">{{domain}}</option>
+                      </select>
+                      <label for="domain-select">Choose your domain</label>
+                    </div>
+                    <br>
+                    <div><a v-on:click="logout()" href="javascript:;">Logout</a></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>`,
+        mounted: function () {
+          this.selectInstance = M.FormSelect.init(document.querySelectorAll("#domain-select"));
+        },
+        beforeDestroy: function() {
+          this.selectInstance[0].destroy();
+        },
         methods: {
           logout: function() {
             loadJson.ddns = {};
+            fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
             vm.currentViewMain = 'auto-dns-view';
           },
+          updateConfig: function() {
+            fs.writeFileSync(configFile, JSON.stringify(loadJson), 'utf8');
+          }
         }
       });
 
