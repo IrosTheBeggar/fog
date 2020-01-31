@@ -83,11 +83,11 @@ async function login(program) {
 
   // write config file for FRP
   try {
-    let iniString = `[common]${eol}server_addr = ${info.fullDomain}${eol}server_port = ${info.bindPort}${eol}token = ${info.tunnelPassword}${eol}${eol}[web]${eol}type = http${eol}local_ip = 127.0.0.1${eol}custom_domains = ${info.fullDomain}${eol}local_port = ${program.port}`;
+    let iniString = `[common]${eol}server_addr = ${info.ip}${eol}server_port = ${info.bindPort}${eol}token = ${info.tunnelPassword}${eol}${eol}[web]${eol}type = http${eol}local_ip = 127.0.0.1${eol}custom_domains = ${info.fullDomain}${eol}local_port = ${program.port}`;
     if (program.server === 'minecraft-java') {
-      iniString = `[common]${eol}server_addr = ${info.fullDomain}${eol}server_port = ${info.bindPort}${eol}token = ${info.tunnelPassword}${eol}${eol}[web]${eol}type = tcp${eol}local_ip = 127.0.0.1${eol}${eol}local_port = ${program.port}${eol}remote_port = ${info.rawPort}`;
+      iniString = `[common]${eol}server_addr = ${info.ip}${eol}server_port = ${info.bindPort}${eol}token = ${info.tunnelPassword}${eol}${eol}[web]${eol}type = tcp${eol}local_ip = 127.0.0.1${eol}${eol}local_port = ${program.port}${eol}remote_port = ${info.rawPort}`;
     } else if (program.server === 'minecraft-bedrock') {
-      iniString = `[common]${eol}server_addr = ${info.fullDomain}${eol}server_port = ${info.bindPort}${eol}token = ${info.tunnelPassword}${eol}${eol}[web]${eol}type = udp${eol}local_ip = 127.0.0.1${eol}${eol}local_port = ${program.port}${eol}remote_port = ${info.rawPort}`;
+      iniString = `[common]${eol}server_addr = ${info.ip}${eol}server_port = ${info.bindPort}${eol}token = ${info.tunnelPassword}${eol}${eol}[web]${eol}type = udp${eol}local_ip = 127.0.0.1${eol}${eol}local_port = ${program.port}${eol}remote_port = ${info.rawPort}`;
     }
     fs.writeFileSync(program.ddns.iniFile, iniString);
   } catch(err) {
