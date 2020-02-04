@@ -34,6 +34,8 @@ exports.boot = function (program) {
     throw new Error('Unsupported System');
   }
 
+  // TODO: Handle new versions
+
   // Check file &and unzip
   if (!fs.existsSync(path.join(program.serverConfig.minecraftBedrock.directory, osMap[`${platform}-${arch}`].executable))) {
     winston.info('Unzipping Server Files');
@@ -41,7 +43,7 @@ exports.boot = function (program) {
     unzippedArchive.extractAllTo(program.serverConfig.minecraftBedrock.directory, true);
 
     // Copy README
-    fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-bedrock/README.md'), path.join(program.serverConfig.minecraftBedrock.directory, 'README.md'));
+    fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-bedrock/VERSION.md'), path.join(program.serverConfig.minecraftBedrock.directory, 'VERSION.md'));
   }  
 
   // Edit config
