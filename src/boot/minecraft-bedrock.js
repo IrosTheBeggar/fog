@@ -60,9 +60,13 @@ function bootServer(bootPath) {
     winston.warn('Server Already Running');
     return;
   }
-
+  let appPath = bootPath;
+  if (platform === 'linux') {
+    appPath =  path.join(__dirname, '../../servers/minecraft-bedrock/');
+  }
+  
   try {
-    spawnedServer = spawn(path.join(bootPath, osMap[`${platform}-${arch}`].executable), [], {
+    spawnedServer = spawn(path.join(appPath, osMap[`${platform}-${arch}`].executable), [], {
       // shell: true,
       cwd: bootPath,
     });
