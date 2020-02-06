@@ -44,13 +44,17 @@ exports.boot = function (program) {
 
     // Copy README
     fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-bedrock/VERSION.md'), path.join(program.serverConfig.minecraftBedrock.directory, 'VERSION.md'));
-  }  
+  }
+
+  // Copy Binary
+  if (platform === 'linux') {
+    fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-bedrock/bedrock_server'), path.join(program.serverConfig.minecraftBedrock.directory, 'bedrock_server'));
+  }
 
   // Edit config
   let configFile = fs.readFileSync(path.join(program.serverConfig.minecraftBedrock.directory, 'server.properties'), 'utf-8');
   configFile = configFile.replace(/server-port=.*/g, `server-port=${program.port}`);
   fs.writeFileSync(path.join(program.serverConfig.minecraftBedrock.directory, 'server.properties'), configFile, 'utf-8');
-
 
   bootServer(program.serverConfig.minecraftBedrock.directory);
 }
@@ -60,13 +64,13 @@ function bootServer(bootPath) {
     winston.warn('Server Already Running');
     return;
   }
-  let appPath = bootPath;
-  if (platform === 'linux') {
-    appPath =  path.join(__dirname, '../../servers/minecraft-bedrock/');
-  }
+  // let appPath = bootPath;
+  // if (platform === 'linux') {
+  //   appPath =  path.join(__dirname, '../../servers/minecraft-bedrock/');
+  // }
   
   try {
-    spawnedServer = spawn(path.join(appPath, osMap[`${platform}-${arch}`].executable), [], {
+    spawnedServer = spawn(path.join(bootPath, osMap[`${platform}-${arch}`].executable), [], {
       // shell: true,
       cwd: bootPath,
     });
