@@ -298,7 +298,7 @@
       const minecraftServerBanner = Vue.component('minecraft-banner', {
         data() {
           return{
-            isJava: javaError
+            isJava: (javaError && loadJson.server === 'minecraft-java')
           };
         },
         template: `
