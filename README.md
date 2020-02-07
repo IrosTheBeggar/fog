@@ -54,19 +54,9 @@ After that you can use the commands in the section above.
 
 NOTE: Java is not supported by Termux, but you can search some hacks to get it working.  So don't expect to be able to host your minecraft server.
 
-## RPN (Reverse Proxy Network) Service
 
-#### [Sign Up Here. It's Free!](https://fogmachine.io/sign-up.html)
+## Building for linux
 
-The most difficult part of managing a server is getting it accessible online.  RPN is a service that does this automatically.  The RPN client is built into the Fog Machine app, but it is usable as it's own program and can be ported to work with any server.
-
-#### Comes with these features
-
-* Get your own domain at: alias.fogmachine.io
-* Automatically sets up SSL Certificates for your domain
-* Hole Punching software guarantees your server stays online as long as you have a working internet connection
-* IP Obfuscation hides your IP address and adds an additional layer of security
-
-RPN is a Reverse Proxy Network.  This means it takes several servers to keep it running.  I seeded the service with enough money to last into early 2020.  After this money runs out, the servers will be shut down and replaced with a paid version.
-
-If you want to keep the free version around longer, you can donate to our Patreon.  Donations will to keeping the free tier up and running for everyone
+- Make sure to have a copy of the `minecraft_bedrock` executable in the folder
+- make sure permissions are correct on that file
+- build as normal
