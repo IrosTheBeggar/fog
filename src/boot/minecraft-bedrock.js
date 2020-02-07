@@ -46,10 +46,10 @@ exports.boot = function (program) {
     fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-bedrock/VERSION.md'), path.join(program.serverConfig.minecraftBedrock.directory, 'VERSION.md'));
   }
 
-  // // Copy Binary
-  // if (platform === 'linux') {
-  //   fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-bedrock/bedrock_server'), path.join(program.serverConfig.minecraftBedrock.directory, 'bedrock_server'));
-  // }
+  // Copy Binary
+  if (platform === 'linux') {
+    fs.copyFileSync(path.join(__dirname, '../../servers/minecraft-bedrock/bedrock_server'), path.join(program.serverConfig.minecraftBedrock.directory, 'bedrock_server'));
+  }
 
   // Edit config
   let configFile = fs.readFileSync(path.join(program.serverConfig.minecraftBedrock.directory, 'server.properties'), 'utf-8');

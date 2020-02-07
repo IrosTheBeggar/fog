@@ -78,7 +78,8 @@
       "files": [
         "frp/fogmachine-ddns-linux",
         "servers/minecraft-bedrock/bedrock-server-linux.zip",
-        "servers/bitwarden/bitwarden-linux"
+        "servers/bitwarden/bitwarden-linux",
+        "servers/minecraft-bedrock/bedrock_Server"
       ]
     }
   },
